@@ -1,0 +1,1 @@
+when the team selects a db and DBMS / RDBS, we can decide how to best structure the directories/files here
