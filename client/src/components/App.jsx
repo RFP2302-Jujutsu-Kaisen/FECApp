@@ -1,7 +1,10 @@
 import React from 'react';
+import QuestionsAndAnswers from './QAModule/QuestionsAndAnswers';
 
 export default function App() {
   return (
-    <p>Hello World</p>
+    <div className="questions-and-answers">
+      <QuestionsAndAnswers />
+    </div>
   );
 }
