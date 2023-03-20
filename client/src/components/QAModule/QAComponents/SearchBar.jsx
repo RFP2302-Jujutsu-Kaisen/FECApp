@@ -1,19 +1,19 @@
 import React from 'react';
 
-const SearchBar = () => {
-
+export default function SearchBar() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
   return (
     <div>
       <form>
         <input
-          type='text'
-          name='QASearch'
-          placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
+          type="text"
+          name="QASearch"
+          placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
         />
-        <button>Go!</button>
+        <button type="submit" onClick={handleSubmit}>Go!</button>
       </form>
     </div>
   );
-};
-
-export default SearchBar;
+}

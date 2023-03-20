@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import SearchBar from './QAComponents/SearchBar.jsx';
-import QuestionsList from './QAComponents/QuestionsList.jsx';
-import data from './example_data.js';
+import SearchBar from './QAComponents/SearchBar';
+import QuestionsList from './QAComponents/QuestionsList';
+import data from './example_data';
 
-const QuestionsAndAnswers = () => {
+export default function QuestionsAndAnswers() {
   const [questions, setQuestions] = useState(data.results);
   return (
     <div>
       <h2>QUESTIONS & ANSWERS</h2>
       <SearchBar />
-      <QuestionsList questions={questions}/>
+      <QuestionsList questions={questions} />
     </div>
   );
-};
-
-export default QuestionsAndAnswers;
+}

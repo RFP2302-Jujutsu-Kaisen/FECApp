@@ -1,9 +1,9 @@
 import React from 'react';
-import QuestionsAndAnswers from './QAModule/QuestionsAndAnswers.jsx';
+import QuestionsAndAnswers from './QAModule/QuestionsAndAnswers';
 
 export default function App() {
   return (
-    <div>
+    <div className="questions-and-answers">
       <QuestionsAndAnswers />
     </div>
   );
