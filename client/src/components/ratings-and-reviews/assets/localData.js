@@ -1,4 +1,4 @@
-const data = {
+const dataMeta = {
   "product_id": "40345",
   "ratings": {
       "1": "5",
@@ -19,4 +19,4 @@ const data = {
   }
 };
 
-export default data;
+export default dataMeta;

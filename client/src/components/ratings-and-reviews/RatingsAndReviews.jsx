@@ -1,10 +1,11 @@
 import React from 'react';
 import RatingSummary from './rr-components/RatingSummary';
+import dataMeta from './assets/localData';
 
 const RatingsAndReviews = function () {
   return (
     <div>
-      <RatingSummary />
+      <RatingSummary dataMeta={dataMeta} />
     </div>
   );
 };
