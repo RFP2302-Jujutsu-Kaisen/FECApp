@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Stars from '../RatingSummary';
+import Stars from '../Stars';
+import RatingBreakdown from '../RatingBreakdown';
+import ProductBreakdown from '../ProductBreakdown';
 
 const RatingSummary = function ({ dataMeta }) {
 
@@ -26,8 +28,17 @@ const RatingSummary = function ({ dataMeta }) {
 
   return (
     <div>
-      <h3>Ratings Summary</h3>
-      <h4>{averageRating}</h4>
+      <div>
+        <h2>Ratings Summary</h2>
+        <h4>{averageRating}</h4>
+        <Stars />
+      </div>
+      <div>
+        <RatingBreakdown />
+      </div>
+      <div>
+        <ProductBreakdown />
+      </div>
     </div>
   );
 };

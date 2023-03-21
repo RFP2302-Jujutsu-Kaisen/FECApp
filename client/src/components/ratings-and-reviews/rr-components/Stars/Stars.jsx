@@ -3,7 +3,8 @@ import React from 'react';
 const Stars = function () {
   return (
     <div>
-      <p>Star Star Star Star Star</p>
+      <h4>Stars Average Review Rating</h4>
+      <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
     </div>
   );
 };
