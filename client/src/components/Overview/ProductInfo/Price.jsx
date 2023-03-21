@@ -3,7 +3,6 @@ import React from 'react';
 export default function Price({ style }) {
   const salePrice = style.sale_price;
   const originalPrice = style.original_price;
-  console.log(JSON.stringify(style.original_price));
 
   if (salePrice !== null) {
     return (
