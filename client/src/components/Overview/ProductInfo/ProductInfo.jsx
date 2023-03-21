@@ -1,5 +1,6 @@
 import React from 'react';
 import Price from './Price';
+import ShareMedia from './ShareMedia';
 
 export default function ProductInfo({ productInfo } = {}) {
   const { styles, prod } = productInfo;
@@ -11,6 +12,7 @@ export default function ProductInfo({ productInfo } = {}) {
       <div>{prod.category}</div>
       <div>{prod.name}</div>
       <Price style={style} />
+      <ShareMedia style={style} />
     </div>
   );
 }
