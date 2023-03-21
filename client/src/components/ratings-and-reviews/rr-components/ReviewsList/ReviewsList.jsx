@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReviewTile from '../ReviewTile/ReviewTile';
 
-const ReviewsList = function () {
+const ReviewsList = function ({ Reviews, reviewsByStars }) {
+  console.log({dataMeta});
+  const [reviewsCount, setReviewsCount] = useState('');
+  const countReviews = (starCount) => {
+    const result = starCount['1']
+      + starCount['2']
+      + starCount['3']
+      + starCount['4']
+      + starCount['5'];
+    setReviewsCount(result);
+  };
+  countReviews(reviewsByStars);
+  console.log(reviewsCount);
+
   return (
     <div>
       <h2>Reviews List</h2>
