@@ -1,21 +1,12 @@
-import { React, useState } from 'react';
+import React from 'react';
 import RatingSummary from './rr-components/RatingSummary';
-import data from './assets/localData';
 
-
-
-
-
-const RatingsAndReviews = () => {
-  const [summaryData, setSummaryData] = useState(data);
-
+const RatingsAndReviews = function () {
   return (
-    <div className="RatingsAndReviews" >
-      <h2>Component: Ratings and Reviews</h2>
-      <RatingSummary data={summaryData} />
+    <div>
+      <RatingSummary />
     </div>
-  )
-}
-
+  );
+};
 
 export default RatingsAndReviews;

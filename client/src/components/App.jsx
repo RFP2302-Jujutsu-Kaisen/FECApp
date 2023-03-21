@@ -4,9 +4,13 @@ import RatingsAndReviews from './ratings-and-reviews';
 
 export default function App() {
   return (
-    <div className="questions-and-answers">
-      <QuestionsAndAnswers />
-      <RatingsAndReviews />
+    <div>
+      <div className="questions-and-answers">
+        <QuestionsAndAnswers />
+      </div>
+      <div>
+        <RatingsAndReviews />
+      </div>
     </div>
   );
 }
