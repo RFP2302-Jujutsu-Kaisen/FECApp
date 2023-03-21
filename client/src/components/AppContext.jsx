@@ -30,13 +30,17 @@ export function AppContextProvider({ children }) {
   // Using a reducer to manage state and dispatch
   const [state, dispatch] = useReducer(appReducer, initialState);
 
-  // Fetch product data when the component mounts
+  const headers = {
+    Authorization: process.env.AUTH_SECRET,
+  };
+
+  // Fetch product data
   useEffect(() => {
     axios
-      .get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344')
+      .get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344', { headers })
       .then((res) => {
-        const { productId } = res.data;
-        dispatch({ type: 'SET_PRODUCT_ID', payload: productId });
+        const { id } = res.data;
+        dispatch({ type: 'SET_PRODUCT_ID', payload: id });
       })
       .catch((err) => {
         console.error('Error fetching product data: ', err);
