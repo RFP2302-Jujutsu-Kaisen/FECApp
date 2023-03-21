@@ -11,7 +11,7 @@ const RatingsAndReviews = function () {
         <RatingSummary dataMeta={dataMeta} />
       </div>
       <div>
-        <ReviewsList Reviews={dataReviews} reviewsByStars={dataMeta.dataMeta.ratings} />
+        <ReviewsList Reviews={dataReviews} reviewsByStars={dataMeta.ratings} />
       </div>
       <div>
         <AddReviewForm />

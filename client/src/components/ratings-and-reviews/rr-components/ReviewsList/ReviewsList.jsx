@@ -1,24 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReviewTile from '../ReviewTile/ReviewTile';
 
 const ReviewsList = function ({ Reviews, reviewsByStars }) {
-  console.log({dataMeta});
   const [reviewsCount, setReviewsCount] = useState('');
   const countReviews = (starCount) => {
-    const result = starCount['1']
-      + starCount['2']
-      + starCount['3']
-      + starCount['4']
-      + starCount['5'];
+    let result = 0;
+    console.log('starCount[1]: ', starCount['1']);
+    result = Number.parseInt(starCount['1'], 10)
+      + Number.parseInt(starCount['2'], 10)
+      + Number.parseInt(starCount['3'], 10)
+      + Number.parseInt(starCount['4'], 10)
+      + Number.parseInt(starCount['5'], 10);
     setReviewsCount(result);
   };
-  countReviews(reviewsByStars);
-  console.log(reviewsCount);
+  useEffect(() => {
+    countReviews(reviewsByStars);
+  }, []);
+
 
   return (
     <div>
       <h2>Reviews List</h2>
-      <label htmlFor="sort">100 reviews, sorted by </label>
+      <label htmlFor="sort">{reviewsCount} reviews, sorted by </label>
       <select name="sort" id="sort">
         <option value="Relevence">Relevence</option>
         <option value="Helpful">Helpful</option>
