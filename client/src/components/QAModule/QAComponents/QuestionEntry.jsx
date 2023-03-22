@@ -1,12 +1,18 @@
 import React from 'react';
+import AnswerEntry from './AnswerEntry';
 
-function QuestionEntry({ question }) {
+export default function QuestionEntry({ question }) {
   return (
     <div>
-      <h6>Q: </h6>
-      <div>{question.question_body}</div>
+      <h4>Q: </h4>
+      <div>{question?.question_body}</div>
+      <div>
+        {
+            question && question.answers ? Object.keys(question.answers).map((key) => (
+              <AnswerEntry key={question.answers[key].id} answer={question.answers[key]} />
+            )) : null
+        }
+      </div>
     </div>
   );
 }
-
-export default QuestionEntry;
