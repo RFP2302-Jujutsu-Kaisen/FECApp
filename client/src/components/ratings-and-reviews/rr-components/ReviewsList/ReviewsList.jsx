@@ -5,7 +5,6 @@ const ReviewsList = function ({ Reviews, reviewsByStars }) {
   const [reviewsCount, setReviewsCount] = useState('');
   const countReviews = (starCount) => {
     let result = 0;
-    console.log('starCount[1]: ', starCount['1']);
     result = Number.parseInt(starCount['1'], 10)
       + Number.parseInt(starCount['2'], 10)
       + Number.parseInt(starCount['3'], 10)
