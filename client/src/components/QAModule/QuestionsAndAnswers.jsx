@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import SearchBar from './QAComponents/SearchBar';
-import QuestionsList from './QAComponents/QuestionsList';
+import { SearchBar, QuestionsList } from './QAComponents';
 import { useAppContext } from '../AppContext';
 
 export default function QuestionsAndAnswers() {

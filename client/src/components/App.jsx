@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionsAndAnswers from './QAModule/QuestionsAndAnswers';
+import QuestionsAndAnswers from './QAModule';
 import Overview from './Overview/Overview';
 import RatingsAndReviews from './ratings-and-reviews';
 import { AppContextProvider } from './AppContext';
