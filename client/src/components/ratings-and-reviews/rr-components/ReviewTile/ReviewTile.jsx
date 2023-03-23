@@ -1,50 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaStar } from 'react-icons/fa';
 
-const ReviewTile = function () {
-
+const ReviewTile = function ({ reviewData }) {
+  const [rating, setRating] = useState(reviewData.rating);
   return (
-    <div>
       <li>
         <div>
-          <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span>&#10003; User1234, January 1, 2020</span>
+          <h3>*Dev Review Id: {reviewData.review_id}</h3>
         </div>
         <div>
-          <h4>Review Title with word-break truncation to prevent wrapping onto the next...</h4>
+          {[...Array(5)].map((star, i) => {
+            const ratingValue = i + 1;
+            return (
+              <FaStar
+                key={i}
+                className="star"
+                color={ratingValue <= rating ? "#F7DC6F" : "#ECF0F1"}
+              />
+            )
+          })}
+        </div>
+        <div>
+          <h4>{reviewData.summary}</h4>
           <p>...line, if necessary.</p>
         </div>
         <div>
-          <p>Donut gummi bears gingerbread gummies chocolate. Ice cream apple pie tiramisu fruitcake chupa chups icing apple pie. Lemon drops cake pudding pudding.</p>
+          <p>{reviewData.body}</p>
         </div>
         <div>
-          <span>Helpful? Yes(10) | Report</span>
+          <span>Helpful? Yes ({reviewData.helpfulness}) | Report</span>
         </div>
       </li>
-      <li>
-      <div>
-          <span>&#9733;&#9733;&#9733;&#9734;&#9734;</span>
-          <span>User4567, December 31, 2022</span>
-        </div>
-        <div>
-          <h4>Review Title with word-break truncation to prevent wrapping onto the next...</h4>
-          <p>...line, if necessary.</p>
-        </div>
-        <div>
-          <p>Wedding cake donuts candied pecans gummies chocolate. Ice cream apple pie tiramisu fruitcake chupa chups icing apple pie. Lemon drops cake pudding pudding.</p>
-        </div>
-        <div>
-          <span>&#x2713; I recommend this product</span>
-        </div>
-        <div>
-          <h5>Respons:</h5>
-          <p>Marzipan danish jelly beans gummi bears apple pie cheesecake topping bisuit sesame snaps.</p>
-        </div>
-        <div>
-          <span>Helpful? Yes(6) | Report</span>
-        </div>
-      </li>
-
-    </div>
   );
 };
 

@@ -7,15 +7,9 @@ import { dataMeta, dataReviews } from './assets/localData';
 const RatingsAndReviews = function () {
   return (
     <div>
-      <div>
-        <RatingSummary dataMeta={dataMeta} />
-      </div>
-      <div>
-        <ReviewsList Reviews={dataReviews} reviewsByStars={dataMeta.ratings} />
-      </div>
-      <div>
-        <AddReviewForm />
-      </div>
+      <RatingSummary dataMeta={dataMeta} />
+      <ReviewsList Reviews={dataReviews} reviewsByStars={dataMeta.ratings} />
+      <AddReviewForm />
     </div>
   );
 };
