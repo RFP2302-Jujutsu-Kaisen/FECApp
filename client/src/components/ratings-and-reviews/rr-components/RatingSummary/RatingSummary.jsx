@@ -31,7 +31,7 @@ const RatingSummary = function ({ dataMeta }) {
       <div>
         <h2>Ratings Summary</h2>
         <h4>{averageRating}</h4>
-        <Stars />
+        <Stars averageRating={averageRating} />
       </div>
       <div>
         <RatingBreakdown averageRating={averageRating} />
