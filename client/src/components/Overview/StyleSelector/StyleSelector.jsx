@@ -6,9 +6,11 @@ export default function StyleSelector({ styles, setStyles }) {
     setStyles([styles[0], index]);
   };
 
+  console.log('Styles name', styles, styles[0][styles[1]]);
+
   return (
     <div>
-      <h3>StyleSelector</h3>
+      <h3>{styles[0].length > 0 ? styles[0][styles[1]].name : ''}</h3>
       <ul>
         {styles[0].map((style, index) => (
           <StyleThumbnail
