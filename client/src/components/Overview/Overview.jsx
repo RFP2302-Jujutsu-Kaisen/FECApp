@@ -11,7 +11,7 @@ import { useAppContext } from '../AppContext';
 
 const prodId = '40344';
 export default function Overview() {
-  //context, states
+  // context, states
   const product = useAppContext();
   const [prod, setProd] = useState({});
   const [styles, setStyles] = useState([[], 0]);
@@ -38,9 +38,9 @@ export default function Overview() {
       <h2>Overview</h2>
       <ImageGallery />
       <ProductInfo prod={prod} style={styles[0][styles[1]] || {}} />
-      <StyleSelector />
-      <AddToCart />
-      <Description />
+      <StyleSelector styles={styles} setStyles={setStyles} />
+      <AddToCart styles={styles} />
+      <Description prod={prod} />
     </div>
   );
 }
