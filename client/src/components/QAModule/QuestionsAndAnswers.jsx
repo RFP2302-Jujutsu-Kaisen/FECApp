@@ -6,6 +6,7 @@ import { useAppContext } from '../AppContext';
 
 export default function QuestionsAndAnswers() {
   const [questions, setQuestions] = useState([]);
+  const [filteredQuestions, setFilteredQuestions] = useState([]);
   const { state } = useAppContext();
   const { productId } = state;
 
@@ -24,6 +25,7 @@ export default function QuestionsAndAnswers() {
           const { results } = res.data;
           console.log(results);
           setQuestions(results);
+          setFilteredQuestions(results);
         })
         .catch((err) => {
           console.error('Error fetching product data: ', err);
@@ -31,11 +33,22 @@ export default function QuestionsAndAnswers() {
     }
   }, [productId]);
 
+  const handleSearch = (searchTerm) => {
+    if (searchTerm) {
+      const filtered = questions.filter((question) => (
+        question.question_body.toLowerCase().includes(searchTerm.toLowerCase())
+      ));
+      setFilteredQuestions(filtered);
+    } else {
+      setFilteredQuestions(questions);
+    }
+  };
+
   return (
     <div>
       <h2>QUESTIONS & ANSWERS</h2>
-      <SearchBar />
-      <QuestionsList questions={questions} />
+      <SearchBar onSearch={handleSearch} />
+      <QuestionsList questions={filteredQuestions} />
     </div>
   );
 }
