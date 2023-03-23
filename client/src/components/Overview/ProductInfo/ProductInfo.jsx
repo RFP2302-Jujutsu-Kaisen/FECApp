@@ -2,9 +2,8 @@ import React from 'react';
 import Price from './Price';
 import ShareMedia from './ShareMedia';
 
-export default function ProductInfo({ productInfo } = {}) {
-  const { styles, prod } = productInfo;
-  const style = styles.results[2]; // temp
+export default function ProductInfo({ prod, style } = {}) {
+  // console.log('prod and style in ProductInfo', style);
   return (
     <div>
       <h3>ProductInfo</h3>
