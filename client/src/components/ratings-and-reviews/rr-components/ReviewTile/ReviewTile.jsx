@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 
 const ReviewTile = function ({ reviewData }) {
-  const [rating, setRating] = useState(reviewData.rating);
+  const [rating] = useState(reviewData.rating);
   return (
       <li>
         <div>
