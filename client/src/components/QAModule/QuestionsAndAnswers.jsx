@@ -26,7 +26,7 @@ export default function QuestionsAndAnswers() {
           setQuestions(results);
         })
         .catch((err) => {
-          console.error('Error fetching question data: ', err);
+          console.error('Error fetching product data: ', err);
         });
     }
   }, [productId]);

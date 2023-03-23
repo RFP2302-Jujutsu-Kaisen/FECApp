@@ -4,7 +4,7 @@ import QuestionEntry from './QuestionEntry';
 
 export default function QuestionsList({ questions }) {
   return (
-    <div>
+    <div data-testid="questions-list">
       {
         questions.map((question) => (
           <QuestionEntry key={question.question_id} question={question} />
