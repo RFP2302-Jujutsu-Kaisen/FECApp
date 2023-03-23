@@ -33,13 +33,14 @@ export default function Overview() {
   // }, [prod]);
 
   // console.log('edata styles', eData.styles);
+  console.log(styles[0].length);
   return (
     <div>
       <h2>Overview</h2>
       <ImageGallery />
       <ProductInfo prod={prod} style={styles[0][styles[1]] || {}} />
       <StyleSelector styles={styles} setStyles={setStyles} />
-      <AddToCart styles={styles} />
+      <AddToCart style={styles[0].length > 0 ? styles[0][styles[1]] : {}} />
       <Description prod={prod} />
     </div>
   );
