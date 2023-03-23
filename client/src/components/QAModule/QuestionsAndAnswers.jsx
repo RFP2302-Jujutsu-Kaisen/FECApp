@@ -11,7 +11,7 @@ export default function QuestionsAndAnswers() {
 
   const baseUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
   const page = 1;
-  const count = 5;
+  const count = 100;
   const headers = {
     Authorization: process.env.AUTH_SECRET,
   };
