@@ -5,7 +5,7 @@ import AddCheckButton from './AddCheckButton';
 
 export default function AddToCart({ style }) {
   // states
-  const [skuState, setSkuState] = useState({});
+  const [skuState, setSkuState] = useState('');
   const [cartState, setCart] = useState({});
 
   // useEffect
@@ -14,8 +14,9 @@ export default function AddToCart({ style }) {
   }, [style]);
 
   // handlers
-  const skuHandler = (sku) => {
-    setSkuState(sku);
+  const skuHandler = (event) => {
+    setSkuState(event.target.value);
+    event.preventDefault();
   };
 
   // console.log('cart style', style);
@@ -27,7 +28,9 @@ export default function AddToCart({ style }) {
         skus={Object.keys(style).length > 0 ? style.skus : {}}
         skuHandler={skuHandler}
       />
-      <QuantityDropdown sku={skuState} />
+      <QuantityDropdown
+        sku={Object.keys(style).length > 0 && !!skuState ? style.skus[skuState] : {}}
+      />
       <AddCheckButton />
     </div>
   );
