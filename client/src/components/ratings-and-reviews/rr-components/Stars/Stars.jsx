@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import star from '../../assets/star.png';
+import { FaStar } from 'react-icons/fa';
 
 const SingleStarOutline = styled.div`
   height: 36px;
@@ -18,8 +18,9 @@ const SingleStarContainer = styled.div`
   `;
 
 const Stars = function ({ averageRating }) {
-
-  let rating = 5; //{ averageRating } || 0;
+// Work in progress to calc quarter stars
+  const [testRenderStars] = useState(averageRating);
+  let rating = { averageRating };
   let stars = [];
   while (stars.length < 5) {
     if (rating > 1) {
@@ -61,24 +62,18 @@ const Stars = function ({ averageRating }) {
     <div>
       <h4>Stars Average Review Rating</h4>
       <div>
-        {stars.map((item, i) => {
-          return (
-            <SingleStarContainer key={i}>
-              <div>
-              <SingleStarFill style={{"width" : `${parseInt(item*31)}px`}}>
-                <div>
-                <SingleStarOutline>
-                  <div>
-                  <span>&#8213;</span>
-                  </div>
-                </SingleStarOutline>
-                </div>
-              </SingleStarFill>
-              </div>
-            </SingleStarContainer>
-          );
-        })}
-    </div>
+          {[...Array(5)].map((star, i) => {
+            const ratingValue = i + 1;
+            return (
+              <FaStar
+                key={i}
+                className="star"
+                /*Change this hardcode 3 to render to quarter star*/
+                color={ratingValue <= 3 ? "#F7DC6F" : "#ECF0F1"}
+              />
+            )
+          })}
+        </div>
     </div>
   );
 };
