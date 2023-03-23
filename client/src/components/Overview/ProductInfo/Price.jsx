@@ -1,8 +1,8 @@
 import React from 'react';
 
 export default function Price({ style }) {
-  const salePrice = style.sale_price;
-  const originalPrice = style.original_price;
+  const salePrice = style.sale_price || null;
+  const originalPrice = style.original_price || '';
 
   if (salePrice !== null) {
     return (
