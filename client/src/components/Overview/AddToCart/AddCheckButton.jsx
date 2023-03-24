@@ -1,7 +1,14 @@
 import React from 'react';
 
-export default function AddCheckButton() {
+export default function AddCheckButton({ checkHandler }) {
   return (
-    <h3>AddCheckButton</h3>
+    <div>
+      <button
+        type="button"
+        onClick={checkHandler}
+      >
+        Add to Cart
+      </button>
+    </div>
   );
 }

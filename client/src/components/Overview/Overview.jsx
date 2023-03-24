@@ -24,23 +24,20 @@ export default function Overview() {
     }
   }, [product.state.productId]);
 
-  // useEffect(() => {
-  //   Parse.getProd(prodId, setProd);
-  // }, []);
-
-  // useEffect(() => {
-
-  // }, [prod]);
-
-  // console.log('edata styles', eData.styles);
-  console.log(styles[0].length);
   return (
     <div>
       <h2>Overview</h2>
       <ImageGallery />
       <ProductInfo prod={prod} style={styles[0][styles[1]] || {}} />
       <StyleSelector styles={styles} setStyles={setStyles} />
-      <AddToCart style={styles[0].length > 0 ? styles[0][styles[1]] : {}} />
+      <AddToCart
+        styleInStockArr={styles[0].length > 0
+          ? [styles[0][styles[1]],
+            Object.keys(styles[0][styles[1]].skus)
+              .filter((key) => styles[0][styles[1]].skus[key].quantity > 0),
+          ]
+          : []}
+      />
       <Description prod={prod} />
     </div>
   );
