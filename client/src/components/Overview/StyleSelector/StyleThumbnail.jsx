@@ -1,6 +1,7 @@
 import React from 'react';
 
-export default function StyleThumbnail({ style, selected, setSelected, index,
+export default function StyleThumbnail({
+  style, selected, setSelected, index,
 }) {
   const imgClickHandler = (event) => {
     if (!selected) {

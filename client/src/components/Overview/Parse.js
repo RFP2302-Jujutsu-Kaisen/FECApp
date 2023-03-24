@@ -3,6 +3,7 @@ import axios from 'axios';
 // const path = require('path');
 
 const server = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/';
+const cartServer = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart/';
 const styleEndPoint = '/styles';
 
 const config = {
@@ -35,6 +36,41 @@ const Parse = {
       .catch((err) => {
         console.log('Error getting styles:', prodId, err);
         setStyles([[], 0]);
+      });
+  },
+
+  postCart: (prodId, skuId, count, addCartHandler) => {
+    const endpointUrl = new URL(cartServer);
+    const postPromises = [];
+    const data = {
+      product_id: prodId,
+      sku_id: skuId,
+    };
+
+    for (let i = 0; i < count; i += 1) {
+      postPromises.push(axios.post(endpointUrl.toString(), data, config));
+    }
+
+    Promise.all(postPromises)
+      .then((responses) => {
+        console.log('Success posting to cart:', responses);
+        addCartHandler(null, data);
+      })
+      .catch((err) => {
+        addCartHandler(err, data);
+      });
+  },
+
+  getCart: (getCartHandler) => {
+    const endpointUrl = new URL(cartServer);
+    axios.get(endpointUrl.toString(), config)
+      .then((cart) => {
+        console.log('Success getting cart', cart.data);
+        getCartHandler(cart.data);
+      })
+      .catch((err) => {
+        console.log('Error getting cart', err);
+        getCartHandler(err, []);
       });
   },
 };
