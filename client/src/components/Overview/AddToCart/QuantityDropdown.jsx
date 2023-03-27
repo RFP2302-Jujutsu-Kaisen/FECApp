@@ -10,7 +10,6 @@ export default function QuantityDropdown({ sku, quantityHandler }) {
   if (optionsArr.length > 0) {
     return (
       <div>
-        <h3>QuantityDropdown</h3>
         <select name="quantitydropdown" onChange={quantityHandler}>
           {optionsArr}
         </select>
@@ -19,7 +18,6 @@ export default function QuantityDropdown({ sku, quantityHandler }) {
   }
   return (
     <div>
-      <h3>QuantityDropdown</h3>
       <select name="quantitydropdown" disabled>
         <option key="default" value="default">-</option>
       </select>

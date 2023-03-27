@@ -17,7 +17,6 @@ export default function MainImage({
     const numPhotos = style.photos.length - 1;
     return (
       <div>
-        <h3>MainImage</h3>
         {imageIndex > 0 ? <button type="button" onClick={setPrev}>Left</button> : null}
         <input
           type="image"

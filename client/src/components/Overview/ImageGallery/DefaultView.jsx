@@ -1,13 +1,19 @@
 import React from 'react';
 import ThumbnailList from './ThumbnailList';
 import MainImage from './MainImage';
+import styled from 'styled-components';
+
+// css
+const RowWrapper = styled.div`
+  display: flex;
+
+`;
 
 export default function DefaultView({
   style, imageIndex, toggleHandler, setImageIndex, toggleView,
 }) {
   return (
-    <div>
-      <h3>DefaultView</h3>
+    <RowWrapper>
       <ThumbnailList
         style={style}
         imageIndex={imageIndex}
@@ -20,7 +26,6 @@ export default function DefaultView({
         setImageIndex={setImageIndex}
         toggleHandler={toggleHandler}
       />
-    </div>
-
+    </RowWrapper>
   );
 }

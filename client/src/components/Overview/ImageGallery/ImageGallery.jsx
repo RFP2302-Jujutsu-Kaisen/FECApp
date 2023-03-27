@@ -9,7 +9,7 @@ export default function ImageGallery({ style }) {
 
   // handlers
   // change default or expanded view
-  const toggleHandler = (event) => {
+  const toggleHandler = () => {
     setToggleView(!toggleView);
   };
 
@@ -22,7 +22,6 @@ export default function ImageGallery({ style }) {
   if (toggleView) {
     return (
       <div>
-        <h3>ImageGallery</h3>
         <DefaultView
           style={style}
           imageIndex={imageIndex}
@@ -36,7 +35,6 @@ export default function ImageGallery({ style }) {
 
   return (
     <div>
-      <h3>ImageGallery</h3>
       <ExpandedView
         style={style}
         imageIndex={imageIndex}

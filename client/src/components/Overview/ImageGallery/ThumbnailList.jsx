@@ -1,5 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
 import GalleryThumbnail from './GalleryThumbnail';
+
+// css
+const ThumbnailListWrapper = styled.ul`
+  list-style-type: none;
+`;
 
 const listAmt = 7; // display up to listAmt thumbnails (7)
 const listMin = Math.floor(listAmt / 2);
@@ -55,12 +61,11 @@ export default function ThumbnailList({
 
   return (
     <div className={toggleView ? 'thumbnail-list' : 'icon-list'}>
-      <h3>ThumbnailList</h3>
       {thumbnails.length > 0 && minButtonFlag
         ? <button type="button" onClick={setPrev}>Up</button> : null}
-      <ul>
+      <ThumbnailListWrapper>
         {thumbnails}
-      </ul>
+      </ThumbnailListWrapper>
       {thumbnails.length > 0 && maxButtonFlag
         ? <button type="button" onClick={setNext}>Down</button> : null}
     </div>

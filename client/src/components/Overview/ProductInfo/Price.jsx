@@ -1,4 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
+
+// css
+const SalePriceSpan = styled.span`
+  color: red;
+`;
+// text-decoration: ${(props) => props.decoration} || "none";
+
+const OrigPriceSpan = styled.span`
+  text-decoration: ${(props) => props.sale || 'none'};
+
+`;
 
 export default function Price({ style }) {
   const salePrice = style.sale_price || null;
@@ -7,10 +19,9 @@ export default function Price({ style }) {
   if (salePrice !== null) {
     return (
       <div>
-        <h3>Price</h3>
         <div>
-          <span>{salePrice}</span>
-          <span>{originalPrice}</span>
+          <SalePriceSpan>{salePrice.toString()}</SalePriceSpan>
+          <OrigPriceSpan sale="line-through">{originalPrice.toString()}</OrigPriceSpan>
         </div>
 
       </div>
@@ -19,8 +30,7 @@ export default function Price({ style }) {
 
   return (
     <div>
-      <h3>Price</h3>
-      <p>{originalPrice}</p>
+      <OrigPriceSpan>{originalPrice.toString()}</OrigPriceSpan>
     </div>
   );
 }

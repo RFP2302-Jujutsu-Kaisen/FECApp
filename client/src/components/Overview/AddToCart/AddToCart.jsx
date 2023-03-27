@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import SizeDropdown from './SizeDropdown';
 import QuantityDropdown from './QuantityDropdown';
 import AddCheckButton from './AddCheckButton';
 import { useAppContext } from '../../AppContext';
 import Parse from '../Parse';
+
+// css
+const RowWrapper = styled.div`
+  display: flex;
+`;
+
+const ColWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export default function AddToCart({ styleInStockArr }) {
   const style = styleInStockArr.length > 0 ? styleInStockArr[0] : {};
@@ -74,23 +85,24 @@ export default function AddToCart({ styleInStockArr }) {
   }
 
   return (
-    <div>
-      <h3>AddToCart</h3>
-      <SizeDropdown
-        skus={Object.keys(style).length > 0 ? style.skus : {}}
-        inStockSkus={inStockSkus}
-        skuHandler={skuHandler}
-        skuState={skuState}
-        buttonCheck={buttonCheck}
-      />
-      <QuantityDropdown
-        sku={(Object.keys(style).length > 0)
-          && (skuState in style.skus) ? style.skus[skuState] : {}}
-        quantityHandler={quantityHandler}
-      />
+    <ColWrapper>
+      <RowWrapper>
+        <SizeDropdown
+          skus={Object.keys(style).length > 0 ? style.skus : {}}
+          inStockSkus={inStockSkus}
+          skuHandler={skuHandler}
+          skuState={skuState}
+          buttonCheck={buttonCheck}
+        />
+        <QuantityDropdown
+          sku={(Object.keys(style).length > 0)
+            && (skuState in style.skus) ? style.skus[skuState] : {}}
+          quantityHandler={quantityHandler}
+        />
+      </RowWrapper>
       <AddCheckButton
         checkHandler={checkHandler}
       />
-    </div>
+    </ColWrapper>
   );
 }
