@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
-console.log(FaStar);
+// console.log(FaStar);
 
 
 const star = () => {
   return (
   <FaStar />);
 };
-console.log(star);
+// console.log(star);
 
 export const QuarterStarStyle = styled.span`
  & {

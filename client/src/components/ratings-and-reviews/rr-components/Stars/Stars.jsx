@@ -24,13 +24,13 @@ const Stars = function ({ averageRating }) {
 // Work in progress to calc quarter stars
   const testRenderStars = Number(averageRating);
 
-  console.log('averageRating: ', averageRating);
-  console.log('{ averageRating }: ', {averageRating});
-  console.log('testRenderStars: ', testRenderStars);
+  // console.log('averageRating: ', averageRating);
+  // console.log('{ averageRating }: ', {averageRating});
+  // console.log('testRenderStars: ', testRenderStars);
   const [starValues, setStarValues] = useState([]);
   const MakeQuarterStarsArray = function (ratingNum) {
     let rating = ratingNum;
-    console.log('rating: ', rating);
+    // console.log('rating: ', rating);
     let stars = [];
     while (stars.length < 5) {
       if (rating > 1) {
@@ -68,12 +68,12 @@ const Stars = function ({ averageRating }) {
       }
       rating -= rating;
     }
-    console.log('stars: ', stars);
+    // console.log('stars: ', stars);
     setStarValues(stars);
 }
 
 
-console.log('starValues: ', starValues);
+// console.log('starValues: ', starValues);
 
   return (
     <div>
