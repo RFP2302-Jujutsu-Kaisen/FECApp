@@ -12,6 +12,7 @@ export default function DefaultView({
         style={style}
         imageIndex={imageIndex}
         setImageIndex={setImageIndex}
+        toggleView={toggleView}
       />
       <MainImage
         style={style}

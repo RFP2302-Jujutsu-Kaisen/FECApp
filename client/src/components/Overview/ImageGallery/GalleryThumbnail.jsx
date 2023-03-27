@@ -5,11 +5,9 @@ export default function GalleryThumbnail({
 }) {
   const imgClickHandler = (event) => {
     if (!selected) {
-      console.log('current index is', imageIndex);
       setImageIndex(imageIndex);
     }
     event.target.blur(); // stop focusing on input/image
-    event.preventDefault();
   };
 
   // console.log('photo is ', photo, 'imageIndex', imageIndex, selected);

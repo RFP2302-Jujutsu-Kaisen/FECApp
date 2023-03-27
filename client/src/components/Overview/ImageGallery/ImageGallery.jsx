@@ -11,7 +11,6 @@ export default function ImageGallery({ style }) {
   // change default or expanded view
   const toggleHandler = (event) => {
     setToggleView(!toggleView);
-    event.preventDefault();
   };
 
   // const imageSwitchHandler = (event) => {
