@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
 import { QuarterStarStyle } from '../../StyledComponentsRR';
+import FullStar from './FullStar';
+import EmptyStar from './EmptyStar';
 
 const SingleStarOutline = styled.div`
   height: 36px;
@@ -80,12 +82,20 @@ console.log('starValues: ', starValues);
         {[100, 50, 100, 30, 0].map((star, i) => {
           const ratingValue = star;
           return (
-          <QuarterStarStyle fillwidth="50%" key={i} >
+          <QuarterStarStyle fillwidth="100%" key={i} >
             <FaStar />
           </QuarterStarStyle>
           );
         })}
       </div>
+      <span position="relative" display="inline-flex" text-align="left">
+      <span position="absolute" overflow="hidden" width="50%">
+        <FullStar />
+      </span>
+      <span>
+        <EmptyStar />
+      </span>
+      </span>
     </div>
   );
 };

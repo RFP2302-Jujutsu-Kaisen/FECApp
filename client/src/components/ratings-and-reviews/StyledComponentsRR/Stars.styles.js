@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
+console.log(FaStar);
 
 
 const star = () => {
@@ -18,11 +19,11 @@ export const QuarterStarStyle = styled.span`
  }
  &:after {
 
-  content: "M",
+  content: '""',
   position: absolute;
   left: 0;
   top: 0;
-  width: "${props => props.fillwidth}"%;
+  width: ${props => props.fillwidth}%;
   overflow: hidden;
   color: #F7DC6F;
 
