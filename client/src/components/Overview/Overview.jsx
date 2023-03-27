@@ -27,7 +27,7 @@ export default function Overview() {
   return (
     <div>
       <h2>Overview</h2>
-      <ImageGallery />
+      <ImageGallery style={styles[0][styles[1]] || {}} />
       <ProductInfo prod={prod} style={styles[0][styles[1]] || {}} />
       <StyleSelector styles={styles} setStyles={setStyles} />
       <AddToCart
