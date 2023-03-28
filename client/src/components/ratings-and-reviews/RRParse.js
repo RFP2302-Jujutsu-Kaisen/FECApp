@@ -32,7 +32,13 @@ const RRParse = {
     axios.get(endpointUrl.toString(), config)
       .then((data) => {
         console.log('Success getting data', data.data);
-        setRatings(data.data.ratings);
+        setRatings([
+          Number.parseInt(data.data.ratings['1']),
+          Number.parseInt(data.data.ratings['2']),
+          Number.parseInt(data.data.ratings['3']),
+          Number.parseInt(data.data.ratings['4']),
+          Number.parseInt(data.data.ratings['5'])
+        ]);
         setCharacteristics(data.data.characteristics);
         setRecommended(data.data.recommended);
       })

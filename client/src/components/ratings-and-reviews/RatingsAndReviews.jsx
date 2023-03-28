@@ -12,7 +12,7 @@ const RatingsAndReviews = function () {
 
   const product = useAppContext();
   const [reviews, setReviews] = useState({});
-  const [ratings, setRatings] = useState({});
+  const [ratings, setRatings] = useState([]);
   const [recommended, setRecommended] = useState({});
   const [characteristics, setCharacteristics] = useState({});
 
@@ -29,7 +29,7 @@ const RatingsAndReviews = function () {
   console.log('characteristics: ', characteristics);
   return (
     <div>
-      <RatingSummary dataMeta={dataMeta} />
+      <RatingSummary Ratings={ratings} />
       <ReviewsList Reviews={dataReviews} reviewsByStars={dataMeta.ratings} />
       <AddReviewForm />
     </div>

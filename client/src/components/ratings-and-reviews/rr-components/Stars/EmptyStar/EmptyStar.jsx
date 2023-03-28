@@ -3,7 +3,7 @@ import { FaStar } from 'react-icons/fa';
 
 const EmptyStar = function () {
   return (
-    <FaStar color="#F7DC6F" />
+    <FaStar color="#ECF0F1" />
   );
 };
 
