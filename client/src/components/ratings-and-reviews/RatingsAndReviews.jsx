@@ -29,7 +29,7 @@ const RatingsAndReviews = function () {
   console.log('characteristics: ', characteristics);
   return (
     <div>
-      <RatingSummary Ratings={ratings} />
+      <RatingSummary Ratings={ratings} Recommended={recommended} Characteristics={characteristics} />
       <ReviewsList Reviews={dataReviews} reviewsByStars={dataMeta.ratings} />
       <AddReviewForm />
     </div>

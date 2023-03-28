@@ -3,7 +3,7 @@ import Stars from '../Stars';
 import RatingBreakdown from '../RatingBreakdown';
 import ProductBreakdown from '../ProductBreakdown';
 
-const RatingSummary = function ({ Ratings }) {
+const RatingSummary = function ({ Ratings, Recommended, Characteristics }) {
 
   const oneStars = Ratings[0];
   const twoStars = Ratings[1] * 2;
@@ -19,12 +19,6 @@ const RatingSummary = function ({ Ratings }) {
   / (countOneStars + countTwoStars + countThreeStars + countFourStars + countFiveStars);
   const averageRating = avgRate.toFixed(1);
   const ratingNum = Number(averageRating);
-  // const getStarAverage = () => {
-  //   let result = (oneStars + twoStars + threeStars + fourStars + fiveStars)
-  //   / (countOneStars + countTwoStars + countThreeStars + countFourStars + countFiveStars);
-  //   result = result.toFixed(1);
-  //   setAverageRating(result);
-  // };
 
   return (
     <div>
@@ -34,10 +28,10 @@ const RatingSummary = function ({ Ratings }) {
         <Stars averageRating={ratingNum} />
       </div>
       <div>
-        <RatingBreakdown averageRating={averageRating} />
+        <RatingBreakdown Recommended={Recommended} Ratings={Ratings} />
       </div>
       <div>
-        <ProductBreakdown />
+        <ProductBreakdown Characteristics={Characteristics} />
       </div>
     </div>
   );

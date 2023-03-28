@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { QuarterStarStyle } from '../../StyledComponentsRR';
 import FullStar from './FullStar';
 import EmptyStar from './EmptyStar';
