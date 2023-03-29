@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import SizeDropdown from './SizeDropdown';
 import QuantityDropdown from './QuantityDropdown';
 import AddCheckButton from './AddCheckButton';
 import { useAppContext } from '../../AppContext';
 import Parse from '../Parse';
+
+// css
+const RowWrapper = styled.div`
+  display: flex;
+`;
+
+const ColWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export default function AddToCart({ styleInStockArr }) {
   const style = styleInStockArr.length > 0 ? styleInStockArr[0] : {};
@@ -36,19 +47,15 @@ export default function AddToCart({ styleInStockArr }) {
     event.preventDefault();
   };
 
-  const addCartHandler = (err, responses) => {
-    if (err) {
-      console.log('Error adding to cart', err);
-    } else {
-      console.log('Sucess adding to cart', responses);
-      Parse.getCart((cart) => console.log('User cart:', cart));
-    }
+  const addCartHandler = async (responses) => {
+    console.log('Sucess adding to cart', responses);
+    console.log('User cart', await Parse.getCart());
   };
 
-  const checkHandler = (event) => {
+  const checkHandler = async (event) => {
     if (skuState.length > 0) {
       console.log('TODO: Post Cart:', JSON.stringify({ product_id: prodContext.state.productId, sku_id: skuState, count: quantityState }));
-      Parse.postCart(prodContext.state.productId, skuState, quantityState, addCartHandler);
+      addCartHandler(await Parse.postCart(prodContext.state.productId, skuState, quantityState));
     } else {
       console.log('checkHandler skuState is empty', skuState);
       setButtonCheck(true);
@@ -58,39 +65,44 @@ export default function AddToCart({ styleInStockArr }) {
 
   if (inStockSkus.length <= 0) {
     return (
-      <div>
-        <h3>AddToCart</h3>
-        <SizeDropdown
-          skus={Object.keys(style).length > 0 ? style.skus : {}}
-          inStockSkus={inStockSkus}
-          skuHandler={skuHandler}
+      <ColWrapper data-testid="addToCartId">
+        <RowWrapper>
+          <SizeDropdown
+            skus={Object.keys(style).length > 0 ? style.skus : {}}
+            inStockSkus={inStockSkus}
+            skuHandler={skuHandler}
+          />
+          <QuantityDropdown
+            sku={Object.keys(style).length > 0 && !!skuState ? style.skus[skuState] : {}}
+            quantityHandler={quantityHandler}
+          />
+        </RowWrapper>
+        <AddCheckButton
+          checkHandler={checkHandler}
         />
-        <QuantityDropdown
-          sku={Object.keys(style).length > 0 && !!skuState ? style.skus[skuState] : {}}
-          quantityHandler={quantityHandler}
-        />
-      </div>
+      </ColWrapper>
     );
   }
 
   return (
-    <div>
-      <h3>AddToCart</h3>
-      <SizeDropdown
-        skus={Object.keys(style).length > 0 ? style.skus : {}}
-        inStockSkus={inStockSkus}
-        skuHandler={skuHandler}
-        skuState={skuState}
-        buttonCheck={buttonCheck}
-      />
-      <QuantityDropdown
-        sku={(Object.keys(style).length > 0)
-          && (skuState in style.skus) ? style.skus[skuState] : {}}
-        quantityHandler={quantityHandler}
-      />
+    <ColWrapper data-testid="addToCartId">
+      <RowWrapper>
+        <SizeDropdown
+          skus={Object.keys(style).length > 0 ? style.skus : {}}
+          inStockSkus={inStockSkus}
+          skuHandler={skuHandler}
+          skuState={skuState}
+          buttonCheck={buttonCheck}
+        />
+        <QuantityDropdown
+          sku={(Object.keys(style).length > 0)
+            && (skuState in style.skus) ? style.skus[skuState] : {}}
+          quantityHandler={quantityHandler}
+        />
+      </RowWrapper>
       <AddCheckButton
         checkHandler={checkHandler}
       />
-    </div>
+    </ColWrapper>
   );
 }

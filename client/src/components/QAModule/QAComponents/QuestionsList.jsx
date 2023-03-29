@@ -10,7 +10,7 @@ padding: 16px 14px;
 font-size: 15px;
 cursor: pointer;
 `;
-export default function QuestionsList({ questions }) {
+export default function QuestionsList({ questions, refreshAnswers }) {
   const [numQsToShow, setNumQsToShow] = useState(4);
 
   const renderQuestions = () => {
@@ -18,7 +18,13 @@ export default function QuestionsList({ questions }) {
     return questions.map((question) => {
       if (count < numQsToShow) {
         count += 1;
-        return <QuestionEntry key={question.question_id} question={question} />;
+        return (
+          <QuestionEntry
+            key={question.question_id}
+            question={question}
+            refreshAnswers={refreshAnswers}
+          />
+        );
       }
       return null;
     });

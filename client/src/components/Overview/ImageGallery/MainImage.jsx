@@ -16,10 +16,10 @@ export default function MainImage({
   if (Object.keys(style).length > 0) {
     const numPhotos = style.photos.length - 1;
     return (
-      <div>
-        <h3>MainImage</h3>
+      <div data-testid="mainImageId">
         {imageIndex > 0 ? <button type="button" onClick={setPrev}>Left</button> : null}
         <input
+          data-testid="imgToggleId"
           type="image"
           height="320"
           width="320"

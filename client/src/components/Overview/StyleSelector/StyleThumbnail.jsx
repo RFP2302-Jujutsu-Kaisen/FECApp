@@ -25,7 +25,6 @@ export default function StyleThumbnail({
           onClick={imgClickHandler}
           onKeyDown={imgClickHandler}
         />
-        <span>{style.style_id}</span>
       </li>
     );
   }
@@ -41,7 +40,6 @@ export default function StyleThumbnail({
         onClick={imgClickHandler}
         onKeyDown={imgClickHandler}
       />
-      <span>{style.style_id}</span>
     </li>
   );
 }

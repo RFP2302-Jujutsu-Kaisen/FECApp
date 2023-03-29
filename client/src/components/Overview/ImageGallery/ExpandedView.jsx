@@ -11,7 +11,7 @@ export default function ExpandedView({
   // handler
   const toggleZoomHandler = () => {
     setToggleZoom(!toggleZoom);
-  }
+  };
 
   if (toggleZoom) {
     return (
