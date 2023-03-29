@@ -69,23 +69,27 @@ export default function AddToCart({ styleInStockArr }) {
 
   if (inStockSkus.length <= 0) {
     return (
-      <div>
-        <h3>AddToCart</h3>
-        <SizeDropdown
-          skus={Object.keys(style).length > 0 ? style.skus : {}}
-          inStockSkus={inStockSkus}
-          skuHandler={skuHandler}
+      <ColWrapper data-testid="addToCartId">
+        <RowWrapper>
+          <SizeDropdown
+            skus={Object.keys(style).length > 0 ? style.skus : {}}
+            inStockSkus={inStockSkus}
+            skuHandler={skuHandler}
+          />
+          <QuantityDropdown
+            sku={Object.keys(style).length > 0 && !!skuState ? style.skus[skuState] : {}}
+            quantityHandler={quantityHandler}
+          />
+        </RowWrapper>
+        <AddCheckButton
+          checkHandler={checkHandler}
         />
-        <QuantityDropdown
-          sku={Object.keys(style).length > 0 && !!skuState ? style.skus[skuState] : {}}
-          quantityHandler={quantityHandler}
-        />
-      </div>
+      </ColWrapper>
     );
   }
 
   return (
-    <ColWrapper>
+    <ColWrapper data-testid="addToCartId">
       <RowWrapper>
         <SizeDropdown
           skus={Object.keys(style).length > 0 ? style.skus : {}}

@@ -14,29 +14,25 @@ const config = {
 
 const Parse = {
 
-  getProd: (prodId, setProd) => {
+  getProd: async (prodId) => {
     const endpointUrl = new URL(prodId, server);
-    axios.get(endpointUrl.toString(), config)
-      .then((prod) => {
-        // console.log('Success getting prod', prod.data);
-        setProd(prod.data);
-      })
-      .catch((err) => {
-        console.log('Error getting prod:', prodId, err);
-        setProd({});
-      });
+    try {
+      const prod = await axios.get(endpointUrl.toString(), config);
+      return prod.data;
+    } catch (err) {
+      console.log('Error getting prod:', prodId, err);
+      return {};
+    }
   },
-  getStyles: (prodId, setStyles) => {
+  getStyles: async (prodId) => {
     const endpoint = new URL(prodId + styleEndPoint, server);
-    axios.get(endpoint.toString(), config)
-      .then((styles) => {
-        // console.log('Styles set', styles.data);
-        setStyles([styles.data.results, 0]);
-      })
-      .catch((err) => {
-        console.log('Error getting styles:', prodId, err);
-        setStyles([[], 0]);
-      });
+    try {
+      const styles = await axios.get(endpoint.toString(), config);
+      return [styles.data.results, 0];
+    } catch (err) {
+      console.log('Error getting prod:', prodId, err);
+      return [[], 0];
+    }
   },
 
   postCart: (prodId, skuId, count, addCartHandler) => {

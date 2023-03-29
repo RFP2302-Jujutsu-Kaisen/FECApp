@@ -16,7 +16,7 @@ export default function StyleSelector({ styles, setStyles }) {
   // console.log('Styles name', styles, styles[0][styles[1]]);
 
   return (
-    <div>
+    <div data-testid="styleSelId">
       <h3>{styles[0].length > 0 ? styles[0][styles[1]].name : ''}</h3>
       <StyleList>
         {styles[0].map((style, index) => (

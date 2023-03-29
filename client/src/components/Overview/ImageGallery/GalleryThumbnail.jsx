@@ -1,4 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
+
+// css
+const InputWrapper = styled.input`
+  border-bottom: ${({ selected }) => (selected && 'solid medium black')};
+  box-shadow: ${({ selected }) => (selected && '0 0 10px black')};
+  max-width: 80px;
+  height: auto;
+  border: 10px solid rgba(255,255,255,.5);
+  border-radius: 1000px;
+`;
+
+// color: ${({ selected }) => (selected ? 'red' : 'black')}
 
 export default function GalleryThumbnail({
   photo, imageIndex, setImageIndex, selected,
@@ -12,32 +25,14 @@ export default function GalleryThumbnail({
 
   // console.log('photo is ', photo, 'imageIndex', imageIndex, selected);
 
-  // add check mark if selected
-  if (selected) {
-    return (
-      <li>
-        <span>Highlighted</span>
-        <input
-          type="image"
-          src={photo.thumbnail_url}
-          alt={imageIndex.toString()}
-          height="80"
-          width="80"
-          onClick={imgClickHandler}
-          onKeyDown={imgClickHandler}
-        />
-      </li>
-    );
-  }
-
+  // add highlight if selected
   return (
     <li>
-      <input
+      <InputWrapper
+        selected={selected}
         type="image"
         src={photo.thumbnail_url}
         alt={imageIndex.toString()}
-        height="80"
-        width="80"
         onClick={imgClickHandler}
         onKeyDown={imgClickHandler}
       />

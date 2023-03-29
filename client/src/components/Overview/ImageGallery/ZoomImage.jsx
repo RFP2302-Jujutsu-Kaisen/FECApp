@@ -20,6 +20,7 @@ export default function ZoomImage({
       <div>
         <h3>ZoomImage</h3>
         <input
+          data-testid="zoomImgId"
           className="zoom-img"
           type="image"
           height="320"

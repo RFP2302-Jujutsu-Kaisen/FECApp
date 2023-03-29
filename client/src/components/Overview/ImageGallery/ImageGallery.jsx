@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DefaultView from './DefaultView';
 import ExpandedView from './ExpandedView';
 
@@ -6,6 +6,10 @@ export default function ImageGallery({ style }) {
   // states
   const [toggleView, setToggleView] = useState(true);
   const [imageIndex, setImageIndex] = useState(0);
+
+  useEffect(() => {
+    setToggleView(true);
+  }, [style]);
 
   // handlers
   // change default or expanded view
@@ -21,7 +25,7 @@ export default function ImageGallery({ style }) {
   // default or expanded view
   if (toggleView) {
     return (
-      <div>
+      <div data-testid="imgGalleryId">
         <DefaultView
           style={style}
           imageIndex={imageIndex}
@@ -34,7 +38,7 @@ export default function ImageGallery({ style }) {
   }
 
   return (
-    <div>
+    <div data-testid="expandedId">
       <ExpandedView
         style={style}
         imageIndex={imageIndex}

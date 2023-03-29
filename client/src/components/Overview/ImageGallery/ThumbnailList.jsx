@@ -4,20 +4,23 @@ import GalleryThumbnail from './GalleryThumbnail';
 
 // css
 const ThumbnailListWrapper = styled.ul`
+  display: flex;
+  flex-direction: column;
   list-style-type: none;
+  align-content: space-between;
 `;
-
-const listAmt = 7; // display up to listAmt thumbnails (7)
-const listMin = Math.floor(listAmt / 2);
 
 export default function ThumbnailList({
   style, imageIndex, setImageIndex, toggleView,
 }) {
+  const listAmt = 7; // requires 7
+  const listMin = Math.floor(listAmt / 2); // number of thumbnails to show
+
   const setPrev = () => setImageIndex(imageIndex - 1);
   const setNext = () => setImageIndex(imageIndex + 1);
 
   const thumbnails = [];
-  const curMax = imageIndex + listMin;
+  const curMax = imageIndex + listMin + 1; // off by 1 index (max length)
   const curMin = imageIndex - listMin;
   let minButtonFlag = false;
   let maxButtonFlag = false;
@@ -32,11 +35,11 @@ export default function ThumbnailList({
       // get window
       if (curMin < 0) {
         curListMin = 0;
-        curListMax = listAmt - 1;
+        curListMax = listAmt;
         maxButtonFlag = true;
-      } else if (curMax > numPhotos - 1) {
-        curListMax = numPhotos - 1;
-        curListMin = curListMax - listAmt + 1;
+      } else if (curMax > numPhotos) {
+        curListMax = numPhotos;
+        curListMin = curListMax - listAmt;
         minButtonFlag = true;
       } else {
         curListMin = curMin;
@@ -60,7 +63,10 @@ export default function ThumbnailList({
   }
 
   return (
-    <div className={toggleView ? 'thumbnail-list' : 'icon-list'}>
+    <div
+      data-testid="galleryThumbListId"
+      className={toggleView ? 'thumbnail-list' : 'icon-list'}
+    >
       {thumbnails.length > 0 && minButtonFlag
         ? <button type="button" onClick={setPrev}>Up</button> : null}
       <ThumbnailListWrapper>

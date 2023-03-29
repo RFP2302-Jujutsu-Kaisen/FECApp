@@ -13,29 +13,22 @@ export default function ExpandedImage({
   //   event.preventDefault();
   // };
 
-  if (Object.keys(style).length > 0) {
-    const numPhotos = style.photos.length - 1;
-    return (
-      <div>
-        <h3>ExpandedImage</h3>
-        {imageIndex > 0 ? <button type="button" onClick={setPrev}>Left</button> : null}
-        <input
-          type="image"
-          height="320"
-          width="320"
-          src={style.photos[imageIndex].url}
-          alt={imageIndex.toString()}
-          onClick={toggleZoomHandler}
-        />
-        {imageIndex < numPhotos ? <button type="button" onClick={setNext}>Right</button> : null}
-        <button type="button" onClick={toggleHandler}>toggleView</button>
-      </div>
-    );
-  }
-
+  const numPhotos = style.photos.length - 1;
   return (
-    <div>
-      <h3>MainImage</h3>
+    <div data-testid="expImgInnerId">
+      <h3>ExpandedImage</h3>
+      {imageIndex > 0 ? <button data-testid="expLeftId" type="button" onClick={setPrev}>Left</button> : null}
+      <input
+        data-testid="expToggleZoomId"
+        type="image"
+        height="320"
+        width="320"
+        src={style.photos[imageIndex].url}
+        alt={imageIndex.toString()}
+        onClick={toggleZoomHandler}
+      />
+      {imageIndex < numPhotos ? <button data-testid="expRightId" type="button" onClick={setNext}>Right</button> : null}
+      <button data-testid="expToggleId" type="button" onClick={toggleHandler}>toggleView</button>
     </div>
   );
 }

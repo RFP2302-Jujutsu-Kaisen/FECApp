@@ -21,19 +21,26 @@ const ColWrapper = styled.div`
 
 export default function Overview() {
   // context, states
-  const product = useAppContext();
+  const { state } = useAppContext();
+  const { productId } = state;
   const [prod, setProd] = useState({});
   const [styles, setStyles] = useState([[], 0]);
   // const [style, setStyle] = useState({});
 
   useEffect(() => {
-    if (product.state.productId) {
-      Parse.getProd(product.state.productId, setProd);
-      Parse.getStyles(product.state.productId, setStyles);
+    if (productId) {
+      Promise.all([Parse.getProd(productId), Parse.getStyles(productId)])
+        .then((values) => {
+          setProd(values[0]);
+          setStyles(values[1]);
+        })
+        .catch((err) => {
+          console.log('Error with Parsing', err);
+        });
     }
-  }, [product.state.productId]);
+  }, [productId]);
 
-  if (product.state.productId !== null) {
+  if (productId !== null) {
     return (
       <ColWrapper>
         <h2>Overview</h2>
@@ -58,6 +65,6 @@ export default function Overview() {
   }
 
   return (
-    <div />
+    <div data-testid="emptyOverviewId" />
   );
 }
