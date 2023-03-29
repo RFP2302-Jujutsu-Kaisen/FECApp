@@ -1,4 +1,10 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
+
+// css
+const RowWrapper = styled.div`
+  display: flex;
+`;
 
 export default function ShareMedia({ style }) {
   // <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -43,8 +49,7 @@ export default function ShareMedia({ style }) {
   }, []);
 
   return (
-    <div>
-      <h3>ShareMedia</h3>
+    <RowWrapper>
       <div id="tw-root">
         {/* <pre><code>{twitterMarkup}</code></pre> */}
         <a
@@ -78,6 +83,6 @@ export default function ShareMedia({ style }) {
           Save
         </a>
       </div>
-    </div>
+    </RowWrapper>
   );
 }

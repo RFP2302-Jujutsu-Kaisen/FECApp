@@ -1,5 +1,12 @@
 import React from 'react';
+import styled from 'styled-components';
 import StyleThumbnail from './StyleThumbnail';
+
+const StyleList = styled.ul`
+  display: flex;
+  flex-flow: row wrap;
+  list-style-type: none;
+`;
 
 export default function StyleSelector({ styles, setStyles }) {
   const setSelected = (index) => {
@@ -9,9 +16,9 @@ export default function StyleSelector({ styles, setStyles }) {
   // console.log('Styles name', styles, styles[0][styles[1]]);
 
   return (
-    <div>
+    <div data-testid="styleSelId">
       <h3>{styles[0].length > 0 ? styles[0][styles[1]].name : ''}</h3>
-      <ul>
+      <StyleList>
         {styles[0].map((style, index) => (
           <StyleThumbnail
             key={style.style_id}
@@ -21,7 +28,7 @@ export default function StyleSelector({ styles, setStyles }) {
             index={index}
           />
         ))}
-      </ul>
+      </StyleList>
     </div>
   );
 }

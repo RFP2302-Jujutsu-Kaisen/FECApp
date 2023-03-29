@@ -8,6 +8,7 @@ export default function SizeDropdown({
       <div>
         <h3>Please select size</h3>
         <select
+          data-testid="sizeCheckId"
           name="sizedropdown"
           onChange={skuHandler}
           size={String(inStockSkus.length)}
@@ -23,7 +24,7 @@ export default function SizeDropdown({
   }
   return (
     <div>
-      <select name="sizedropdown" onChange={skuHandler} value={skuState}>
+      <select data-testid="sizeId" name="sizedropdown" onChange={skuHandler} value={skuState}>
         <option key="default" value="">Select Size</option>
         {inStockSkus.map((key) => (
           <option key={key} value={key}>{skus[key].size}</option>
