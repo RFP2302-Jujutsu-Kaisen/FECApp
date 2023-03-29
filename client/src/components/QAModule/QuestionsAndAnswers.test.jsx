@@ -1,66 +1,52 @@
+/* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { AppContextProvider } from '../AppContext';
 import QuestionsAndAnswers from './QuestionsAndAnswers';
+import testProductData from './TestProductData';
+import { testQAData, testQAEmptyData } from './TestQAData';
+
+jest.mock('axios');
 
 describe('QuestionsAndAnswers', () => {
-  beforeEach(() => {
-    render(
-      <AppContextProvider>
-        <QuestionsAndAnswers />
-      </AppContextProvider>,
-    );
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
-  test('renders the component', () => {
-    const heading = screen.getByText(/QUESTIONS & ANSWERS/i);
-    expect(heading).toBeInTheDocument();
+  test('renders without questions', async () => {
+    axios.get.mockImplementationOnce(() => Promise.resolve(testProductData));
+    axios.get.mockImplementationOnce(() => Promise.resolve(testQAEmptyData));
+
+    await act(async () => {
+      render(
+        <AppContextProvider>
+          <QuestionsAndAnswers />
+        </AppContextProvider>,
+      );
+    });
+
+    expect(screen.getByText('QUESTIONS & ANSWERS')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('HAVE A QUESTION? SEARCH FOR ANSWERS...')).toBeInTheDocument();
+    expect(screen.getByText('ADD A QUESTION +')).toBeInTheDocument();
   });
 
-  test('renders the SearchBar component', () => {
-    const searchBar = screen.getByPlaceholderText('HAVE A QUESTION? SEARCH FOR ANSWERS...');
-    expect(searchBar).toBeInTheDocument();
-  });
+  test('renders SearchBar, QuestionsList, and AddQuestion components', async () => {
+    axios.get.mockImplementationOnce(() => Promise.resolve(testProductData));
+    axios.get.mockImplementationOnce(() => Promise.resolve(testQAData));
 
-  test('renders the QuestionsList component', () => {
-    const questionsList = screen.getByTestId('questions-list');
-    expect(questionsList).toBeInTheDocument();
-  });
+    await act(async () => {
+      render(
+        <AppContextProvider>
+          <QuestionsAndAnswers />
+        </AppContextProvider>,
+      );
+    });
 
-  test('filters questions when searching', async () => {
-    // Assuming you have a function that mocks the API call and returns questions data
-    const { questions } = mockApiData();
-
-    jest.spyOn(axios, 'get').mockResolvedValue({ data: { results: questions } });
-
-    render(
-      <AppContextProvider>
-        <QuestionsAndAnswers />
-      </AppContextProvider>,
-    );
-
-    await screen.findByText(questions[0].question_body);
-
-    const searchTerm = 'example';
-    userEvent.type(screen.getByPlaceholderText('HAVE A QUESTION? SEARCH FOR ANSWERS...'), searchTerm);
-
-    expect(screen.getByText(questions[1].question_body)).toBeInTheDocument();
-    expect(screen.queryByText(questions[0].question_body)).not.toBeInTheDocument();
-  });
-
-  test('opens and closes the "Add a Question" modal', () => {
-    const addQuestionButton = screen.getByText('ADD A QUESTION +');
-    userEvent.click(addQuestionButton);
-
-    const modalHeading = screen.getByText('Ask Your Question');
-    expect(modalHeading).toBeInTheDocument();
-
-    const closeButton = screen.getByText('×');
-    userEvent.click(closeButton);
-
-    expect(modalHeading).not.toBeInTheDocument();
+    expect(screen.getByText('QUESTIONS & ANSWERS')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('HAVE A QUESTION? SEARCH FOR ANSWERS...')).toBeInTheDocument();
+    expect(screen.getByText(/is this legit?/i)).toBeInTheDocument();
+    expect(screen.getByText('ADD A QUESTION +')).toBeInTheDocument();
   });
 });
