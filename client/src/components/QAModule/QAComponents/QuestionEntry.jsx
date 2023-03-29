@@ -70,10 +70,16 @@ export default function QuestionEntry({ question, refreshAnswers }) {
   const renderAnswers = () => {
     if (question && question.answers) {
       let count = 0;
-      return Object.keys(question.answers).map((key) => {
+      const answersArray = Object.values(question.answers);
+
+      const sortedAnswers = answersArray.sort((a, b) => (
+        b.helpfulness - a.helpfulness
+      ));
+
+      return sortedAnswers.map((answer) => {
         if (count < numAnswersToShow) {
           count += 1;
-          return <AnswerEntry key={question.answers[key].id} answer={question.answers[key]} />;
+          return <AnswerEntry key={answer.id} answer={answer} />;
         }
         return null;
       });
