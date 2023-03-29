@@ -7,8 +7,6 @@ const ProductBreakdown = function ({ Characteristics }) {
   for (const props in Characteristics) {
     charTypes.push({name: props, id: Characteristics[props].id, value: Characteristics[props].value})
   }
-  console.log('charTypes: ', charTypes);
-  console.log('Characteristics: ', Characteristics);
   const charItems = charTypes.map((char) =>
     <Factors key={char.id} name={char.name} value={char.value} />
   );

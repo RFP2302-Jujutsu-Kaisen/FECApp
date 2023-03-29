@@ -1,5 +1,5 @@
 import React from 'react';
-import { QuarterStarStyle } from '../../StyledComponentsRR';
+import { QuarterStarStyle } from './Stars.styles';
 import FullStar from './FullStar';
 import EmptyStar from './EmptyStar';
 
@@ -48,15 +48,15 @@ const Stars = function ({ averageRating }) {
       <h4>Stars Average Review Rating</h4>
       <QuarterStarStyle inputDisplay="block">
         {stars.map((star, i) => {
-          return (
-            <QuarterStarStyle key={i} inputPosition="relative" inputDisplay="inline-flex" >
-              <QuarterStarStyle inputWidth={star} inputOverflow="hidden" inputPosition="absolute">
-                <FullStar />
-              </QuarterStarStyle>
-              <QuarterStarStyle>
-                <EmptyStar />
-              </QuarterStarStyle>
+        return (
+          <QuarterStarStyle key={i} inputPosition="relative" inputDisplay="inline-flex" >
+            <QuarterStarStyle inputWidth={star} inputOverflow="hidden" inputPosition="absolute">
+              <FullStar />
             </QuarterStarStyle>
+            <QuarterStarStyle>
+              <EmptyStar />
+            </QuarterStarStyle>
+          </QuarterStarStyle>
         )
       })}
       </QuarterStarStyle>

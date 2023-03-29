@@ -1,1 +1,1 @@
-export { QuarterStarStyle } from './Stars.styles';
+export { RRFlex, RatingsAndReviewsContainer, Model } from './StyledComponentsRR';

@@ -4,8 +4,6 @@ import { Container, Background, Progress } from './PercentBars';
 
 const RatingBreakdown = function ({ Recommended, Ratings }) {
   const recoPercent = Math.round((Number.parseInt(Recommended.true) / (Number.parseInt(Recommended.true) + Number.parseInt(Recommended.false))) * 100);
-  console.log(recoPercent);
-
   const ratingTotals = Ratings[0] + Ratings[1] + Ratings[2] + Ratings[3] + Ratings[4];
   const oneStars = Math.round((Ratings[0] / ratingTotals) * 100);
   const twoStars = Math.round((Ratings[1] / ratingTotals) * 100);

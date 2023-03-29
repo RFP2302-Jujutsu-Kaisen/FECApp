@@ -24,7 +24,7 @@ const RRParse = {
       })
       .catch((err) => {
         console.log('Error getting prod:', prodId, err);
-        setReviews({});
+        setReviews([]);
       });
   },
   getMeta: (prodId, setRatings, setCharacteristics, setRecommended) => {

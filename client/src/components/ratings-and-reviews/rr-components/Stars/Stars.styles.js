@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const QuarterStarStyle = styled.span`
-  font-size: 40px;
+  font-size: 1.12rem;
   width: ${(props) => props.inputWidth};
   display: ${(props) => props.inputDisplay};
   position: ${(props) => props.inputPosition};
