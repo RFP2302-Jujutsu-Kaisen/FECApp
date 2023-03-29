@@ -11,7 +11,6 @@ const config = {
     Authorization: process.env.AUTH_SECRET,
   },
 };
-console.log(config);
 
 const RRParse = {
 
