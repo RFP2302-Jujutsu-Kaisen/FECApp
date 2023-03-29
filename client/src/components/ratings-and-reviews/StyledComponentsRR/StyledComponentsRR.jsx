@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const RatingsAndReviewsContainer = styled.div`
   display: block;
+  font-family: system-ui;
 `;
 
 const RRFlex = styled.div`
