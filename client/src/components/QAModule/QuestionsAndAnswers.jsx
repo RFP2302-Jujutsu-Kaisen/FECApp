@@ -1,19 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { SearchBar, QuestionsList } from './QAComponents';
-import ModalTest from '../Modals/ModalTest';
+import styled from 'styled-components';
+import { SearchBar, QuestionsList, AddQuestion } from './QAComponents';
 import { useAppContext } from '../AppContext';
+
+const Heading = styled.h4`
+  font-size: 14px;
+  font-weight: normal;
+  color: gray;
+  margin-bottom: 16px;
+  font-family; system-ui;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui;
+`;
 
 export default function QuestionsAndAnswers() {
   const [questions, setQuestions] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { state } = useAppContext();
   const { productId } = state;
 
   const baseUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
   const page = 1;
-  const count = 100;
+  const count = 125;
   const headers = {
     Authorization: process.env.AUTH_SECRET,
   };
@@ -48,49 +61,12 @@ export default function QuestionsAndAnswers() {
     }
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
-
   return (
-    <div>
-      <h2>QUESTIONS & ANSWERS</h2>
+    <Wrapper>
+      <Heading>QUESTIONS & ANSWERS</Heading>
       <SearchBar onSearch={handleSearch} />
       <QuestionsList questions={filteredQuestions} />
-      <div>
-        <button type="button" onClick={openModal}>
-          ADD A QUESTION +
-        </button>
-        <ModalTest isOpen={isModalOpen} onClose={closeModal}>
-          <h2>Ask Your Question</h2>
-          <h4>{`About the [PRODUCT NAME HERE ID: ${productId}]`}</h4>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Your Question (mandatory)*
-              <textarea maxLength="1000" required />
-            </label>
-            <label>
-              What is your nickname (mandatory)*
-              <input type="text" maxLength="60" placeholder="Example: jackson11!" required />
-              <p>For privacy reasons, do not use your full name or email address</p>
-            </label>
-            <label>
-              Your email (mandatory)*
-              <input type="email" maxLength="60" placeholder="Why did you like the product or not?" required />
-              <p>For authentication reasons, you will not be emailed</p>
-            </label>
-            <button type="submit">Submit question</button>
-          </form>
-        </ModalTest>
-      </div>
-    </div>
+      <AddQuestion productId={productId} />
+    </Wrapper>
   );
 }
