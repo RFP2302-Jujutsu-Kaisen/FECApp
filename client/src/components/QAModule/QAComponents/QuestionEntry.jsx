@@ -108,23 +108,23 @@ export default function QuestionEntry({ question, refreshAnswers }) {
   };
 
   return (
-    <div>
+    <div data-testid="question-entry">
       <QuestionContainer>
-        <Question>{`Q:    ${question?.question_body}`}</Question>
+        <Question data-testid="question-body">{`Q:    ${question.question_body}`}</Question>
         <HelpfulContainer>
           <HelpfulLabel>Helpful?</HelpfulLabel>
-          <HelpfulButton type="button" onClick={incrementHelpfulness}>
+          <HelpfulButton type="button" onClick={incrementHelpfulness} data-testid="helpfulq-button">
             <UnderlineSpan>Yes</UnderlineSpan>
             {`  (${helpfulnessCount}) `}
           </HelpfulButton>
           {' |  '}
-          <AddAnswer question={question} refreshAnswers={refreshAnswers} />
+          <AddAnswer question={question} refreshAnswers={refreshAnswers} data-testid="add-answer" />
         </HelpfulContainer>
       </QuestionContainer>
-      <div>{renderAnswers()}</div>
+      <div data-testid="answer-list">{renderAnswers()}</div>
       <div>
         {numAnswersToShow < Object.keys(question.answers).length && (
-        <MoreAnswersButton type="button" onClick={loadMoreAnswers}>LOAD MORE ANSWERS</MoreAnswersButton>
+        <MoreAnswersButton type="button" onClick={loadMoreAnswers} data-testid="more-answers-button">LOAD MORE ANSWERS</MoreAnswersButton>
         )}
       </div>
     </div>

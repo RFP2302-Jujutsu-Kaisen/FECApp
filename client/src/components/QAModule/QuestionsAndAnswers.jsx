@@ -66,8 +66,14 @@ export default function QuestionsAndAnswers() {
     setRefresh(!refresh);
   };
 
+  // const handleChangeProductId = () => {
+  //   const newProductId = '40346';
+  //   setProductId(newProductId);
+  // };
+
   return (
     <Wrapper>
+      {/* <button type="button" onClick={handleChangeProductId}>Change Product ID</button> */}
       <Heading>QUESTIONS & ANSWERS</Heading>
       <SearchBar onSearch={handleSearch} />
       <QuestionsList questions={filteredQuestions} refreshAnswers={refreshQuestionsOrAnswers} />

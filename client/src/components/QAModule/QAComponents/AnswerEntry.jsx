@@ -107,15 +107,15 @@ export default function AnswerEntry({ answer }) {
   };
 
   return (
-    <AnswerContainer>
-      <AnswerText>
+    <AnswerContainer data-testid="answer-entry">
+      <AnswerText data-testid="answer-body">
         <BoldSpan>{'A:    '}</BoldSpan>
         {answer.body}
       </AnswerText>
-      <AnswerDetails>
+      <AnswerDetails data-testid="answer-details">
         <span>
           {'by '}
-          <BoldSpan>{answer.answerer_name}</BoldSpan>
+          <BoldSpan data-testid="answer-name">{answer.answerer_name}</BoldSpan>
           ,
           {' '}
           {
@@ -124,7 +124,7 @@ export default function AnswerEntry({ answer }) {
           {'   |   '}
           Helpful?
           {' '}
-          <HelpfulnessButton type="button" onClick={incrementAnswerHelpfulness}>
+          <HelpfulnessButton type="button" onClick={incrementAnswerHelpfulness} data-testid="helpful-button">
             <UnderlineSpan>Yes</UnderlineSpan>
             {' '}
             (
@@ -134,9 +134,9 @@ export default function AnswerEntry({ answer }) {
         </span>
         {' | '}
         {isReported ? (
-          <span>Reported</span>
+          <span data-testid="reported">Reported</span>
         ) : (
-          <ReportButton type="button" onClick={reportAnswer}>
+          <ReportButton type="button" onClick={reportAnswer} data-testid="report">
             <UnderlineSpan>Report</UnderlineSpan>
           </ReportButton>
         )}
