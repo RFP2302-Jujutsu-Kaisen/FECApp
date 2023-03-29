@@ -1,7 +1,8 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import ThumbnailList from './ThumbnailList';
 import MainImage from './MainImage';
-import styled from 'styled-components';
 
 // css
 const RowWrapper = styled.div`

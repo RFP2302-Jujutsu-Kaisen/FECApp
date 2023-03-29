@@ -7,6 +7,7 @@ const MainDivWrapper = styled.div`
   border: 10px solid blue;
   flex-grow: 1;
   justify-content: center;
+  position: relative;
 
 `;
 
@@ -18,6 +19,10 @@ const MainImgWrapper = styled.input`
   object-fit: scale-down;
   object-position: 30% 30%;
 
+`;
+
+const LeftButton = styled.button`
+  visibility: hidden;
 `;
 
 // TODO: FOR ZOOMED IMAGE DOWN HERE
@@ -37,8 +42,8 @@ export default function MainImage({
   style, imageIndex, setImageIndex, toggleHandler,
 }) {
   // handlers
-  const setPrev = () => setImageIndex(imageIndex - 1);
-  const setNext = () => setImageIndex(imageIndex + 1);
+  const setPrev = () => { if (imageIndex > 0) { setImageIndex(imageIndex - 1); } };
+  const setNext = (max) => { if (imageIndex < max) { setImageIndex(imageIndex + 1); } };
 
   const changeView = (event) => {
     toggleHandler();
@@ -50,7 +55,8 @@ export default function MainImage({
     const numPhotos = style.photos.length - 1;
     return (
       <MainDivWrapper data-testid="mainImageId">
-        {imageIndex > 0 ? <button type="button" onClick={setPrev}>Left</button> : null}
+        {/* {imageIndex > 0 ? <button type="button" onClick={setPrev}>Left</button> : null} */}
+        <LeftButton type="button" onClick={setPrev}>Left</LeftButton>
         <MainImgWrapper
           data-testid="imgToggleId"
           type="image"
@@ -58,8 +64,8 @@ export default function MainImage({
           alt={imageIndex.toString()}
           onClick={changeView}
         />
-        {imageIndex < numPhotos ? <button type="button" onClick={setNext}>Right</button> : null}
-        <button type="button" onClick={toggleHandler}>toggleView</button>
+        {imageIndex < numPhotos ? <button type="button" onClick={setNext.bind(null, numPhotos)}>Right</button> : null}
+        <button type="button" onClick={toggleHandler}>toggleExp</button>
       </MainDivWrapper>
     );
   }

@@ -1,4 +1,37 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
+
+const ZoomDivWrapper = styled.div`
+  display:flex;
+  border: 10px solid blue;
+  flex-grow: 1;
+  justify-content: center;
+  position: relative;
+
+`;
+
+// const ImgWrapper = styled.input`
+//   display: flex;
+
+//   max-height: 800px;
+//   max-width: 1200px;
+
+//   object-position: 30% 30%;
+
+// `;
+
+// TODO: FOR ZOOMED IMAGE DOWN HERE
+const ImgWrapper = styled.input`
+  display: flex;
+
+  max-height: 800px;
+  max-width: 1200px;
+  object-fit: none;
+  object-position: 100% 100%
+
+`;
+
+// object-fit: scale-down;
 
 export default function ZoomImage({
   style, imageIndex, toggleZoomHandler,
@@ -17,27 +50,25 @@ export default function ZoomImage({
 
   if (Object.keys(style).length > 0) {
     return (
-      <div>
-        <h3>ZoomImage</h3>
-        <input
+      <ZoomDivWrapper>
+        <ImgWrapper
           data-testid="zoomImgId"
           className="zoom-img"
           type="image"
-          height="320"
-          width="320"
           src={style.photos[imageIndex].url}
           alt={imageIndex.toString()}
           onClick={toggleZoomHandler}
           onMouseMove={zoomHandler}
+          left={mousePos.left}
+          top={mousePos.top}
         />
-      </div>
+      </ZoomDivWrapper>
     );
   }
 
   return (
     <div>
       <h3>ZoomImage</h3>
-      <button type="button" onClick={setToggleZoom}>Zoom</button>
     </div>
   );
 }
