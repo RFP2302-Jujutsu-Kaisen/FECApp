@@ -21,6 +21,7 @@ const Wrapper = styled.div`
 export default function QuestionsAndAnswers() {
   const [questions, setQuestions] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
+  const [refresh, setRefresh] = useState(false);
   const { state } = useAppContext();
   const { productId } = state;
 
@@ -48,7 +49,7 @@ export default function QuestionsAndAnswers() {
           console.error('Error fetching product data: ', err);
         });
     }
-  }, [productId]);
+  }, [productId, refresh]);
 
   const handleSearch = (searchTerm) => {
     if (searchTerm) {
@@ -61,12 +62,16 @@ export default function QuestionsAndAnswers() {
     }
   };
 
+  const refreshQuestionsOrAnswers = () => {
+    setRefresh(!refresh);
+  };
+
   return (
     <Wrapper>
       <Heading>QUESTIONS & ANSWERS</Heading>
       <SearchBar onSearch={handleSearch} />
-      <QuestionsList questions={filteredQuestions} />
-      <AddQuestion productId={productId} />
+      <QuestionsList questions={filteredQuestions} refreshAnswers={refreshQuestionsOrAnswers} />
+      <AddQuestion productId={productId} refreshQuestions={refreshQuestionsOrAnswers} />
     </Wrapper>
   );
 }

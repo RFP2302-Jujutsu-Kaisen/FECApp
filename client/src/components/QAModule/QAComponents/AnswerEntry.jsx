@@ -1,4 +1,6 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 
 const AnswerContainer = styled.div`
@@ -63,15 +65,45 @@ export default function AnswerEntry({ answer }) {
   const [isReported, setIsReported] = useState(false);
   const [isHelpfulClicked, setIsHelpfulClicked] = useState(false);
 
-  const incrementAnswerHelpfulness = () => {
+  const incrementAnswerHelpfulness = async () => {
     if (!isHelpfulClicked) {
       setHelpfulnessCount(helpfulnessCount + 1);
       setIsHelpfulClicked(true);
+
+      try {
+        const res = await axios.put(
+          `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${answer.id}/helpful`,
+          {},
+          {
+            headers: {
+              Authorization: process.env.AUTH_SECRET,
+            },
+          },
+        );
+        console.log(`SUCESS: ${res.status} ${res.data}`);
+      } catch (err) {
+        console.error('Error updating helpfulness: ', err);
+      }
     }
   };
 
-  const reportAnswer = () => {
+  const reportAnswer = async () => {
     setIsReported(true);
+
+    try {
+      const res = await axios.put(
+        `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${answer.id}/report`,
+        {},
+        {
+          headers: {
+            Authorization: process.env.AUTH_SECRET,
+          },
+        },
+      );
+      console.log(`SUCESS: ${res.status} ${res.data}`);
+    } catch (err) {
+      console.error('Error updating report: ', err);
+    }
   };
 
   return (
