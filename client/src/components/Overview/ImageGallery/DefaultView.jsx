@@ -6,7 +6,7 @@ import styled from 'styled-components';
 // css
 const RowWrapper = styled.div`
   display: flex;
-
+  flex-direction: row;
 `;
 
 export default function DefaultView({

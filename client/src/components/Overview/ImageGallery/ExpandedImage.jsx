@@ -1,4 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
+
+// css
+const InputWrapper = styled.input`
+  border-bottom: ${({ selected }) => (selected && 'solid medium black')};
+  box-shadow: ${({ selected }) => (selected && '0 0 10px black')};
+  max-width: 80px;
+  height: auto;
+  border: 10px solid rgba(255,255,255,.5);
+  border-radius: 1000px;
+`;
 
 export default function ExpandedImage({
   style, imageIndex, setImageIndex, toggleHandler, toggleZoomHandler,
@@ -18,7 +29,7 @@ export default function ExpandedImage({
     <div data-testid="expImgInnerId">
       <h3>ExpandedImage</h3>
       {imageIndex > 0 ? <button data-testid="expLeftId" type="button" onClick={setPrev}>Left</button> : null}
-      <input
+      <InputWrapper
         data-testid="expToggleZoomId"
         type="image"
         height="320"

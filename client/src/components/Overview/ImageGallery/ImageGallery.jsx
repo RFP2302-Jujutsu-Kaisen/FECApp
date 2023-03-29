@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react';
 import DefaultView from './DefaultView';
 import ExpandedView from './ExpandedView';
 
+import styled from 'styled-components';
+
+// css
+const ImgGalWrapper = styled.div`
+  flex-grow: 2;
+  border: 10px solid red;
+`;
+
 export default function ImageGallery({ style }) {
   // states
   const [toggleView, setToggleView] = useState(true);
@@ -25,7 +33,7 @@ export default function ImageGallery({ style }) {
   // default or expanded view
   if (toggleView) {
     return (
-      <div data-testid="imgGalleryId">
+      <ImgGalWrapper data-testid="imgGalleryId">
         <DefaultView
           style={style}
           imageIndex={imageIndex}
@@ -33,12 +41,12 @@ export default function ImageGallery({ style }) {
           setImageIndex={setImageIndex}
           toggleView={toggleView}
         />
-      </div>
+      </ImgGalWrapper>
     );
   }
 
   return (
-    <div data-testid="expandedId">
+    <ImgGalWrapper data-testid="expandedId">
       <ExpandedView
         style={style}
         imageIndex={imageIndex}
@@ -46,6 +54,6 @@ export default function ImageGallery({ style }) {
         setImageIndex={setImageIndex}
         toggleView={toggleView}
       />
-    </div>
+    </ImgGalWrapper>
   );
 }

@@ -1,4 +1,37 @@
 import React from 'react';
+import styled from 'styled-components';
+
+// css
+const MainDivWrapper = styled.div`
+  display:flex;
+  border: 10px solid blue;
+  flex-grow: 1;
+  justify-content: center;
+
+`;
+
+const MainImgWrapper = styled.input`
+  display: flex;
+
+  max-height: 800px;
+  max-width: 1200px;
+  object-fit: scale-down;
+  object-position: 30% 30%;
+
+`;
+
+// TODO: FOR ZOOMED IMAGE DOWN HERE
+// const MainImgWrapper = styled.input`
+//   display: flex;
+
+//   max-height: 800px;
+//   max-width: 1200px;
+//   object-fit: none;
+//   object-position: left top;
+
+// `;
+
+// object-fit: scale-down;
 
 export default function MainImage({
   style, imageIndex, setImageIndex, toggleHandler,
@@ -16,20 +49,18 @@ export default function MainImage({
   if (Object.keys(style).length > 0) {
     const numPhotos = style.photos.length - 1;
     return (
-      <div data-testid="mainImageId">
+      <MainDivWrapper data-testid="mainImageId">
         {imageIndex > 0 ? <button type="button" onClick={setPrev}>Left</button> : null}
-        <input
+        <MainImgWrapper
           data-testid="imgToggleId"
           type="image"
-          height="320"
-          width="320"
           src={style.photos[imageIndex].url}
           alt={imageIndex.toString()}
           onClick={changeView}
         />
         {imageIndex < numPhotos ? <button type="button" onClick={setNext}>Right</button> : null}
         <button type="button" onClick={toggleHandler}>toggleView</button>
-      </div>
+      </MainDivWrapper>
     );
   }
 
