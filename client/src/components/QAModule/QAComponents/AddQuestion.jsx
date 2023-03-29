@@ -1,4 +1,6 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import ModalTest from '../../Modals/ModalTest';
 
@@ -11,8 +13,12 @@ const AddQuestionButton = styled.button`
   cursor: pointer;
 `;
 
-export default function AddQuestion({ productId }) {
+export default function AddQuestion({ productId, refreshQuestions }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [questionText, setQuestionText] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -21,9 +27,33 @@ export default function AddQuestion({ productId }) {
     setIsModalOpen(false);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    try {
+      const res = await axios.post(
+        'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions',
+        {
+          body: questionText,
+          name: nickname,
+          email,
+          product_id: productId,
+        },
+        {
+          headers: {
+            Authorization: process.env.AUTH_SECRET,
+          },
+        },
+      );
+      console.log(`SUCESS: ${res.status} ${res.data}`);
+      refreshQuestions();
+    } catch (err) {
+      console.error('Error updating report: ', err);
+    }
+
+    closeModal();
   };
+
   return (
     <div>
       <AddQuestionButton type="button" onClick={openModal}>
@@ -35,16 +65,16 @@ export default function AddQuestion({ productId }) {
         <form onSubmit={handleSubmit}>
           <label htmlFor="your-question">
             Your Question (mandatory)*
-            <textarea maxLength="1000" required />
+            <textarea id="your-question" maxLength="1000" required value={questionText} onChange={(e) => setQuestionText(e.target.value)} />
           </label>
           <label htmlFor="what-is-your-nickname">
             What is your nickname (mandatory)*
-            <input type="text" maxLength="60" placeholder="Example: jackson11!" required />
+            <input id="what-is-your-nickname" type="text" maxLength="60" placeholder="Example: jackson11!" required value={nickname} onChange={(e) => setNickname(e.target.value)} />
             <p>For privacy reasons, do not use your full name or email address</p>
           </label>
           <label htmlFor="your-email">
             Your email (mandatory)*
-            <input type="email" maxLength="60" placeholder="Why did you like the product or not?" required />
+            <input id="your-email" type="email" maxLength="60" placeholder="Why did you like the product or not?" required value={email} onChange={(e) => setEmail(e.target.value)} />
             <p>For authentication reasons, you will not be emailed</p>
           </label>
           <button type="submit">Submit question</button>

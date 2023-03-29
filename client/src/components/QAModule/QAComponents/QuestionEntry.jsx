@@ -1,4 +1,6 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import AnswerEntry from './AnswerEntry';
 import AddAnswer from './AddAnswer';
@@ -60,7 +62,7 @@ const MoreAnswersButton = styled.button`
   }
 `;
 
-export default function QuestionEntry({ question }) {
+export default function QuestionEntry({ question, refreshAnswers }) {
   const [numAnswersToShow, setNumAnswersToShow] = useState(2);
   const [helpfulnessCount, setHelpfulnessCount] = useState(question.question_helpfulness);
   const [isHelpfulClicked, setIsHelpfulClicked] = useState(false);
@@ -83,31 +85,46 @@ export default function QuestionEntry({ question }) {
     setNumAnswersToShow(numAnswersToShow + 2);
   };
 
-  const incrementHelpfulness = () => {
+  const incrementHelpfulness = async () => {
     if (!isHelpfulClicked) {
       setHelpfulnessCount(helpfulnessCount + 1);
       setIsHelpfulClicked(true);
+
+      try {
+        const res = await axios.put(
+          `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question.question_id}/helpful`,
+          {},
+          {
+            headers: {
+              Authorization: process.env.AUTH_SECRET,
+            },
+          },
+        );
+        console.log(`SUCESS: ${res.status} ${res.data}`);
+      } catch (err) {
+        console.error('Error updating helpfulness: ', err);
+      }
     }
   };
 
   return (
-    <div>
+    <div data-testid="question-entry">
       <QuestionContainer>
-        <Question>{`Q:    ${question?.question_body}`}</Question>
+        <Question data-testid="question-body">{`Q:    ${question.question_body}`}</Question>
         <HelpfulContainer>
           <HelpfulLabel>Helpful?</HelpfulLabel>
-          <HelpfulButton type="button" onClick={incrementHelpfulness}>
+          <HelpfulButton type="button" onClick={incrementHelpfulness} data-testid="helpfulq-button">
             <UnderlineSpan>Yes</UnderlineSpan>
             {`  (${helpfulnessCount}) `}
           </HelpfulButton>
           {' |  '}
-          <AddAnswer question={question} />
+          <AddAnswer question={question} refreshAnswers={refreshAnswers} data-testid="add-answer" />
         </HelpfulContainer>
       </QuestionContainer>
-      <div>{renderAnswers()}</div>
+      <div data-testid="answer-list">{renderAnswers()}</div>
       <div>
         {numAnswersToShow < Object.keys(question.answers).length && (
-        <MoreAnswersButton type="button" onClick={loadMoreAnswers}>LOAD MORE ANSWERS</MoreAnswersButton>
+        <MoreAnswersButton type="button" onClick={loadMoreAnswers} data-testid="more-answers-button">LOAD MORE ANSWERS</MoreAnswersButton>
         )}
       </div>
     </div>

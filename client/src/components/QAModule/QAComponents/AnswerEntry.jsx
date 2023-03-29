@@ -1,4 +1,6 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 
 const AnswerContainer = styled.div`
@@ -63,27 +65,57 @@ export default function AnswerEntry({ answer }) {
   const [isReported, setIsReported] = useState(false);
   const [isHelpfulClicked, setIsHelpfulClicked] = useState(false);
 
-  const incrementAnswerHelpfulness = () => {
+  const incrementAnswerHelpfulness = async () => {
     if (!isHelpfulClicked) {
       setHelpfulnessCount(helpfulnessCount + 1);
       setIsHelpfulClicked(true);
+
+      try {
+        const res = await axios.put(
+          `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${answer.id}/helpful`,
+          {},
+          {
+            headers: {
+              Authorization: process.env.AUTH_SECRET,
+            },
+          },
+        );
+        console.log(`SUCESS: ${res.status} ${res.data}`);
+      } catch (err) {
+        console.error('Error updating helpfulness: ', err);
+      }
     }
   };
 
-  const reportAnswer = () => {
+  const reportAnswer = async () => {
     setIsReported(true);
+
+    try {
+      const res = await axios.put(
+        `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${answer.id}/report`,
+        {},
+        {
+          headers: {
+            Authorization: process.env.AUTH_SECRET,
+          },
+        },
+      );
+      console.log(`SUCESS: ${res.status} ${res.data}`);
+    } catch (err) {
+      console.error('Error updating report: ', err);
+    }
   };
 
   return (
-    <AnswerContainer>
-      <AnswerText>
+    <AnswerContainer data-testid="answer-entry">
+      <AnswerText data-testid="answer-body">
         <BoldSpan>{'A:    '}</BoldSpan>
         {answer.body}
       </AnswerText>
-      <AnswerDetails>
+      <AnswerDetails data-testid="answer-details">
         <span>
           {'by '}
-          <BoldSpan>{answer.answerer_name}</BoldSpan>
+          <BoldSpan data-testid="answer-name">{answer.answerer_name}</BoldSpan>
           ,
           {' '}
           {
@@ -92,7 +124,7 @@ export default function AnswerEntry({ answer }) {
           {'   |   '}
           Helpful?
           {' '}
-          <HelpfulnessButton type="button" onClick={incrementAnswerHelpfulness}>
+          <HelpfulnessButton type="button" onClick={incrementAnswerHelpfulness} data-testid="helpful-button">
             <UnderlineSpan>Yes</UnderlineSpan>
             {' '}
             (
@@ -102,9 +134,9 @@ export default function AnswerEntry({ answer }) {
         </span>
         {' | '}
         {isReported ? (
-          <span>Reported</span>
+          <span data-testid="reported">Reported</span>
         ) : (
-          <ReportButton type="button" onClick={reportAnswer}>
+          <ReportButton type="button" onClick={reportAnswer} data-testid="report">
             <UnderlineSpan>Report</UnderlineSpan>
           </ReportButton>
         )}
