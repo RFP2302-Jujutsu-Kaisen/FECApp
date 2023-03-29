@@ -2,4 +2,3 @@ node_modules
 .env
 client/dist/bundle.js
 client/dist/bundle.js.map
-coverage

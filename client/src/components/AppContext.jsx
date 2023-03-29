@@ -26,7 +26,7 @@ const initialState = {
 };
 
 // Context provider component
-export function AppContextProvider({ children }) {
+export function AppContextProvider({ children, testValue }) {
   // Using a reducer to manage state and dispatch
   const [state, dispatch] = useReducer(appReducer, initialState);
 
@@ -37,7 +37,7 @@ export function AppContextProvider({ children }) {
   // Fetch product data
   useEffect(() => {
     axios
-      .get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40346', { headers })
+      .get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344', { headers })
       .then((res) => {
         const { id } = res.data;
         dispatch({ type: 'SET_PRODUCT_ID', payload: id });
@@ -61,6 +61,10 @@ export function AppContextProvider({ children }) {
     }),
     [state, setProductId], // Update value only when state or setProductId changes
   );
+
+  if (testValue) {
+    return <AppContext.Provider value={testValue}>{children}</AppContext.Provider>;
+  }
 
   // Return the provider with the memoized value object
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

@@ -6,10 +6,8 @@ import ShareMedia from './ShareMedia';
 export default function ProductInfo({ prod, style } = {}) {
   // console.log('prod and style in ProductInfo', style);
   return (
-    <div>
-      <h3>ProductInfo</h3>
+    <div data-testid="pinfoid">
       <div>
-        Rating
         <Stars />
       </div>
       <div>{prod.category}</div>
