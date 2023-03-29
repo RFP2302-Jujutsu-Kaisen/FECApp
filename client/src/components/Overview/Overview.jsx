@@ -31,6 +31,7 @@ export default function Overview() {
     if (productId) {
       Promise.all([Parse.getProd(productId), Parse.getStyles(productId)])
         .then((values) => {
+          console.log(values);
           setProd(values[0]);
           setStyles(values[1]);
         })
