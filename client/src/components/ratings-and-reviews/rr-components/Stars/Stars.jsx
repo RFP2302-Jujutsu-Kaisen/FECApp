@@ -1,30 +1,14 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { FaStar } from 'react-icons/fa';
-
-const SingleStarOutline = styled.div`
-  height: 36px;
-  width: 31px;
-  `;
-const SingleStarFill = styled.div`
-  position: relative;
-  display: inline-block;
-  height: 36px;
-  background-color: #333333;
-  `;
-const SingleStarContainer = styled.div`
-  height: 36px;
-  width: 31px;
-  `;
+import React from 'react';
+import { QuarterStarStyle } from './Stars.styles';
+import FullStar from './FullStar';
+import EmptyStar from './EmptyStar';
 
 const Stars = function ({ averageRating }) {
-// Work in progress to calc quarter stars
-  const [testRenderStars] = useState(averageRating);
-  let rating = { averageRating };
-  let stars = [];
+  let rating = averageRating;
+  const stars = [];
   while (stars.length < 5) {
     if (rating > 1) {
-      stars.push(1);
+      stars.push('100%');
     } else if (rating > 0) {
       const empty = Math.abs(0 - rating);
       const quart = Math.abs(0.25 - rating);
@@ -34,46 +18,48 @@ const Stars = function ({ averageRating }) {
       const closest = Math.min(empty, quart, half, three, full);
       switch (closest) {
         case (empty):
-          stars.push(0);
+          stars.push('0$');
           break;
         case quart:
-          stars.push(0.28);
+          stars.push('32%');
           break;
         case half:
-          stars.push(0.5);
+          stars.push('50%');
           break;
         case three:
-          stars.push(0.72);
+          stars.push('68%');
           break;
         case full:
-          stars.push(1.0);
+          stars.push('100%');
           break;
         default:
           console.log('OOPS');
-          stars.push(0);
+          stars.push('0%');
           break;
       }
     } else {
-      stars.push(0);
+      stars.push('0%');
     }
-    rating -= rating;
+    rating = rating - 1;
   }
+
   return (
     <div>
       <h4>Stars Average Review Rating</h4>
-      <div>
-          {[...Array(5)].map((star, i) => {
-            const ratingValue = i + 1;
-            return (
-              <FaStar
-                key={i}
-                className="star"
-                /*Change this hardcode 3 to render to quarter star*/
-                color={ratingValue <= 3 ? "#F7DC6F" : "#ECF0F1"}
-              />
-            )
-          })}
-        </div>
+      <QuarterStarStyle inputDisplay="block">
+        {stars.map((star, i) => {
+        return (
+          <QuarterStarStyle key={i} inputPosition="relative" inputDisplay="inline-flex" >
+            <QuarterStarStyle inputWidth={star} inputOverflow="hidden" inputPosition="absolute">
+              <FullStar />
+            </QuarterStarStyle>
+            <QuarterStarStyle>
+              <EmptyStar />
+            </QuarterStarStyle>
+          </QuarterStarStyle>
+        )
+      })}
+      </QuarterStarStyle>
     </div>
   );
 };

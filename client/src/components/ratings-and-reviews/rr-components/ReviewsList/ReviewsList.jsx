@@ -1,22 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import ReviewTile from '../ReviewTile/ReviewTile';
+import ListStyle from './ReviewsListStyles';
 
 const ReviewsList = function ({ Reviews, reviewsByStars }) {
-  const [reviewsCount, setReviewsCount] = useState('');
-  const countReviews = (starCount) => {
-    let result = 0;
-    result = Number.parseInt(starCount['1'], 10)
-      + Number.parseInt(starCount['2'], 10)
-      + Number.parseInt(starCount['3'], 10)
-      + Number.parseInt(starCount['4'], 10)
-      + Number.parseInt(starCount['5'], 10);
-    setReviewsCount(result);
-  };
-  useEffect(() => {
-    countReviews(reviewsByStars);
-  }, []);
-
-  const reviewsData = Reviews.results;
+  const reviewsData = Reviews;
+  const reviewsCount = (reviewsByStars[0] + reviewsByStars[1] + reviewsByStars[2] + reviewsByStars[3] + reviewsByStars[4]);
   const listItems = reviewsData.map((review) =>
     <ReviewTile key={review.review_id} reviewData={review} />
   );
@@ -30,7 +18,7 @@ const ReviewsList = function ({ Reviews, reviewsByStars }) {
         <option value="Helpful">Helpful</option>
         <option value="Newest">Newest</option>
       </select>
-      <ul>{listItems}</ul>
+      <ListStyle>{listItems}</ListStyle>
       <input type="button" value="MORE REVIEWS" />
       <input type="button" value="ADD A REVIEW &#43;" />
     </div>

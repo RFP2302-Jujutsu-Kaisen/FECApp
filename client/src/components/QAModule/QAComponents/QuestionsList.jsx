@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import QuestionEntry from './QuestionEntry';
 
+const MoreQuestionsButton = styled.button`
+background: transparent;
+border: 1px solid;
+margin: 10px 0px 10px 0px;
+padding: 16px 14px;
+font-size: 15px;
+cursor: pointer;
+`;
 export default function QuestionsList({ questions }) {
   const [numQsToShow, setNumQsToShow] = useState(4);
 
@@ -24,7 +33,7 @@ export default function QuestionsList({ questions }) {
       <div data-testid="questions-list">{renderQuestions()}</div>
       <div className="more-answered-questions-button">
         {numQsToShow < questions.length && (
-          <button type="button" onClick={loadMoreQs}>MORE ANSWERED QUESTIONS</button>
+          <MoreQuestionsButton type="button" onClick={loadMoreQs}>MORE ANSWERED QUESTIONS</MoreQuestionsButton>
         )}
       </div>
     </div>
