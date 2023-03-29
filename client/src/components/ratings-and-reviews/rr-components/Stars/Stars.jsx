@@ -2,7 +2,7 @@ import React from 'react';
 import { QuarterStarStyle } from './Stars.styles';
 import FullStar from './FullStar';
 import EmptyStar from './EmptyStar';
-
+//git merge fix
 const Stars = function ({ averageRating }) {
   let rating = averageRating;
   const stars = [];
