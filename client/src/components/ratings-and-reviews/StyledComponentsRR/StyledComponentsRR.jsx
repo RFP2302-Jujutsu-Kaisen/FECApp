@@ -10,7 +10,7 @@ const RRFlex = styled.div`
 
 const Model = styled.div`
     z-index: auto;
-    display: ${({show}) => (show ? 'block' : 'none')};
+    display: ${({ show }) => (show ? 'block' : 'none')};
     position: fixed;
     top: 0;
     left: 0;
