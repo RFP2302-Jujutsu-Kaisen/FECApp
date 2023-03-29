@@ -6,7 +6,7 @@ export default function StyleSelector({ styles, setStyles }) {
     setStyles([styles[0], index]);
   };
 
-  console.log('Styles name', styles, styles[0][styles[1]]);
+  // console.log('Styles name', styles, styles[0][styles[1]]);
 
   return (
     <div>

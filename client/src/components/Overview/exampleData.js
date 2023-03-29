@@ -56,7 +56,7 @@ const styles = {
               },
               "1394774": {
                   "quantity": 4,
-                  "size": "XL"
+                  "size": "XXL"
               }
           }
       },

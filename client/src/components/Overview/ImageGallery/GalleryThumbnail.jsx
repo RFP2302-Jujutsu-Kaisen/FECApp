@@ -1,31 +1,31 @@
 import React from 'react';
 
-export default function StyleThumbnail({
-  style, selected, setSelected, index,
+export default function GalleryThumbnail({
+  photo, imageIndex, setImageIndex, selected,
 }) {
   const imgClickHandler = (event) => {
     if (!selected) {
-      setSelected(index);
+      setImageIndex(imageIndex);
     }
     event.target.blur(); // stop focusing on input/image
-    event.preventDefault();
   };
+
+  // console.log('photo is ', photo, 'imageIndex', imageIndex, selected);
 
   // add check mark if selected
   if (selected) {
     return (
       <li>
-        <span>checked</span>
+        <span>Highlighted</span>
         <input
           type="image"
-          src={style.photos[0].thumbnail_url}
-          alt={style.style_id}
+          src={photo.thumbnail_url}
+          alt={imageIndex.toString()}
           height="80"
           width="80"
           onClick={imgClickHandler}
           onKeyDown={imgClickHandler}
         />
-        <span>{style.style_id}</span>
       </li>
     );
   }
@@ -34,14 +34,13 @@ export default function StyleThumbnail({
     <li>
       <input
         type="image"
-        src={style.photos[0].thumbnail_url}
-        alt={style.style_id}
+        src={photo.thumbnail_url}
+        alt={imageIndex.toString()}
         height="80"
         width="80"
         onClick={imgClickHandler}
         onKeyDown={imgClickHandler}
       />
-      <span>{style.style_id}</span>
     </li>
   );
 }
