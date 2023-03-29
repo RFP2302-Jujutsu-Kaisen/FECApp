@@ -1,26 +1,22 @@
 import React from 'react';
+import Factors from './Factors';
+import ListStyle from './ProductBreakdownStyles';
 
-const ProductBreakdown = function () {
+const ProductBreakdown = function ({ Characteristics }) {
+  const charTypes = [];
+  for (const props in Characteristics) {
+    charTypes.push({name: props, id: Characteristics[props].id, value: Characteristics[props].value})
+  }
+  const charItems = charTypes.map((char) =>
+    <Factors key={char.id} name={char.name} value={char.value} />
+  );
+
   return (
     <div>
       <div>
       <h4>Product Breakdown</h4>
       </div>
-      <div>
-        <span>Size &#8213;&#8213;&#8213;&#8213; &#8213;&#8213;&#8213;&#8213; &#9830;&#8213;&#8213;&#8213;&#8213;</span>
-      </div>
-      <div>
-        <span>Too Small</span>
-        <span>Perfect</span>
-        <span>Too Big</span>
-      </div>
-      <div>
-        <span>Comfort &#8213;&#8213;&#8213;&#9830;&#8213; &#8213;&#8213;&#8213;&#8213; &#8213;&#8213;&#8213;&#8213;</span>
-      </div>
-      <div>
-        <span>Poor</span>
-        <span>Perfect</span>
-      </div>
+      <ListStyle>{charItems}</ListStyle>
     </div>
   );
 };

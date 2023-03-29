@@ -4,12 +4,17 @@ import '@testing-library/jest-dom';
 // import userEvent from '@testing-library/user-event';
 
 import RatingsAndReviews from '../RatingsAndReviews';
-import dataMeta from '../assets/localData';
+
 
 describe('renders and loads RatingSummary', () => {
-  test('renders correct text heading and rating', () => {
-    const { getByText } = render(<RatingsAndReviews dataMeta={dataMeta} />);
-    expect(getByText('Ratings Summary')).toBeInTheDocument();
-    expect(getByText('Stars Average Review Rating')).toBeInTheDocument();
+  it('renders correct text heading and rating', async () => {
+    const { getByText } = await render(<RatingsAndReviews />);
+    const headingElement = getByText(/Ratings Summary/i);
+    expect(headingElement).toBeInTheDocument();
+  });
+  it('renders correct text heading for ReviewsList', async () => {
+    const { getByText } = await render(<RatingsAndReviews />);
+    const headingElement = getByText(/Reviews List/i);
+    expect(headingElement).toBeInTheDocument();
   });
 });
