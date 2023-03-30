@@ -9,11 +9,12 @@ const RowWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 100%;
+  border: 10px solid pink;
 `;
 
 const MainImgWrapper = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   border: 10px solid orange;
   flex-grow: 4;

@@ -8,6 +8,7 @@ const ThumbnailListWrapper = styled.ul`
   flex-direction: column;
   list-style-type: none;
   align-content: space-between;
+  height: 100%;
 `;
 
 export default function ThumbnailList({

@@ -5,17 +5,15 @@ import styled from 'styled-components';
 const MainDivWrapper = styled.div`
   display:flex;
   border: 10px solid blue;
-  flex-grow: 1;
   justify-content: space-between;
-  position: relative;
-
+  height: 100%;
 `;
 
 const MainImgWrapper = styled.input`
   display: flex;
-
-  max-height: 800px;
-  max-width: 1200px;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
   object-fit: scale-down;
   object-position: 30% 30%;
 
@@ -41,6 +39,7 @@ export default function MainImage({
     const setPrev = () => { if (imageIndex > 0) { setImageIndex(imageIndex - 1); } };
     const setNext = () => { if (imageIndex < numPhotos) { setImageIndex(imageIndex + 1); } };
 
+    // onClick={changeView}
     return (
       <MainDivWrapper data-testid="mainImageId">
         <ScrollButton type="button" onClick={setPrev} visibility={imageIndex > 0 ? 'visible' : 'hidden'}>&lt;</ScrollButton>

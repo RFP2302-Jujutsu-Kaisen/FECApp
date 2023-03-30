@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import {
   ImageGallery, ProductInfo, StyleSelector, AddToCart, Description,
 } from '.';
@@ -13,13 +13,31 @@ import { useAppContext } from '../AppContext';
 const RowWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  border: 10px solid Brown;
+  flex-wrap: wrap;
+  height: 800px;
 `;
 
 const ColWrapper = styled.div`
   display:flex;
   flex-direction: column;
+  border: 10px solid purple;
 `;
+
+const InnerColWrapper = styled.div`
+  display:flex;
+  flex-direction: column;
+  border: 10px solid teal;
+  justify-content: space-around;
+  height: 100%;
+`;
+
+// const BodyHeightStyle = createGlobalStyle`
+//   body {
+//     height: 100%;
+//   }
+// `;
 
 export default function Overview() {
   // context, states
@@ -49,7 +67,7 @@ export default function Overview() {
         <h2>Overview</h2>
         <RowWrapper>
           <ImageGallery style={styles[0][styles[1]] || {}} />
-          <ColWrapper>
+          <InnerColWrapper>
             <ProductInfo prod={prod} style={styles[0][styles[1]] || {}} />
             <StyleSelector styles={styles} setStyles={setStyles} />
             <AddToCart
@@ -60,7 +78,7 @@ export default function Overview() {
                 ]
                 : []}
             />
-          </ColWrapper>
+          </InnerColWrapper>
         </RowWrapper>
         <Description prod={prod} />
       </ColWrapper>

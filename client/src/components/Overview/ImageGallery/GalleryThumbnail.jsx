@@ -6,7 +6,7 @@ const InputWrapper = styled.input`
   border-bottom: ${({ selected }) => (selected && 'solid medium black')};
   box-shadow: ${({ selected }) => (selected && '0 0 10px black')};
   max-width: 80px;
-  height: auto;
+  max-height: 20px;
   border: 10px solid rgba(255,255,255,.5);
   border-radius: 1000px;
 `;

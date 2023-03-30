@@ -4,14 +4,15 @@ import styled, { createGlobalStyle } from 'styled-components';
 import DefaultView from './DefaultView';
 import ExpandedView from './ExpandedView';
 // css
-const ImgGalWrapper = styled.div`
-  display: flex;
-  border: 10px solid red;
-  width: ${({ toggleView }) => (toggleView ? 'auto' : '100%')};
-  position: ${({ toggleView }) => (toggleView ? 'static' : 'fixed')};
-  top: ${({ toggleView }) => (toggleView ? 'auto' : '0%')};
-  align-items: center;
-`;
+// const ImgGalWrapper = styled.div`
+//   display: flex;
+//   border: 10px solid red;
+//   width: ${({ toggleView }) => (toggleView ? 'auto' : '100%')};
+//   position: ${({ toggleView }) => (toggleView ? 'static' : 'fixed')};
+//   top: ${({ toggleView }) => (toggleView ? 'auto' : '0%')};
+//   align-items: center;
+//   justify-content: center;
+// `;
 
 const ModalBodyStyle = createGlobalStyle`
   body {
@@ -21,6 +22,24 @@ const ModalBodyStyle = createGlobalStyle`
     align-items: center;
   }
 `;
+
+const ImgGalWrapper = styled.div`
+  display: flex;
+  border: 10px solid red;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 60%;
+`;
+// const DefaultWrapper = styled.div`
+//   display: flex;
+//   border: 10px solid red;
+//   width: ${({ toggleView }) => (toggleView ? 'auto' : '100%')};
+//   position: ${({ toggleView }) => (toggleView ? 'static' : 'fixed')};
+//   top: ${({ toggleView }) => (toggleView ? 'auto' : '0%')};
+//   align-items: center;
+//   justify-content: center;
+// `;
 
 export default function ImageGallery({ style }) {
   // states
@@ -59,7 +78,7 @@ export default function ImageGallery({ style }) {
 
   return (
     <ImgGalWrapper data-testid="expandedId" toggleView={toggleView}>
-      <ModalBodyStyle toggleView={toggleView} />
+      {/* <ModalBodyStyle toggleView={toggleView} /> */}
       <ExpandedView
         style={style}
         imageIndex={imageIndex}

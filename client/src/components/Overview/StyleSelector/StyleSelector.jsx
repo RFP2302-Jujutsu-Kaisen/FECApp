@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import StyleThumbnail from './StyleThumbnail';
 
 const StyleList = styled.ul`
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   list-style-type: none;
+  border: 10px solid yellow;
 `;
 
 export default function StyleSelector({ styles, setStyles }) {

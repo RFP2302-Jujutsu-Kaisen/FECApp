@@ -25,6 +25,7 @@ const ZoomDivWrapper = styled.div`
 const ImgWrapper = styled.input`
   object-fit: none;
   overflow: hidden;
+  max-width: 1500px;
   ${({ topLeft }) => topLeft}
 `;
 
