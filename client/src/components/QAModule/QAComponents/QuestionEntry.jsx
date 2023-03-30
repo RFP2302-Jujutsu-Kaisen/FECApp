@@ -26,6 +26,7 @@ const HelpfulContainer = styled.div`
   display: flex;
   align-items: center;
   margin-right: 75px;
+  margin-top: 8px;
 `;
 
 const HelpfulLabel = styled.span`
@@ -62,10 +63,17 @@ const MoreAnswersButton = styled.button`
   }
 `;
 
+const AnswerListContainer = styled.div`
+  max-height: 50vh;
+  width: 66%;
+  overflow-y: auto;
+`;
+
 export default function QuestionEntry({ question, refreshAnswers }) {
   const [numAnswersToShow, setNumAnswersToShow] = useState(2);
   const [helpfulnessCount, setHelpfulnessCount] = useState(question.question_helpfulness);
   const [isHelpfulClicked, setIsHelpfulClicked] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const renderAnswers = () => {
     if (question && question.answers) {
@@ -88,7 +96,15 @@ export default function QuestionEntry({ question, refreshAnswers }) {
   };
 
   const loadMoreAnswers = () => {
-    setNumAnswersToShow(numAnswersToShow + 2);
+    if (!isExpanded) {
+      setNumAnswersToShow(numAnswersToShow + 2);
+      if (numAnswersToShow + 2 >= Object.keys(question.answers).length) {
+        setIsExpanded(true);
+      }
+    } else {
+      setNumAnswersToShow(2);
+      setIsExpanded(false);
+    }
   };
 
   const incrementHelpfulness = async () => {
@@ -127,10 +143,18 @@ export default function QuestionEntry({ question, refreshAnswers }) {
           <AddAnswer question={question} refreshAnswers={refreshAnswers} data-testid="add-answer" />
         </HelpfulContainer>
       </QuestionContainer>
-      <div data-testid="answer-list">{renderAnswers()}</div>
+      <AnswerListContainer data-testid="answer-list">
+        {renderAnswers()}
+      </AnswerListContainer>
       <div>
-        {numAnswersToShow < Object.keys(question.answers).length && (
-        <MoreAnswersButton type="button" onClick={loadMoreAnswers} data-testid="more-answers-button">LOAD MORE ANSWERS</MoreAnswersButton>
+        {Object.keys(question.answers).length > 2 && (
+          <MoreAnswersButton
+            type="button"
+            onClick={loadMoreAnswers}
+            data-testid="more-answers-button"
+          >
+            {isExpanded ? 'Collapse answers' : 'LOAD MORE ANSWERS'}
+          </MoreAnswersButton>
         )}
       </div>
     </div>
