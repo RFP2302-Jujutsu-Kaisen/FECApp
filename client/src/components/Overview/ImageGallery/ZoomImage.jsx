@@ -7,6 +7,7 @@ const ZoomDivWrapper = styled.div`
   flex-grow: 1;
   justify-content: center;
   position: relative;
+  width: 600px;
 
 `;
 
@@ -15,40 +16,42 @@ const ZoomDivWrapper = styled.div`
 
 //   max-height: 800px;
 //   max-width: 1200px;
-
+//   object-fit: scale-down;
 //   object-position: 30% 30%;
 
 // `;
 
 // TODO: FOR ZOOMED IMAGE DOWN HERE
 const ImgWrapper = styled.input`
-  display: flex;
-
-  max-height: 800px;
-  max-width: 1200px;
   object-fit: none;
-  object-position: 100% 100%
-
+  overflow: hidden;
+  ${({ topLeft }) => topLeft}
 `;
 
+// objec
+// ${({ ref, left, top }) => {
+//   return css`
+//     object-position: 0% 0%;
+//   `;
+// }}
 // object-fit: scale-down;
 
 export default function ZoomImage({
   style, imageIndex, toggleZoomHandler,
 }) {
   // state
-  const [mousePos, setMousePos] = useState({
-    left: 0,
-    top: 0,
-  });
+  const [containTopLeft, setContainTopLeft] = useState('');
 
   // handlers
   const zoomHandler = (event) => {
-    setMousePos({ left: event.pageX, top: event.pageY });
-    console.log(JSON.stringify(mousePos));
+    const rect = event.target.getBoundingClientRect();
+    const left = ((event.pageX - rect.left) / rect.width) * 100;
+    const top = ((event.pageY - rect.top) / rect.height) * 100;
+    setContainTopLeft(`object-position: ${left}% ${top}%;`);
   };
 
   if (Object.keys(style).length > 0) {
+    // calculate zoom coords
     return (
       <ZoomDivWrapper>
         <ImgWrapper
@@ -59,8 +62,7 @@ export default function ZoomImage({
           alt={imageIndex.toString()}
           onClick={toggleZoomHandler}
           onMouseMove={zoomHandler}
-          left={mousePos.left}
-          top={mousePos.top}
+          topLeft={containTopLeft}
         />
       </ZoomDivWrapper>
     );

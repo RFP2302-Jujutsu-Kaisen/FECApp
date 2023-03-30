@@ -8,6 +8,8 @@ import ExpandedImage from './ExpandedImage';
 const RowWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-content: center;
 `;
 
 export default function ExpandedView({
@@ -23,12 +25,6 @@ export default function ExpandedView({
   if (toggleZoom) {
     return (
       <RowWrapper>
-        <ThumbnailList
-          style={style}
-          imageIndex={imageIndex}
-          setImageIndex={setImageIndex}
-          toggleView={toggleView}
-        />
         <ZoomImage
           style={style}
           imageIndex={imageIndex}
