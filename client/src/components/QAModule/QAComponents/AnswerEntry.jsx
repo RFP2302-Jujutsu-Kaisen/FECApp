@@ -119,7 +119,8 @@ export default function AnswerEntry({ answer }) {
           ,
           {' '}
           {
-          new Date(answer.date).toDateString()
+          new Date(answer.date).toDateString().split(' ').slice(1)
+            .join(' ')
           }
           {'   |   '}
           Helpful?
