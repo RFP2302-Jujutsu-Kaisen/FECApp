@@ -12,6 +12,8 @@ import { useAppContext } from '../AppContext';
 // css
 const RowWrapper = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: flex-start;
 `;
 
 const ColWrapper = styled.div`
