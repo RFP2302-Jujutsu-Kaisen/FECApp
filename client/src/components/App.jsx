@@ -19,7 +19,6 @@ const colors = {
 // Define a container for the banner and header
 const BannerAndHeaderContainer = styled.div`
   position: relative;
-  background-color: ${colors.primary};
 `;
 
 // Define a banner that goes above the header
@@ -40,6 +39,18 @@ const Header = styled.header`
   align-items: center;
   background-color: #ffffff;
   padding: 20px;
+  margin-left: 15%;
+  margin-right: 15%;
+
+  @media (max-width: 1024px) {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
 `;
 
 // Define the logo for the header
@@ -69,6 +80,18 @@ const MainWrapper = styled.div`
   background-color: ${colors.lightGrey};
   padding: 20px;
   font-family: system-ui;
+  margin-left: 15%;
+  margin-right: 15%;
+
+  @media (max-width: 1024px) {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
 `;
 
 const FooterWrapper = styled.footer`
@@ -80,6 +103,18 @@ const FooterWrapper = styled.footer`
   align-items: center;
   font-size: 12px;
   font-family: system-ui;
+  margin-left: 15%;
+  margin-right: 15%;
+
+  @media (max-width: 1024px) {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
 `;
 
 const FooterText = styled.div`
