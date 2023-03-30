@@ -5,6 +5,8 @@ import Overview from './Overview/Overview';
 import RatingsAndReviews from './ratings-and-reviews';
 import { AppContextProvider } from './AppContext';
 import logo from './jujulogo.png';
+import easterEgg from './film-white.gif';
+import easterEgg2 from './soccer-ball.gif';
 
 // Define colors used throughout the app
 const colors = {
@@ -72,10 +74,20 @@ const MainWrapper = styled.div`
 const FooterWrapper = styled.footer`
   background-color: ${colors.darkGrey};
   color: #ffffff;
-  padding: 24px;
-  text-align: right;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 12px;
   font-family: system-ui;
+`;
+
+const FooterText = styled.div`
+  margin-right: 20px;
+`;
+
+const Fun = styled.img`
+  height: 24px;
 `;
 
 export default function App() {
@@ -103,7 +115,14 @@ export default function App() {
         </AppContextProvider>
       </MainWrapper>
       <FooterWrapper>
-        &copy; 2023 The Juju Store. All rights reserved.
+        <div>
+          <Fun src={easterEgg} alt="" />
+          <Fun src={easterEgg2} alt="" />
+          {'   Footy Corner'}
+        </div>
+        <FooterText>
+          &copy; 2023 The Juju Store. All rights reserved.
+        </FooterText>
       </FooterWrapper>
     </BannerAndHeaderContainer>
   );
