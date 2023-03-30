@@ -1,13 +1,20 @@
 import React from 'react';
-import { Container, Background, FlexWrapper, Description } from './FactorsBar';
+import { Container, Background, FlexWrapper, Description, Caret } from './FactorsBar';
+import { FaCaretDown } from 'react-icons/fa';
 
 const Factors = function ({ name, value }) {
   const avgRate = Number(value).toFixed(2);
 
   if (name === 'Size') {
+    const scale = (avgRate / 5) * 100;
     return (
       <li>
         <div>{name}</div>
+        <Container>
+          <Caret percent={scale}>
+            <FaCaretDown />
+          </Caret>
+        </Container>
         <Container >
           <Background />
         </Container>
@@ -19,9 +26,15 @@ const Factors = function ({ name, value }) {
     );
   }
   if (name === 'Width') {
+    const scale = (avgRate / 5) * 100;
     return (
       <li>
         <div>{name}</div>
+        <Container>
+          <Caret percent={scale}>
+            <FaCaretDown />
+          </Caret>
+        </Container>
         <Container >
           <Background />
         </Container>
@@ -33,9 +46,15 @@ const Factors = function ({ name, value }) {
     );
   }
   if (name === 'Comfort') {
+    const scale = (avgRate / 5) * 100;
     return (
       <li>
         <div>{name}</div>
+        <Container>
+          <Caret percent={scale}>
+            <FaCaretDown />
+          </Caret>
+        </Container>
         <Container>
           <Background />
         </Container>
@@ -48,9 +67,15 @@ const Factors = function ({ name, value }) {
     );
   }
   if (name === 'Quality') {
+    const scale = (avgRate / 5) * 100;
     return (
       <li>
         <div>{name}</div>
+        <Container>
+          <Caret percent={scale}>
+            <FaCaretDown />
+          </Caret>
+        </Container>
         <Container >
           <Background />
         </Container>
@@ -62,9 +87,15 @@ const Factors = function ({ name, value }) {
     );
   }
   if (name === 'Length') {
+    const scale = (avgRate / 5) * 100;
     return (
       <li>
         <div>{name}</div>
+        <Container>
+          <Caret percent={scale}>
+            <FaCaretDown />
+          </Caret>
+        </Container>
         <Container >
           <Background />
         </Container>
@@ -76,9 +107,15 @@ const Factors = function ({ name, value }) {
     );
   }
   if (name === 'Fit') {
+    const scale = (avgRate / 5) * 100;
     return (
       <li>
         <div>{name}</div>
+        <Container>
+          <Caret percent={scale}>
+            <FaCaretDown />
+          </Caret>
+        </Container>
         <Container >
           <Background />
         </Container>

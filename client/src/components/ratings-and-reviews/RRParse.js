@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-// const path = require('path');
-
 const server = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/';
 const metaEndPoint = 'meta';
 const query = '?product_id=';
+const sort = '?sort=relevant';
+const count = '?count=50';
 
 const config = {
   headers: {
@@ -18,7 +18,6 @@ const RRParse = {
     const endpointUrl = new URL(query + prodId, server);
     axios.get(endpointUrl.toString(), config)
       .then((reviews) => {
-        console.log('Success getting reviews', reviews.data);
         setReviews(reviews.data.results);
       })
       .catch((err) => {
@@ -30,7 +29,6 @@ const RRParse = {
     const endpointUrl = new URL(query + prodId, server + metaEndPoint);
     axios.get(endpointUrl.toString(), config)
       .then((data) => {
-        console.log('Success getting data', data.data);
         setRatings([
           Number.parseInt(data.data.ratings['1']),
           Number.parseInt(data.data.ratings['2']),

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Background, Progress } from './PercentBars';
+import { FaStar } from 'react-icons/fa';
 
 
 const RatingBreakdown = function ({ Recommended, Ratings }) {
@@ -21,35 +22,85 @@ const RatingBreakdown = function ({ Recommended, Ratings }) {
       </div>
       <div>
         <div>
-          5 Stars:
+          {[...Array(5)].map((star, i) => {
+            const ratingValue = i + 1;
+            return (
+              <FaStar
+                key={i}
+                className="star"
+                fontSize="1.12rem"
+                color={ratingValue <= 5 ? "#F7DC6F" : "#ECF0F1"}
+              />
+            );
+          })}
           <Container>
             <Background />
             <Progress percent={fiveStars} />
           </Container>
         </div>
         <div>
-          4 stars:
+          {[...Array(5)].map((star, i) => {
+            const ratingValue = i + 1;
+            return (
+              <FaStar
+                key={i}
+                className="star"
+                fontSize="1.12rem"
+                color={ratingValue <= 4 ? "#F7DC6F" : "#ECF0F1"}
+              />
+            );
+          })}
           <Container>
             <Background />
             <Progress percent={fourStars} />
           </Container>
         </div>
         <div>
-          3 stars:
+          {[...Array(5)].map((star, i) => {
+            const ratingValue = i + 1;
+            return (
+              <FaStar
+                key={i}
+                className="star"
+                fontSize="1.12rem"
+                color={ratingValue <= 3 ? "#F7DC6F" : "#ECF0F1"}
+              />
+            );
+          })}
           <Container>
             <Background />
             <Progress percent={threeStars} />
           </Container>
         </div>
         <div>
-          2 stars:
+          {[...Array(5)].map((star, i) => {
+            const ratingValue = i + 1;
+            return (
+              <FaStar
+                key={i}
+                className="star"
+                fontSize="1.12rem"
+                color={ratingValue <= 2 ? "#F7DC6F" : "#ECF0F1"}
+              />
+            );
+          })}
           <Container>
             <Background />
             <Progress percent={twoStars} />
           </Container>
         </div>
         <div>
-          1 stars:
+          {[...Array(5)].map((star, i) => {
+            const ratingValue = i + 1;
+            return (
+              <FaStar
+                key={i}
+                className="star"
+                fontSize="1.12rem"
+                color={ratingValue <= 1 ? "#F7DC6F" : "#ECF0F1"}
+              />
+            );
+          })}
           <Container>
             <Background />
             <Progress percent={oneStars} />
