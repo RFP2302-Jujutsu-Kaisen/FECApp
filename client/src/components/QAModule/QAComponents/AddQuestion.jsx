@@ -13,6 +13,54 @@ const AddQuestionButton = styled.button`
   cursor: pointer;
 `;
 
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Label = styled.label`
+  font-weight: bold;
+  margin: 8px 150px 8px 0px;
+`;
+
+const TextArea = styled.textarea`
+  resize: none;
+  width: 75%;
+  margin-top: 4px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
+const Input = styled.input`
+  margin-top: 4px;
+  padding: 2px 8px 2px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
+const SmallText = styled.p`
+  font-size: 12px;
+  color: #777;
+  margin-top: 4px;
+`;
+
+const SubmitButton = styled.button`
+  margin-top: 12px;
+  padding: 8px 16px;
+  background-color: #5a5a5a;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #404040;
+  }
+`;
+
 export default function AddQuestion({ productId, refreshQuestions }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [questionText, setQuestionText] = useState('');
@@ -62,23 +110,23 @@ export default function AddQuestion({ productId, refreshQuestions }) {
       <ModalTest isOpen={isModalOpen} onClose={closeModal}>
         <h2>Ask Your Question</h2>
         <h4>{`About the [PRODUCT NAME HERE ID: ${productId}]`}</h4>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="your-question">
+        <Form onSubmit={handleSubmit}>
+          <Label htmlFor="your-question">
             Your Question (mandatory)*
-            <textarea id="your-question" maxLength="1000" required value={questionText} onChange={(e) => setQuestionText(e.target.value)} />
-          </label>
-          <label htmlFor="what-is-your-nickname">
+            <TextArea id="your-question" maxLength="1000" required value={questionText} onChange={(e) => setQuestionText(e.target.value)} />
+          </Label>
+          <Label htmlFor="what-is-your-nickname">
             What is your nickname (mandatory)*
-            <input id="what-is-your-nickname" type="text" maxLength="60" placeholder="Example: jackson11!" required value={nickname} onChange={(e) => setNickname(e.target.value)} />
-            <p>For privacy reasons, do not use your full name or email address</p>
-          </label>
-          <label htmlFor="your-email">
+            <Input id="what-is-your-nickname" type="text" maxLength="60" placeholder="Example: jackson11!" required value={nickname} onChange={(e) => setNickname(e.target.value)} />
+            <SmallText>For privacy reasons, do not use your full name or email address</SmallText>
+          </Label>
+          <Label htmlFor="your-email">
             Your email (mandatory)*
-            <input id="your-email" type="email" maxLength="60" placeholder="Why did you like the product or not?" required value={email} onChange={(e) => setEmail(e.target.value)} />
-            <p>For authentication reasons, you will not be emailed</p>
-          </label>
-          <button type="submit">Submit question</button>
-        </form>
+            <Input id="your-email" type="email" maxLength="60" placeholder="Why did you like the product or not?" required value={email} onChange={(e) => setEmail(e.target.value)} />
+            <SmallText>For authentication reasons, you will not be emailed</SmallText>
+          </Label>
+          <SubmitButton type="submit">Submit question</SubmitButton>
+        </Form>
       </ModalTest>
     </div>
   );
