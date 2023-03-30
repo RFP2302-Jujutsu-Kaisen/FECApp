@@ -11,6 +11,10 @@ const AddQuestionButton = styled.button`
   padding: 16px 14px;
   font-size: 15px;
   cursor: pointer;
+
+  &:hover {
+    color: #333333;
+  }
 `;
 
 const Form = styled.form`
