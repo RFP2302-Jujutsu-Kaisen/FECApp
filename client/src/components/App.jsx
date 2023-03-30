@@ -5,6 +5,8 @@ import Overview from './Overview/Overview';
 import RatingsAndReviews from './ratings-and-reviews';
 import { AppContextProvider } from './AppContext';
 import logo from './jujulogo.png';
+import easterEgg from './film-white.gif';
+import easterEgg2 from './soccer-ball.gif';
 
 // Define colors used throughout the app
 const colors = {
@@ -17,7 +19,6 @@ const colors = {
 // Define a container for the banner and header
 const BannerAndHeaderContainer = styled.div`
   position: relative;
-  background-color: ${colors.primary};
 `;
 
 // Define a banner that goes above the header
@@ -38,6 +39,18 @@ const Header = styled.header`
   align-items: center;
   background-color: #ffffff;
   padding: 20px;
+  margin-left: 15%;
+  margin-right: 15%;
+
+  @media (max-width: 1024px) {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
 `;
 
 // Define the logo for the header
@@ -67,15 +80,49 @@ const MainWrapper = styled.div`
   background-color: ${colors.lightGrey};
   padding: 20px;
   font-family: system-ui;
+  margin-left: 15%;
+  margin-right: 15%;
+
+  @media (max-width: 1024px) {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
 `;
 
 const FooterWrapper = styled.footer`
   background-color: ${colors.darkGrey};
   color: #ffffff;
-  padding: 24px;
-  text-align: right;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 12px;
   font-family: system-ui;
+  margin-left: 15%;
+  margin-right: 15%;
+
+  @media (max-width: 1024px) {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+`;
+
+const FooterText = styled.div`
+  margin-right: 20px;
+`;
+
+const Fun = styled.img`
+  height: 24px;
 `;
 
 export default function App() {
@@ -103,7 +150,14 @@ export default function App() {
         </AppContextProvider>
       </MainWrapper>
       <FooterWrapper>
-        &copy; 2023 The Juju Store. All rights reserved.
+        <div>
+          <Fun src={easterEgg} alt="" />
+          <Fun src={easterEgg2} alt="" />
+          {'   Footy Corner'}
+        </div>
+        <FooterText>
+          &copy; 2023 The Juju Store. All rights reserved.
+        </FooterText>
       </FooterWrapper>
     </BannerAndHeaderContainer>
   );
