@@ -1,12 +1,22 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import ThumbnailList from './ThumbnailList';
 import MainImage from './MainImage';
-import styled from 'styled-components';
 
 // css
 const RowWrapper = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
+const MainImgWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 10px solid orange;
+  flex-grow: 4;
 `;
 
 export default function DefaultView({
@@ -20,12 +30,15 @@ export default function DefaultView({
         setImageIndex={setImageIndex}
         toggleView={toggleView}
       />
-      <MainImage
-        style={style}
-        imageIndex={imageIndex}
-        setImageIndex={setImageIndex}
-        toggleHandler={toggleHandler}
-      />
+      <MainImgWrapper>
+        <MainImage
+          style={style}
+          imageIndex={imageIndex}
+          setImageIndex={setImageIndex}
+          toggleHandler={toggleHandler}
+        />
+      </MainImgWrapper>
+      <MainImgWrapper />
     </RowWrapper>
   );
 }

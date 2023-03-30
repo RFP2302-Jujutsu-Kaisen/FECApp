@@ -1,6 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
+
 import DefaultView from './DefaultView';
 import ExpandedView from './ExpandedView';
+// css
+const ImgGalWrapper = styled.div`
+  display: flex;
+  border: 10px solid red;
+  width: ${({ toggleView }) => (toggleView ? 'auto' : '100%')};
+  position: ${({ toggleView }) => (toggleView ? 'static' : 'fixed')};
+  top: ${({ toggleView }) => (toggleView ? 'auto' : '0%')};
+  align-items: center;
+`;
+
+const ModalBodyStyle = createGlobalStyle`
+  body {
+    display: flex;
+    overflow-y: ${({ toggleView }) => (toggleView ? 'visible' : 'hidden')};
+    justify-content: center;
+    align-items: center;
+  }
+`;
 
 export default function ImageGallery({ style }) {
   // states
@@ -25,7 +45,7 @@ export default function ImageGallery({ style }) {
   // default or expanded view
   if (toggleView) {
     return (
-      <div data-testid="imgGalleryId">
+      <ImgGalWrapper data-testid="imgGalleryId" toggleView={toggleView}>
         <DefaultView
           style={style}
           imageIndex={imageIndex}
@@ -33,12 +53,13 @@ export default function ImageGallery({ style }) {
           setImageIndex={setImageIndex}
           toggleView={toggleView}
         />
-      </div>
+      </ImgGalWrapper>
     );
   }
 
   return (
-    <div data-testid="expandedId">
+    <ImgGalWrapper data-testid="expandedId" toggleView={toggleView}>
+      <ModalBodyStyle toggleView={toggleView} />
       <ExpandedView
         style={style}
         imageIndex={imageIndex}
@@ -46,6 +67,6 @@ export default function ImageGallery({ style }) {
         setImageIndex={setImageIndex}
         toggleView={toggleView}
       />
-    </div>
+    </ImgGalWrapper>
   );
 }

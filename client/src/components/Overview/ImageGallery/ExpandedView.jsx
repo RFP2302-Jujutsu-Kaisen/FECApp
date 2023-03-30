@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
+
 import ThumbnailList from './ThumbnailList';
 import ZoomImage from './ZoomImage';
 import ExpandedImage from './ExpandedImage';
+
+const RowWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+`;
 
 export default function ExpandedView({
   style, imageIndex, toggleHandler, setImageIndex, toggleView,
@@ -15,26 +24,18 @@ export default function ExpandedView({
 
   if (toggleZoom) {
     return (
-      <div>
-        <h3>ExpandedView</h3>
-        <ThumbnailList
-          style={style}
-          imageIndex={imageIndex}
-          setImageIndex={setImageIndex}
-          toggleView={toggleView}
-        />
+      <RowWrapper>
         <ZoomImage
           style={style}
           imageIndex={imageIndex}
           toggleZoomHandler={toggleZoomHandler}
         />
-      </div>
+      </RowWrapper>
     );
   }
 
   return (
-    <div>
-      <h3>ExpandedView</h3>
+    <RowWrapper>
       <ThumbnailList
         style={style}
         imageIndex={imageIndex}
@@ -48,6 +49,6 @@ export default function ExpandedView({
         toggleHandler={toggleHandler}
         toggleZoomHandler={toggleZoomHandler}
       />
-    </div>
+    </RowWrapper>
   );
 }
