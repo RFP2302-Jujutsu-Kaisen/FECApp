@@ -16,16 +16,15 @@ const StyleList = styled.ul`
 const StyleContainer = styled.div`
   display: flex;
   flex-direction: column;
-  border: 5px solid orange;
 `;
 
 const StyleLabel = styled.span`
-  font: 700 1.5em "system-ui";
-  margin-right: 5px;
+  font: 600 1.5em "system-ui";
+  margin-right: 15px;
 `;
 
 const StyleSpan = styled.span`
-  font: 400 1.5em "system-ui";
+  font: 350 1.5em "system-ui";
 `;
 
 export default function StyleSelector({ styles, setStyles }) {

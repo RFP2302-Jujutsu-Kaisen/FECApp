@@ -8,7 +8,9 @@ import GalleryThumbnail from './GalleryThumbnail';
 //   flex-direction: column;
 //   list-style-type: none;
 //   align-content: space-between;
+//   justify-content: center;
 //   height: 100%;
+//   z-index: 5;
 // `;
 
 const ThumbnailListWrapper = styled.ul`
@@ -17,6 +19,7 @@ const ThumbnailListWrapper = styled.ul`
   grid-template-rows: repeat(7, 1fr);
   list-style: none;
   justify-content: center;
+  gap: 3px;
 
 `;
 

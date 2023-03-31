@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FaAngleRight, FaAngleLeft, FaExpand } from 'react-icons/fa';
 
 // css
 
@@ -33,7 +34,6 @@ import styled from 'styled-components';
 
 const MainDivWrapper = styled.div`
 display: flex;
-border: 10px solid aqua;
 justify-content: space-between;
 position: absolute;
 width: 100%;
@@ -47,6 +47,7 @@ height: 100%;
 //   height: 100%;
 //   align-items: center;
 // `;
+// cursor: ${(props) => (props.toggleView ? 'url(./src/components/right-arrow.png), auto' : 'url(./src/components/right-arrow.png), auto')};
 
 const MainImgWrapper = styled.input`
   display: flex;
@@ -55,24 +56,86 @@ const MainImgWrapper = styled.input`
   object-fit: scale-down;
   object-position: 30% 30%;
   align-items: center;
+
+  &:hover {
+    cursor: ${(props) => (props.toggleView ? 'zoom-in' : 'crosshair')};
+  }
+
 `;
 
 const ParentImgWrapper = styled.div`
   display: flex;
   height: 100%;
-  border: 10px solid red;
   align-items: center;
   justify-content: center;
-  flex-flow: column;
+  flex-flow: column;==
   left: 0%;
+  position: relative;
+`;
+
+const ToggleExp = styled.button`
+  background-color: transparent;
+  display: flex;
+  color: black;
+  cursor: pointer;
+  border: none;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  align-items: center;
+  justify-content: center;
+  font-size: 3em;
+  font-weight: 100;
+  color: #101010;
+
+  &:hover {
+    color: #D3D3D3;
+  }
 `;
 
 const ScrollButton = styled.button`
   visibility: ${({ visibility }) => (visibility)};
+  background-color: transparent;
+  display: flex;
+  cursor: pointer;
+  border: none;
+  height: 100%;
+  width: 70px;
+  top: 15px;
+  right: 15px;
+  align-items: center;
+  justify-content: center;
+  font-size: 6.0em;
+  font-weight: 100;
+  color: gray;
+
+  &:hover {
+    color: #333333;
+  }
+
+`;
+
+const ImgWrapper = styled.img`
+  object-fit: scale-down;
+  height: 90%;
+  object-position: 50% 50%;
+`;
+
+const ArrowWrapper = styled.img`
+  height: 200px;
+  width: 30px;
+  object-position: center;
+  opacity: 0.3;
+
+  &:hover {
+    opacity: 0.7;
+  }
 `;
 
 export default function MainImage({
-  style, imageIndex, setImageIndex, toggleHandler, buttonToggleHandler,
+  style, imageIndex, setImageIndex, toggleHandler, buttonToggleHandler, toggleView,
 }) {
   // general handlers
   const changeView = (event) => {
@@ -90,18 +153,25 @@ export default function MainImage({
     // onClick={changeView}
     return (
       <MainDivWrapper data-testid="mainImageId">
-        <ScrollButton type="button" onClick={setPrev} visibility={imageIndex > 0 ? 'visible' : 'hidden'}>&lt;</ScrollButton>
+        <ScrollButton type="button" onClick={setPrev} visibility={imageIndex > 0 ? 'visible' : 'hidden'}>
+          <FaAngleLeft />
+        </ScrollButton>
         <ParentImgWrapper>
           <MainImgWrapper
+            toggleView={toggleView}
             data-testid="imgToggleId"
             type="image"
             src={style.photos[imageIndex].url}
             alt={imageIndex.toString()}
             onClick={changeView}
           />
-          <button type="button" onClick={buttonToggleHandler}>toggleExp</button>
+          <ToggleExp type="button" onClick={buttonToggleHandler}>
+            <FaExpand />
+          </ToggleExp>
         </ParentImgWrapper>
-        <ScrollButton type="button" onClick={setNext} visibility={imageIndex < numPhotos ? 'visible' : 'hidden'}>&gt;</ScrollButton>
+        <ScrollButton type="button" onClick={setNext} visibility={imageIndex < numPhotos ? 'visible' : 'hidden'}>
+          <FaAngleRight />
+        </ScrollButton>
       </MainDivWrapper>
     );
   }
@@ -112,3 +182,7 @@ export default function MainImage({
     </div>
   );
 }
+
+{/* <ArrowWrapper src={rightImg} alt="Right" /> */}
+{/* <ArrowWrapper src={leftImg} alt="Left" /> */}
+

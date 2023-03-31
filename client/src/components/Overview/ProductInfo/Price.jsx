@@ -11,7 +11,7 @@ const SalePriceSpan = styled.span`
 const OrigPriceSpan = styled.span`
   text-decoration: ${(props) => props.sale || 'none'};
   font-family: "system-ui";
-  font-weight: ${(props) => (props.sale ? '300' : '350')};
+  font-weight: ${(props) => (props.sale ? '275' : '350')};
   font-size: ${(props) => (props.sale ? '1.2em' : '1.5em')};
 `;
 

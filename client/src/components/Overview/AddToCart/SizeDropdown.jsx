@@ -16,6 +16,10 @@ const SizeWrapper = styled.select`
   font-family: system-ui;
   font-weight: 450;
   position: absolute;
+
+  &:hover {
+    border: 2px solid black;
+  }
 `;
 
 const SizeContainer = styled.div`

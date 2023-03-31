@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import {
-  ImageGallery, ProductInfo, StyleSelector, AddToCart, Description,
+  ProductInfo, StyleSelector, AddToCart, Description, DefaultView,
 } from '.';
 import Parse from './Parse';
 import ZoomImage from './ImageGallery/ZoomImage';
@@ -31,13 +31,14 @@ const RowWrapper = styled.div`
   grid-template-columns: 60% 1fr;
   grid-template-rows: 800px;
   column-gap: 5%;
-  transition: 0.32s
+  transition: 0.32s;
 `;
 
 const ColWrapper = styled.div`
   display:flex;
   flex-direction: column;
-  border: 10px solid purple;
+  margin-top: 50px;
+  margin-bottom: 50px;
 `;
 
 const InnerColWrapper = styled.div`
@@ -187,7 +188,7 @@ export default function Overview() {
       <div>
         <ColWrapper>
           <RowWrapper toggleView={toggleView}>
-            <ImageGallery
+            <DefaultView
               style={styles[0][styles[1]] || {}}
               imageIndex={imageIndex}
               setImageIndex={setImageIndex}

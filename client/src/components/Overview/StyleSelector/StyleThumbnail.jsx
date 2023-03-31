@@ -11,6 +11,7 @@ const StyleWrapper = styled.li`
   height: 80px;
   width: 80px;
   position: relative;
+
 `;
 
 const ImgWrapper = styled.input`
@@ -22,6 +23,13 @@ const ImgWrapper = styled.input`
   border-radius: 50%;
   border: 1px solid black;
   box-shadow: 0 0 3px black;
+  opacity: 1;
+
+  &:hover {
+    border: 1px solid rgb(240,240,240);
+    box-shadow: 0 0 5px black;
+  }
+
 `;
 
 const CheckMark = styled.span`

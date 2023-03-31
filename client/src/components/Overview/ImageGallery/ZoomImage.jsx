@@ -35,6 +35,9 @@ const ImgWrapper = styled.input`
   object-fit: none;
   overflow: hidden;
   ${({ topLeft }) => topLeft}
+  &:hover {
+    cursor: vertical-text;
+  }
 `;
 
 // objec

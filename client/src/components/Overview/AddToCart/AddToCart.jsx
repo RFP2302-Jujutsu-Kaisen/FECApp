@@ -31,9 +31,22 @@ const MsgWrapper = styled.span`
   font-size: 1.2em;
 `;
 
+const CartMsgWrapper = styled.span`
+  color: black;
+  font-family: system-ui;
+  font-weight: 500;
+  font-size: 1.2em;
+  top: 10px;
+  margin-top: 20px;
+`;
+
 const AddWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
+  column-gap: 15%;
+  align-items: center;
 `;
 
 export default function AddToCart({ styleInStockArr }) {
@@ -43,6 +56,7 @@ export default function AddToCart({ styleInStockArr }) {
   const [skuState, setSkuState] = useState('');
   const [quantityState, setQuantityState] = useState(1);
   const [buttonCheck, setButtonCheck] = useState(false);
+  const [postCartCheck, setPostCartCheck] = useState(false);
 
   // context
   const prodContext = useAppContext();
@@ -59,17 +73,20 @@ export default function AddToCart({ styleInStockArr }) {
   const skuHandler = (event) => {
     setSkuState(event.target.value);
     setButtonCheck(false);
+    setPostCartCheck(false);
     event.preventDefault();
   };
 
   const quantityHandler = (event) => {
     setQuantityState(event.target.value);
+    setPostCartCheck(false);
     event.preventDefault();
   };
 
   const addCartHandler = async (responses) => {
     console.log('Sucess adding to cart', responses);
     console.log('User cart', await Parse.getCart());
+    setPostCartCheck(true);
   };
 
   const checkHandler = async (event) => {
@@ -126,6 +143,7 @@ export default function AddToCart({ styleInStockArr }) {
           checkHandler={checkHandler}
         />
       </ColWrapper>
+      <CartMsgWrapper>{postCartCheck ? 'Added.' : ''}</CartMsgWrapper>
     </AddWrapper>
   );
 }

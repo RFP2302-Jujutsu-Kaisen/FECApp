@@ -11,15 +11,14 @@ const ProdInfoWrapper = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   row-gap: 5px;
-  border: 5px solid green;
 `;
 
 const CatDiv = styled.div`
-  font: 450 1.5em "system-ui";
+  font: 350 1.5em "system-ui";
 `;
 
 const NameDiv = styled.div`
-  font: 550 3.5em "system-ui";
+  font: 500 3.5em "system-ui";
 `;
 
 export default function ProductInfo({ prod, style} = {}) {

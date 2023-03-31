@@ -23,7 +23,6 @@ const RowWrapper = styled.div`
   column-gap: 5%;
   height: 100%;
   width: 100%;
-  border: 10px solid pink;
   align-items: center;
   grid-column: 1;
   grid-row: 1;
@@ -132,6 +131,7 @@ export default function DefaultView({
           setImageIndex={setImageIndex}
           toggleHandler={toggleHandler}
           buttonToggleHandler={buttonToggleHandler}
+          toggleView={toggleView}
         />
       </MainImgWrapper>
     );
