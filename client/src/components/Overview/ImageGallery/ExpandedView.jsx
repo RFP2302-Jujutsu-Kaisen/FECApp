@@ -5,11 +5,21 @@ import ThumbnailList from './ThumbnailList';
 import ZoomImage from './ZoomImage';
 import ExpandedImage from './ExpandedImage';
 
-const RowWrapper = styled.div`
+const ZoomRowWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-content: center;
+  border: 10px solid green;
+`;
+
+const ExpRowWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 10px solid black;
+  height: 100%;
+  width: 100%;
 `;
 
 export default function ExpandedView({
@@ -24,31 +34,33 @@ export default function ExpandedView({
 
   if (toggleZoom) {
     return (
-      <RowWrapper>
+      <ZoomRowWrapper>
         <ZoomImage
           style={style}
           imageIndex={imageIndex}
           toggleZoomHandler={toggleZoomHandler}
         />
-      </RowWrapper>
+      </ZoomRowWrapper>
     );
   }
 
   return (
-    <RowWrapper>
-      <ThumbnailList
-        style={style}
-        imageIndex={imageIndex}
-        setImageIndex={setImageIndex}
-        toggleView={toggleView}
-      />
-      <ExpandedImage
-        style={style}
-        imageIndex={imageIndex}
-        setImageIndex={setImageIndex}
-        toggleHandler={toggleHandler}
-        toggleZoomHandler={toggleZoomHandler}
-      />
-    </RowWrapper>
+    <div>
+      <ExpRowWrapper>
+        <ThumbnailList
+          style={style}
+          imageIndex={imageIndex}
+          setImageIndex={setImageIndex}
+          toggleView={toggleView}
+        />
+        <ExpandedImage
+          style={style}
+          imageIndex={imageIndex}
+          setImageIndex={setImageIndex}
+          toggleHandler={toggleHandler}
+          toggleZoomHandler={toggleZoomHandler}
+        />
+      </ExpRowWrapper>
+    </div>
   );
 }
