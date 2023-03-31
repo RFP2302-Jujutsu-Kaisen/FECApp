@@ -8,13 +8,32 @@ import Parse from '../Parse';
 
 // css
 const RowWrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 57% 38%;
+  gap: 5%;
+  height: 100%;
 `;
 
 const ColWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  border: 5px solid yellow;
+  display: grid;
+  grid-template-rows: repeat(2, 70px);
+  grid-template-columns: 100%;
+  gap: ${(props) => (props.buttonCheck ? '80%' : '10%')};
+  width: 90%;
+  transition: 0.3s;
+`;
+
+const MsgWrapper = styled.span`
+  color: red;
+  font-family: system-ui;
+  font-weight: 500;
+  font-size: 1.2em;
+`;
+
+const AddWrapper = styled.div`
+  height: 100%;
+  width: 100%;
 `;
 
 export default function AddToCart({ styleInStockArr }) {
@@ -64,17 +83,42 @@ export default function AddToCart({ styleInStockArr }) {
     event.preventDefault();
   };
 
-  if (inStockSkus.length <= 0) {
-    return (
-      <ColWrapper data-testid="addToCartId">
+  // if (inStockSkus.length <= 0) {
+  //   return (
+  //     <ColWrapper buttonCheck={buttonCheck} data-testid="addToCartId">
+  //       <RowWrapper>
+  //         <SizeDropdown
+  //           skus={Object.keys(style).length > 0 ? style.skus : {}}
+  //           inStockSkus={inStockSkus}
+  //           skuHandler={skuHandler}
+  //         />
+  //         <QuantityDropdown
+  //           sku={Object.keys(style).length > 0 && !!skuState ? style.skus[skuState] : {}}
+  //           quantityHandler={quantityHandler}
+  //         />
+  //       </RowWrapper>
+  //       <AddCheckButton
+  //         checkHandler={checkHandler}
+  //       />
+  //     </ColWrapper>
+  //   );
+  // }
+
+  return (
+    <AddWrapper>
+      <MsgWrapper>{buttonCheck ? 'Please Select Size' : ''}</MsgWrapper>
+      <ColWrapper buttonCheck={buttonCheck} data-testid="addToCartId">
         <RowWrapper>
           <SizeDropdown
             skus={Object.keys(style).length > 0 ? style.skus : {}}
             inStockSkus={inStockSkus}
             skuHandler={skuHandler}
+            skuState={skuState}
+            buttonCheck={buttonCheck}
           />
           <QuantityDropdown
-            sku={Object.keys(style).length > 0 && !!skuState ? style.skus[skuState] : {}}
+            sku={(Object.keys(style).length > 0)
+              && (skuState in style.skus) ? style.skus[skuState] : {}}
             quantityHandler={quantityHandler}
           />
         </RowWrapper>
@@ -82,28 +126,6 @@ export default function AddToCart({ styleInStockArr }) {
           checkHandler={checkHandler}
         />
       </ColWrapper>
-    );
-  }
-
-  return (
-    <ColWrapper data-testid="addToCartId">
-      <RowWrapper>
-        <SizeDropdown
-          skus={Object.keys(style).length > 0 ? style.skus : {}}
-          inStockSkus={inStockSkus}
-          skuHandler={skuHandler}
-          skuState={skuState}
-          buttonCheck={buttonCheck}
-        />
-        <QuantityDropdown
-          sku={(Object.keys(style).length > 0)
-            && (skuState in style.skus) ? style.skus[skuState] : {}}
-          quantityHandler={quantityHandler}
-        />
-      </RowWrapper>
-      <AddCheckButton
-        checkHandler={checkHandler}
-      />
-    </ColWrapper>
+    </AddWrapper>
   );
 }

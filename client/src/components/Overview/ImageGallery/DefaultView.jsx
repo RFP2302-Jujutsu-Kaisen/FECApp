@@ -20,6 +20,7 @@ const RowWrapper = styled.div`
   display: grid;
   grid-template-columns: 10% 90%;
   grid-template-rows: 100%;
+  column-gap: 5%;
   height: 100%;
   width: 100%;
   border: 10px solid pink;
@@ -41,7 +42,6 @@ const RowWrapper = styled.div`
 // TODO zoom here
 const MainImgWrapper = styled.div`
   display:flex;
-  border: 10px solid orange;
   justify-content: space-between;
   height: 100%;
   width: ${(props) => (props.toggleView ? '100%' : '171%')};

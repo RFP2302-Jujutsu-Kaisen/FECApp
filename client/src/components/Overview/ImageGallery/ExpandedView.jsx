@@ -19,8 +19,7 @@ const ExpRowWrapper = styled.div`
   justify-content: space-between;
   border: 10px solid black;
   height: 100%;
-  width: 60%;
-  align-items: center;
+  width: 100%;
 `;
 
 export default function ExpandedView({
