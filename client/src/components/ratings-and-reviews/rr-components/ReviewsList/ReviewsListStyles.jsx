@@ -6,4 +6,9 @@ const ListStyle = styled.ul`
   padding: 0;
 `;
 
-export default ListStyle;
+const ReviewsContainer = styled.div`
+  max-height: 80vh;
+  overflow-y: auto;
+`;
+
+export { ListStyle, ReviewsContainer };
