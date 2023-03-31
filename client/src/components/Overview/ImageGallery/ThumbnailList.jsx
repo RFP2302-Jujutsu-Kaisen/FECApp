@@ -3,12 +3,21 @@ import styled from 'styled-components';
 import GalleryThumbnail from './GalleryThumbnail';
 
 // css
+// const ThumbnailListWrapper = styled.ul`
+//   display: flex;
+//   flex-direction: column;
+//   list-style-type: none;
+//   align-content: space-between;
+//   height: 100%;
+// `;
+
 const ThumbnailListWrapper = styled.ul`
-  display: flex;
-  flex-direction: column;
-  list-style-type: none;
-  align-content: space-between;
-  height: 100%;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: repeat(7, 1fr);
+  list-style: none;
+  justify-content: center;
+
 `;
 
 export default function ThumbnailList({

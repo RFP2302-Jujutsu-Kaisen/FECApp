@@ -186,7 +186,6 @@ export default function Overview() {
     return (
       <div>
         <ColWrapper>
-          <h2>Overview</h2>
           <RowWrapper toggleView={toggleView}>
             <ImageGallery
               style={styles[0][styles[1]] || {}}
