@@ -1,41 +1,6 @@
 "use strict";
 (self["webpackChunkfec_jujutsu_kaisen"] = self["webpackChunkfec_jujutsu_kaisen"] || []).push([["client_src_components_QAModule_index_jsx"],{
 
-/***/ "./client/src/components/Modals/ModalTest.jsx":
-/*!****************************************************!*\
-  !*** ./client/src/components/Modals/ModalTest.jsx ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ModalTest)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-var _templateObject, _templateObject2, _templateObject3;
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-
-var ModalOverlay = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.4);\n  z-index: 1;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n"])));
-var Modal = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  background-color: white;\n  border-radius: 10px;\n  width: 600px;\n  padding: 20px;\n  display: flex;\n  flex-direction: column;\n"])));
-var ModalCloseButton = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].button(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  align-self: flex-end;\n  font-size: 20px;\n  color: black;\n  background-color: transparent;\n  border: none;\n  cursor: pointer;\n  margin-bottom: 10px;\n"])));
-function ModalTest(_ref) {
-  var isOpen = _ref.isOpen,
-    onClose = _ref.onClose,
-    children = _ref.children;
-  if (!isOpen) {
-    return null;
-  }
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ModalOverlay, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Modal, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ModalCloseButton, {
-    type: "button",
-    onClick: onClose
-  }, "\xD7"), children));
-}
-
-/***/ }),
-
 /***/ "./client/src/components/QAModule/QAComponents/AddAnswer.jsx":
 /*!*******************************************************************!*\
   !*** ./client/src/components/QAModule/QAComponents/AddAnswer.jsx ***!
