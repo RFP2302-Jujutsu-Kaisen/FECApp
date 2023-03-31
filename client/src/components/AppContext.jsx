@@ -85,6 +85,11 @@ export function AppContextProvider({ children, testValue }) {
     [dispatch],
   );
 
+  const setRating = useCallback(
+    (productAvgRating) => dispatch({ type: 'SET_PRODUCT_AVG_RATING', payload: productAvgRating }),
+    [dispatch],
+  );
+
   const setProductName = useCallback(
     (productName) => dispatch({ type: 'SET_PRODUCT_NAME', payload: productName }),
     [dispatch],
@@ -96,8 +101,9 @@ export function AppContextProvider({ children, testValue }) {
       state, // Current state object
       setProductId, // Memoized function to set product ID
       setProductName,
+      setRating,
     }),
-    [state, setProductId, setProductName], // Update value only when state or setProductId changes
+    [state, setProductId, setProductName, setRating],
   );
 
   if (testValue) {
