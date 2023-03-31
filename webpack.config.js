@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -37,6 +38,7 @@ module.exports = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         AUTH_SECRET: JSON.stringify(process.env.AUTH_SECRET),
