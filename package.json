@@ -36,8 +36,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "styled-components": "^5.3.9",
-    "webpack": "^5.76.1",
-    "clean-webpack-plugin": "^4.0.0"
+    "webpack": "^5.76.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
