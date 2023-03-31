@@ -15,7 +15,7 @@ cursor: pointer;
 }
 `;
 export default function QuestionsList({ questions, refreshAnswers }) {
-  const [numQsToShow, setNumQsToShow] = useState(4);
+  const [numQsToShow, setNumQsToShow] = useState(2);
 
   const renderQuestions = () => {
     let count = 0;

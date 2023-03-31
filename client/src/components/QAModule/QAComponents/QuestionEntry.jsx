@@ -21,7 +21,7 @@ const Question = styled.h4`
 
 const HelpfulContainer = styled.div`
   font-size: 11px;
-  color: gray;
+  color: #5A5A5A;
   font-weight: 400;
   display: flex;
   align-items: center;
@@ -31,18 +31,22 @@ const HelpfulContainer = styled.div`
 
 const HelpfulLabel = styled.span`
   font-size: 11px;
-  color: gray;
+  color: #5A5A5A;
   font-weight: 400;
   margin-right: 2px;
 `;
 
 const HelpfulButton = styled.button`
   font-size: 11px;
-  color: gray;
+  color: #5A5A5A;
   font-weight: 400;
   background-color: transparent;
   border: none;
   cursor: pointer;
+
+  &:hover {
+    color: #404040;
+  }
 `;
 
 const UnderlineSpan = styled.span`

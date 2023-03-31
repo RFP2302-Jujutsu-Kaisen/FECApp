@@ -7,7 +7,7 @@ import { useAppContext } from '../AppContext';
 const Heading = styled.h4`
   font-size: 14px;
   font-weight: normal;
-  color: gray;
+  color: #5A5A5A;
   margin-bottom: 16px;
   font-family; system-ui;
 `;
@@ -16,6 +16,11 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   font-family: system-ui;
+`;
+
+const QuestionListContainer = styled.div`
+  max-height: 80vh;
+  overflow: auto;
 `;
 
 export default function QuestionsAndAnswers() {
@@ -66,18 +71,15 @@ export default function QuestionsAndAnswers() {
     setRefresh(!refresh);
   };
 
-  // const handleChangeProductId = () => {
-  //   const newProductId = '40346';
-  //   setProductId(newProductId);
-  // };
-
   return (
     <Wrapper>
       {/* <button type="button" onClick={handleChangeProductId}>Change Product ID</button> */}
       <Heading>QUESTIONS & ANSWERS</Heading>
       <SearchBar onSearch={handleSearch} />
-      <QuestionsList questions={filteredQuestions} refreshAnswers={refreshQuestionsOrAnswers} />
-      <AddQuestion productId={productId} refreshQuestions={refreshQuestionsOrAnswers} />
+      <QuestionListContainer>
+        <QuestionsList questions={filteredQuestions} refreshAnswers={refreshQuestionsOrAnswers} />
+        <AddQuestion productId={productId} refreshQuestions={refreshQuestionsOrAnswers} />
+      </QuestionListContainer>
     </Wrapper>
   );
 }

@@ -35,7 +35,7 @@ export function AppContextProvider({ children, testValue }) {
     Authorization: process.env.AUTH_SECRET,
   };
 
-  //Leverage concurrent axios get requests with Promise.all
+  // Leverage concurrent axios get requests with Promise.all
   const getProdAndRate = () => {
     const endpoints = [
       'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344',
@@ -45,6 +45,7 @@ export function AppContextProvider({ children, testValue }) {
       .get(endpoint, { headers })))
       .then(([{ data: product }, { data: reviewMeta }]) => {
         const prodid = product.id;
+        const productName = product.name;
         const rating = [
           Number.parseInt(reviewMeta.ratings['1'], 10),
           Number.parseInt(reviewMeta.ratings['2'], 10),
@@ -66,6 +67,7 @@ export function AppContextProvider({ children, testValue }) {
         / (countOneStars + countTwoStars + countThreeStars + countFourStars + countFiveStars);
         const averageRating = avgRate.toFixed(1);
         dispatch({ type: 'SET_PRODUCT_ID', payload: prodid });
+        dispatch({ type: 'SET_PRODUCT_NAME', payload: productName });
         dispatch({ type: 'SET_PRODUCT_AVG_RATING', payload: [averageRating, rating] });
       })
       .catch((err) => {
@@ -83,13 +85,19 @@ export function AppContextProvider({ children, testValue }) {
     [dispatch],
   );
 
+  const setProductName = useCallback(
+    (productName) => dispatch({ type: 'SET_PRODUCT_NAME', payload: productName }),
+    [dispatch],
+  );
+
   // Memoized value object to prevent unnecessary re-renders
   const value = useMemo(
     () => ({
       state, // Current state object
       setProductId, // Memoized function to set product ID
+      setProductName,
     }),
-    [state, setProductId], // Update value only when state or setProductId changes
+    [state, setProductId, setProductName], // Update value only when state or setProductId changes
   );
 
   if (testValue) {

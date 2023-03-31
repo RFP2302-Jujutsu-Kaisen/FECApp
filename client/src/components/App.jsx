@@ -1,16 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import QuestionsAndAnswers from './QAModule';
 import Overview from './Overview/Overview';
-import RatingsAndReviews from './ratings-and-reviews';
+import OtherProducts from './OtherProducts';
 import { AppContextProvider } from './AppContext';
 import logo from './jujulogo.png';
 import easterEgg from './film-white.gif';
 import easterEgg2 from './soccer-ball.gif';
 
+const LazyQuestionsAndAnswers = React.lazy(() => import('./QAModule'));
+const LazyRatingsAndReviews = React.lazy(() => import('./ratings-and-reviews'));
+
 // Define colors used throughout the app
 const colors = {
-  primary: 'black',
+  primary: '#222222',
   text: '#3C3C3C',
   lightGrey: '#FAFAFA',
   darkGrey: '#333333',
@@ -56,6 +58,7 @@ const Header = styled.header`
 // Define the logo for the header
 const Logo = styled.img`
   height: 64px;
+  width: 231px;
 `;
 
 // Define the navigation links for the header
@@ -130,7 +133,7 @@ export default function App() {
     <BannerAndHeaderContainer>
       <Banner>Get Your Juju on with The Juju Store: Where Reacting is Always in Fashion!</Banner>
       <Header>
-        <Logo src={logo} alt="The Juju Store Logo" />
+        <Logo src={logo} alt="The Juju Store Logo" width="auto" height="64" />
         <Nav>
           <NavItem href="#">Home</NavItem>
           <NavItem href="#">Shop</NavItem>
@@ -141,18 +144,23 @@ export default function App() {
       <MainWrapper>
         <AppContextProvider>
           <Overview />
+          <OtherProducts />
           <div className="questions-and-answers">
-            <QuestionsAndAnswers />
+            <React.Suspense fallback={<div>Loading Questions & Answers...</div>}>
+              <LazyQuestionsAndAnswers />
+            </React.Suspense>
           </div>
           <div>
-            <RatingsAndReviews />
+            <React.Suspense fallback={<div>Loading Ratings & Reviews...</div>}>
+              <LazyRatingsAndReviews />
+            </React.Suspense>
           </div>
         </AppContextProvider>
       </MainWrapper>
       <FooterWrapper>
         <div>
-          <Fun src={easterEgg} alt="" />
-          <Fun src={easterEgg2} alt="" />
+          <Fun src={easterEgg} alt="" width="24" height="24" />
+          <Fun src={easterEgg2} alt="" width="12" height="24" />
           {'   Footy Corner'}
         </div>
         <FooterText>
