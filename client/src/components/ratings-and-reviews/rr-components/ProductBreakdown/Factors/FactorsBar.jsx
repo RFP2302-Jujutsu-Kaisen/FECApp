@@ -26,11 +26,17 @@ const FlexWrapper = styled.div`
 
 const Description = styled(FlexWrapper)`
   justify-content: space-between;
+  font-size: 11px;
   `;
 
 const Caret = styled.div`
   position: absolute;
   left: ${(props) => props.percent}%;
+`;
+
+const FactorsContainer = styled.div`
+  margin-top: 15px;
+  margin-bottom: 15px;
 `;
 
 export {
@@ -39,4 +45,5 @@ export {
   FlexWrapper,
   Description,
   Caret,
+  FactorsContainer,
 };

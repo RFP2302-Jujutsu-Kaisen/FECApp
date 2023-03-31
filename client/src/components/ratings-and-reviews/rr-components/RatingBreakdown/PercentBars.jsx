@@ -23,5 +23,9 @@ const Progress = styled(BaseBox)`
   background: #7FFFD4;
   width: ${({ percent }) => percent}%;
 `;
-
-export { Container, Background, Progress };
+const Recommend = styled.div`
+  font-size: 14px;
+  word-wrap: break-word;
+  margin-top: 20px;
+`;
+export { Container, Background, Progress, Recommend };
