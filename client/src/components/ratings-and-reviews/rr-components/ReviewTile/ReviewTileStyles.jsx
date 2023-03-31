@@ -41,5 +41,14 @@ margin-top: 8px;
 margin-bottom: 20px;
 `;
 
+const Response = styled(ReviewText)`
+  background-color: #D8D8D8;
+  padding-left: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  max-width: 95%;
+  border-radius: 5px;
+`;
 
-export { TopBarReviewTile, BottomBarReviewTile, HelpfulReport, BoldSpan, ReviewSummaryStyle, ReviewText, UserInfo };
+
+export { TopBarReviewTile, BottomBarReviewTile, HelpfulReport, BoldSpan, ReviewSummaryStyle, ReviewText, UserInfo, Response };
