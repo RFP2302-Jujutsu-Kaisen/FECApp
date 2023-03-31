@@ -4,9 +4,7 @@ import ReviewsList from './rr-components/ReviewsList';
 import AddReviewForm from './rr-components/AddReviewForm';
 import { useAppContext } from '../AppContext';
 import RRParse from './RRParse';
-import { RatingsAndReviewsContainer, RRFlex } from './StyledComponentsRR';
-
-const prodId = '40344';
+import { RatingsAndReviewsContainer, RRFlex, Model, RRBoxLeft, RRBoxRight } from './StyledComponentsRR';
 
 const RatingsAndReviews = function () {
   const product = useAppContext();
@@ -25,10 +23,20 @@ const RatingsAndReviews = function () {
     <RatingsAndReviewsContainer>
       <div>Ratings & Reviews</div>
       <RRFlex>
-        <RatingSummary Ratings={ratings} Recommended={recommended} Characteristics={characteristics} />
-        <ReviewsList Reviews={reviews} reviewsByStars={ratings} />
+        <RRBoxLeft>
+          <RatingSummary
+            Ratings={ratings}
+            Recommended={recommended}
+            Characteristics={characteristics}
+          />
+        </RRBoxLeft>
+        <RRBoxRight>
+          <ReviewsList Reviews={reviews} reviewsByStars={ratings} />
+        </RRBoxRight>
       </RRFlex>
-      <AddReviewForm />
+      <Model>
+        <AddReviewForm />
+      </Model>
     </RatingsAndReviewsContainer>
   );
 };

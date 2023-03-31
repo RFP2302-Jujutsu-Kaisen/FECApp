@@ -13,9 +13,6 @@ const ProductBreakdown = function ({ Characteristics }) {
 
   return (
     <div>
-      <div>
-      <h4>Product Breakdown</h4>
-      </div>
       <ListStyle>{charItems}</ListStyle>
     </div>
   );

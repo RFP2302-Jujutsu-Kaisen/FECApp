@@ -1,34 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useAppContext } from '../../../AppContext';
+import styled from 'styled-components';
 import Stars from '../Stars';
 import RatingBreakdown from '../RatingBreakdown';
 import ProductBreakdown from '../ProductBreakdown';
 
-const RatingSummary = function ({ Ratings, Recommended, Characteristics }) {
+const RateDecimal = styled.div`
+  font-family: system-ui;
+  font-size: 50px;
+  color: gray;
+  margin: 0;
+  padding: 0;
+`;
 
-  const oneStars = Ratings[0];
-  const twoStars = Ratings[1] * 2;
-  const threeStars = Ratings[2] * 3;
-  const fourStars = Ratings[3] * 4;
-  const fiveStars = Ratings[4] * 5;
-  const countOneStars = Ratings[0];
-  const countTwoStars = Ratings[1];
-  const countThreeStars = Ratings[2];
-  const countFourStars = Ratings[3];
-  const countFiveStars = Ratings[4];
-  const avgRate = (oneStars + twoStars + threeStars + fourStars + fiveStars)
-  / (countOneStars + countTwoStars + countThreeStars + countFourStars + countFiveStars);
-  const averageRating = avgRate.toFixed(1);
-  const ratingNum = Number(averageRating);
+const TopBarLeftPanel = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 0px;
+`;
+
+const RatingSummary = function ({ Recommended, Characteristics }) {
+  const product = useAppContext();
+  const RatingsArr = product.state.productAvgRating[1];
+  const averageRating = product.state.productAvgRating[0];
 
   return (
     <div>
+      <TopBarLeftPanel>
+        <RateDecimal>
+          {averageRating}
+        </RateDecimal>
+        <div>
+          <Stars />
+        </div>
+      </TopBarLeftPanel>
       <div>
-        <h2>Ratings Summary</h2>
-        <h4>{averageRating}</h4>
-        <Stars averageRating={ratingNum} />
-      </div>
-      <div>
-        <RatingBreakdown Recommended={Recommended} Ratings={Ratings} />
+        <RatingBreakdown Recommended={Recommended} Ratings={RatingsArr} />
       </div>
       <div>
         <ProductBreakdown Characteristics={Characteristics} />
