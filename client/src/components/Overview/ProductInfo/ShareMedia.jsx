@@ -3,7 +3,29 @@ import styled from 'styled-components';
 
 // css
 const RowWrapper = styled.div`
+  display: grid;
+  grid-template: 100% / 1fr 1fr 28%;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+`;
+
+const TwitterDiv = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const FacebookDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const PinterestDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default function ShareMedia({ style }) {
@@ -50,7 +72,7 @@ export default function ShareMedia({ style }) {
 
   return (
     <RowWrapper>
-      <div id="tw-root">
+      <TwitterDiv id="tw-root">
         {/* <pre><code>{twitterMarkup}</code></pre> */}
         <a
           href="https://twitter.com/share?ref_src=twsrc%5Etfw"
@@ -60,8 +82,13 @@ export default function ShareMedia({ style }) {
         >
           Tweet
         </a>
-      </div>
-      <div id="fb-root">
+      </TwitterDiv>
+      <PinterestDiv id="pin-root">
+        <a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/">
+          Save
+        </a>
+      </PinterestDiv>
+      <FacebookDiv id="fb-root">
         <div
           className="fb-share-button"
           data-href=""
@@ -77,12 +104,7 @@ export default function ShareMedia({ style }) {
             Share
           </a>
         </div>
-      </div>
-      <div id="pin-root">
-        <a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/">
-          Save
-        </a>
-      </div>
+      </FacebookDiv>
     </RowWrapper>
   );
 }

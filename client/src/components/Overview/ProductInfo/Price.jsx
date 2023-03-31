@@ -3,36 +3,44 @@ import styled from 'styled-components';
 
 // css
 const SalePriceSpan = styled.span`
+  font: 450 1.5em "system-ui";
   color: red;
 `;
 // text-decoration: ${(props) => props.decoration} || "none";
 
 const OrigPriceSpan = styled.span`
   text-decoration: ${(props) => props.sale || 'none'};
+  font-family: "system-ui";
+  font-weight: ${(props) => (props.sale ? '275' : '350')};
+  font-size: ${(props) => (props.sale ? '1.2em' : '1.5em')};
+`;
 
+const PriceName = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
 `;
 
 export default function Price({ style }) {
   if (Object.keys(style).length > 0) {
-    const salePrice = style.sale_price || null;
-    const originalPrice = style.original_price || '';
+    let salePrice = style.sale_price || null;
+    let originalPrice = style.original_price || '';
+    originalPrice = `$${originalPrice}`;
 
     if (salePrice !== null) {
+      salePrice = `$${salePrice}`;
       return (
-        <div>
-          <div>
-            <SalePriceSpan>{salePrice.toString()}</SalePriceSpan>
-            <OrigPriceSpan sale="line-through">{originalPrice.toString()}</OrigPriceSpan>
-          </div>
-
-        </div>
+        <PriceName>
+          <SalePriceSpan>{salePrice}</SalePriceSpan>
+          <OrigPriceSpan sale="line-through">{originalPrice}</OrigPriceSpan>
+        </PriceName>
       );
     }
 
     return (
-      <div>
+      <PriceName>
         <OrigPriceSpan>{originalPrice.toString()}</OrigPriceSpan>
-      </div>
+      </PriceName>
     );
   }
 

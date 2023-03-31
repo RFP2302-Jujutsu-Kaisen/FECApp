@@ -1,4 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const QuantityWrapper = styled.select`
+outline: 0;
+background: ghostwhite;
+background-image: none;
+width: 100%;
+height: 100%;
+color: ${(prop) => (prop.sizeDone ? 'black' : 'gray')};
+cursor: pointer;
+border: ${(prop) => (prop.sizeDone ? '1px solid black' : '1px solid gray')};
+border-radius: 5px;
+text-align: center;
+font-size: 1.3em;
+font-family: system-ui;
+font-weight: 450;
+opacity: ${(prop) => (prop.sizeDone ? '1.0' : '0.7')};
+
+&:hover {
+  border: ${(prop) => (prop.sizeDone ? '2px solid black' : '1px solid gray')};
+}
+`;
 
 export default function QuantityDropdown({ sku, quantityHandler }) {
   const optionsArr = [];
@@ -10,17 +32,17 @@ export default function QuantityDropdown({ sku, quantityHandler }) {
   if (optionsArr.length > 0) {
     return (
       <div>
-        <select data-testid="quantityId" name="quantitydropdown" onChange={quantityHandler}>
+        <QuantityWrapper sizeDone={true} data-testid="quantityId" name="quantitydropdown" onChange={quantityHandler}>
           {optionsArr}
-        </select>
+        </QuantityWrapper>
       </div>
     );
   }
   return (
     <div>
-      <select data-testid="defQuantityId" name="quantitydropdown" disabled>
+      <QuantityWrapper sizeDone={false} data-testid="defQuantityId" name="quantitydropdown" disabled>
         <option key="default" value="default">-</option>
-      </select>
+      </QuantityWrapper>
     </div>
   );
 }
