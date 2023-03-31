@@ -8,6 +8,7 @@ const ReviewTile = function ({ reviewData }) {
   const reviewDate = new Date(reviewData.date).toDateString().split(' ').slice(1).join(' ');
   const doesRecommend = reviewData.recommend;
   const sellerResponse = reviewData.response;
+  console.log(reviewData);
   return (
     <li>
       <TopBarReviewTile>
@@ -51,7 +52,7 @@ const ReviewTile = function ({ reviewData }) {
             </ReviewText>
         </Response>
         : null}
-      <HelpfulReport>Helpful? Yes ({reviewData.helpfulness}) | Report</HelpfulReport>
+      <HelpfulReport>Was this review Helpful? Yes ({reviewData.helpfulness}) | No   |   Report</HelpfulReport>
       <BottomBarReviewTile />
     </li>
   );
