@@ -53,10 +53,9 @@ const ImgGalWrapper = styled.div`
 // z-index: 2;
 // `;
 
-export default function ImageGallery({ style, toggleView, setToggleView }) {
-  // states
-  const [imageIndex, setImageIndex] = useState(0);
-
+export default function ImageGallery({
+  style, imageIndex, setImageIndex, toggleView, setToggleView, toggleZoom, setToggleZoom,
+}) {
   // handlers
   // change default or expanded view
 
@@ -75,6 +74,8 @@ export default function ImageGallery({ style, toggleView, setToggleView }) {
       setImageIndex={setImageIndex}
       toggleView={toggleView}
       setToggleView={setToggleView}
+      toggleZoom={toggleZoom}
+      setToggleZoom={setToggleZoom}
     />
   );
   // }

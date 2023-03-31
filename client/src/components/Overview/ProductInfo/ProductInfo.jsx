@@ -8,19 +8,29 @@ import ShareMedia from './ShareMedia';
 const ProdInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40%;
   align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 5px;
+  border: 5px solid green;
+`;
+
+const CatDiv = styled.div`
+  font: 450 1.5em "system-ui";
+`;
+
+const NameDiv = styled.div`
+  font: 550 3.5em "system-ui";
 `;
 
 export default function ProductInfo({ prod, style} = {}) {
   // console.log('prod and style in ProductInfo', style);
   return (
     <ProdInfoWrapper data-testid="pinfoid">
+      <CatDiv>{prod.category}</CatDiv>
+      <NameDiv>{prod.name}</NameDiv>
       <div>
         <Stars />
       </div>
-      <div>{prod.category}</div>
-      <div>{prod.name}</div>
       <Price style={style} />
       <ShareMedia style={style} />
     </ProdInfoWrapper>

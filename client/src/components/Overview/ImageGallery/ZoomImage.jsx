@@ -3,13 +3,22 @@ import styled from 'styled-components';
 
 const ZoomDivWrapper = styled.div`
   display:flex;
-  border: 10px solid blue;
-  flex-grow: 1;
   justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
   position: relative;
-  width: 600px;
-
 `;
+
+// const ZoomFuncWrapper = styled.div`
+//   display: flex;
+//   overflow: hidden;
+//   max-height: 100%;
+//   max-width: 100%;
+//   border: 10px solid yellow;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
 // const ImgWrapper = styled.input`
 //   display: flex;
@@ -25,7 +34,6 @@ const ZoomDivWrapper = styled.div`
 const ImgWrapper = styled.input`
   object-fit: none;
   overflow: hidden;
-  max-width: 1500px;
   ${({ topLeft }) => topLeft}
 `;
 
@@ -42,12 +50,28 @@ export default function ZoomImage({
 }) {
   // state
   const [containTopLeft, setContainTopLeft] = useState('');
+  // const [zoomRect, setZoomRect] = useState([[], false]);
+
+  // const ref = useRef();
 
   // handlers
+  // const getZoomRect = (event) => {
+  //   const rect = event.target.getBoundingClientRect();
+  //   if (!zoomRect[1]) {
+  //     setZoomRect([[rect.left, rect.width, rect.top, rect.height], true]);
+  //   }
+  // };
+
   const zoomHandler = (event) => {
+    let offsetY = 0;
+    let offsetX = 0;
+    if (window !== undefined) {
+      offsetY = window.scrollY;
+      offsetX = window.scrollX;
+    }
     const rect = event.target.getBoundingClientRect();
-    const left = ((event.pageX - rect.left) / rect.width) * 100;
-    const top = ((event.pageY - rect.top) / rect.height) * 100;
+    const left = ((event.pageX - (rect.left + offsetX)) / rect.width) * 100;
+    const top = ((event.pageY - (rect.top + offsetY)) / rect.height) * 100;
     setContainTopLeft(`object-position: ${left}% ${top}%;`);
   };
 

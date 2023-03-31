@@ -4,6 +4,7 @@ import {
   ImageGallery, ProductInfo, StyleSelector, AddToCart, Description,
 } from '.';
 import Parse from './Parse';
+import ZoomImage from './ImageGallery/ZoomImage';
 import { useAppContext } from '../AppContext';
 
 // import eData from './exampleData';
@@ -27,10 +28,9 @@ import { useAppContext } from '../AppContext';
 
 const RowWrapper = styled.div`
   display: grid;
-  grid-template-columns: ${(props) => (props.toggleView ? '60% 37%' : '100% 0%')};
+  grid-template-columns: 60% 1fr;
   grid-template-rows: 800px;
-  column-gap: 3%;
-  border: 10px solid black;
+  column-gap: 5%;
   transition: 0.32s
 `;
 
@@ -41,15 +41,73 @@ const ColWrapper = styled.div`
 `;
 
 const InnerColWrapper = styled.div`
-  display: ${(props) => (props.toggleView ? 'flex' : 'none')};
-  flex-direction: column;
-  border: 10px solid teal;
-  justify-content: center;
+  display: ${(props) => (props.toggleView ? 'grid' : 'none')};
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 100%;
+  gap: 1%;
   height: 100%;
+  width: 100%;
   grid-column: 2;
   grid-row: 1;
   z-index: 1;
 `;
+
+// display: ${(props) => (props.toggleView ? 'flex' : 'none')};
+
+// const ModalWrapper = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   align-content: center;
+//   border: 10px solid green;
+//   height: 100vmax;
+//   width: 100vmax;
+//   position: fixed;
+// `;
+
+// const ModalBodyStyle = createGlobalStyle`
+//   body {
+//     display: flex;
+//     overflow-y: ${({ toggleView }) => (toggleView ? 'visible' : 'hidden')};
+//     justify-content: center;
+//     align-items: center;
+//     background: rgb(0, 0, 0, 0.5);
+//   }
+// `;
+
+// const ModalBodyStyle = createGlobalStyle`
+//   body {
+//     overflow-y: ${({ toggleView }) => (toggleView ? 'visible' : 'hidden')};
+//     background: rgb(0, 0, 0, 0.5);
+//   }
+// `;
+
+// const ModalWrapper = styled.div`
+//   position: fixed;
+//   left: 50%;
+//   top: 50%;
+//   transform: translate(-50%, -50%);
+//   width: 50vw;
+//   height: 50vmax;
+//   z-index: 3;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   border: 10px solid green;
+// `;
+
+// {/* {toggleZoom
+//         ? (
+//           <ModalWrapper>
+//             <ModalBodyStyle toggleView={toggleView} />
+//             <ZoomImage
+//               style={styles[0][styles[1]] || {}}
+//               imageIndex={imageIndex}
+//               toggleZoomHandler={toggleZoomHandler}
+//             />
+//           </ModalWrapper>
+//         )
+//         : null} */}
 
 // const ArticleTest = styled.article`
 //   display: grid;
@@ -104,6 +162,11 @@ export default function Overview() {
   const [styles, setStyles] = useState([[], 0]);
   // const [style, setStyle] = useState({});
   const [toggleView, setToggleView] = useState(true);
+  const [toggleZoom, setToggleZoom] = useState(false);
+  const [imageIndex, setImageIndex] = useState(0);
+
+  // handlers
+  // const toggleZoomHandler = () => setToggleZoom(!toggleZoom);
 
   useEffect(() => {
     if (productId) {
@@ -121,32 +184,38 @@ export default function Overview() {
 
   if (productId !== null) {
     return (
-      <ColWrapper>
-        <h2>Overview</h2>
-        <RowWrapper toggleView={toggleView}>
-          <ImageGallery
-            style={styles[0][styles[1]] || {}}
-            toggleView={toggleView}
-            setToggleView={setToggleView}
-          />
-          <InnerColWrapper toggleView={toggleView}>
-            <ProductInfo
-              prod={prod}
+      <div>
+        <ColWrapper>
+          <h2>Overview</h2>
+          <RowWrapper toggleView={toggleView}>
+            <ImageGallery
               style={styles[0][styles[1]] || {}}
+              imageIndex={imageIndex}
+              setImageIndex={setImageIndex}
+              toggleView={toggleView}
+              setToggleView={setToggleView}
+              toggleZoom={toggleZoom}
+              setToggleZoom={setToggleZoom}
             />
-            <StyleSelector styles={styles} setStyles={setStyles} />
-            <AddToCart
-              styleInStockArr={styles[0].length > 0
-                ? [styles[0][styles[1]],
-                  Object.keys(styles[0][styles[1]].skus)
-                    .filter((key) => styles[0][styles[1]].skus[key].quantity > 0),
-                ]
-                : []}
-            />
-          </InnerColWrapper>
-        </RowWrapper>
-        <Description prod={prod} />
-      </ColWrapper>
+            <InnerColWrapper toggleView={toggleView}>
+              <ProductInfo
+                prod={prod}
+                style={styles[0][styles[1]] || {}}
+              />
+              <StyleSelector styles={styles} setStyles={setStyles} />
+              <AddToCart
+                styleInStockArr={styles[0].length > 0
+                  ? [styles[0][styles[1]],
+                    Object.keys(styles[0][styles[1]].skus)
+                      .filter((key) => styles[0][styles[1]].skus[key].quantity > 0),
+                  ]
+                  : []}
+              />
+            </InnerColWrapper>
+          </RowWrapper>
+          <Description prod={prod} />
+        </ColWrapper>
+      </div>
     );
   }
 

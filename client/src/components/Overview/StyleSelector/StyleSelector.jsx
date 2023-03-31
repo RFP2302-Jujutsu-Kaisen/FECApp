@@ -4,9 +4,28 @@ import StyleThumbnail from './StyleThumbnail';
 
 const StyleList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 22%);
+  column-gap: 1px;
+  row-gap: 10px;
+  min-width: 335px;
   list-style-type: none;
-  border: 10px solid yellow;
+  margin-right: 10%;
+  margin-left: -5%;
+`;
+
+const StyleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 5px solid orange;
+`;
+
+const StyleLabel = styled.span`
+  font: 700 1.5em "system-ui";
+  margin-right: 5px;
+`;
+
+const StyleSpan = styled.span`
+  font: 400 1.5em "system-ui";
 `;
 
 export default function StyleSelector({ styles, setStyles }) {
@@ -17,8 +36,11 @@ export default function StyleSelector({ styles, setStyles }) {
   // console.log('Styles name', styles, styles[0][styles[1]]);
 
   return (
-    <div data-testid="styleSelId">
-      <h3>{styles[0].length > 0 ? styles[0][styles[1]].name : ''}</h3>
+    <StyleContainer data-testid="styleSelId">
+      <div>
+        <StyleLabel>Style &gt;</StyleLabel>
+        <StyleSpan>{styles[0].length > 0 ? styles[0][styles[1]].name : ''}</StyleSpan>
+      </div>
       <StyleList>
         {styles[0].map((style, index) => (
           <StyleThumbnail
@@ -30,6 +52,6 @@ export default function StyleSelector({ styles, setStyles }) {
           />
         ))}
       </StyleList>
-    </div>
+    </StyleContainer>
   );
 }

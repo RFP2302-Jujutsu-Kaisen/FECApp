@@ -14,6 +14,7 @@ const RowWrapper = styled.div`
 const ColWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  border: 5px solid yellow;
 `;
 
 export default function AddToCart({ styleInStockArr }) {

@@ -21,20 +21,20 @@ import styled from 'styled-components';
 //   height: 800px;
 // `;
 
-const RelWrapper = styled.div`
-  display:flex;
-  border: 10px solid blue;
-  justify-content: space-between;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  position: relative;
-`;
+// const RelWrapper = styled.div`
+//   display:flex;
+//   border: 10px solid blue;
+//   justify-content: space-between;
+//   height: 100%;
+//   width: 100%;
+//   align-items: center;
+//   position: relative;
+// `;
 
 const MainDivWrapper = styled.div`
 display: flex;
 border: 10px solid aqua;
-justify-content: center;
+justify-content: space-between;
 position: absolute;
 width: 100%;
 height: 100%;
@@ -72,7 +72,7 @@ const ScrollButton = styled.button`
 `;
 
 export default function MainImage({
-  style, imageIndex, setImageIndex, toggleHandler,
+  style, imageIndex, setImageIndex, toggleHandler, buttonToggleHandler,
 }) {
   // general handlers
   const changeView = (event) => {
@@ -99,7 +99,7 @@ export default function MainImage({
             alt={imageIndex.toString()}
             onClick={changeView}
           />
-          <button type="button" onClick={toggleHandler}>toggleExp</button>
+          <button type="button" onClick={buttonToggleHandler}>toggleExp</button>
         </ParentImgWrapper>
         <ScrollButton type="button" onClick={setNext} visibility={imageIndex < numPhotos ? 'visible' : 'hidden'}>&gt;</ScrollButton>
       </MainDivWrapper>
