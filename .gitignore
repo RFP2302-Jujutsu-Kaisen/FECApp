@@ -2,4 +2,6 @@ node_modules
 .env
 client/dist/*.js
 client/dist/*.js.map
+client/dist/*.js
+client/dist/*.js.map
 
