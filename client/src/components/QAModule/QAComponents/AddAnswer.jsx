@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { useAppContext } from '../../AppContext';
 import ModalTest from '../../Modals/ModalTest';
 
 const AddAnswerButton = styled.button`
@@ -23,6 +24,7 @@ const AddAnswerButton = styled.button`
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
+  font-family: #777
 `;
 
 const Label = styled.label`
@@ -73,6 +75,8 @@ export default function AddAnswer({ question, refreshAnswers }) {
   const [answerText, setAnswerText] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
+  const { state } = useAppContext();
+  const { productName } = state;
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -114,8 +118,8 @@ export default function AddAnswer({ question, refreshAnswers }) {
         Add Answer
       </AddAnswerButton>
       <ModalTest isOpen={isModalOpen} onClose={closeModal} data-testid="modal-test">
-        <h2>Submit Your Answer</h2>
-        <h4>{`[PRODUCT NAME HERE ID: [${question.question_body}]`}</h4>
+        <h3>Submit Your Answer</h3>
+        <h4>{`${productName}: ${question.question_body}`}</h4>
         <form onSubmit={handleSubmit} data-testid="submit-form">
           <FormContainer>
             <Label htmlFor="your-answer">

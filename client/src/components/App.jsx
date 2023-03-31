@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Overview from './Overview/Overview';
+import OtherProducts from './OtherProducts';
 import { AppContextProvider } from './AppContext';
 import logo from './jujulogo.png';
 import easterEgg from './film-white.gif';
@@ -143,6 +144,7 @@ export default function App() {
       <MainWrapper>
         <AppContextProvider>
           <Overview />
+          <OtherProducts />
           <div className="questions-and-answers">
             <React.Suspense fallback={<div>Loading Questions & Answers...</div>}>
               <LazyQuestionsAndAnswers />

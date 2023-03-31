@@ -12,6 +12,9 @@ export default function appReducer(state, action) {
       // Return a new state object with the updated productAvgRating
       return { ...state, productAvgRating: action.payload };
 
+    case 'SET_PRODUCT_NAME':
+      return { ...state, productName: action.payload };
+
     // For any other action type, return the current state
     default:
       return state;

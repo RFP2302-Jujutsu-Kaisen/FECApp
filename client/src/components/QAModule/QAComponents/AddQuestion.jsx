@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { useAppContext } from '../../AppContext';
 import ModalTest from '../../Modals/ModalTest';
 
 const AddQuestionButton = styled.button`
@@ -70,6 +71,8 @@ export default function AddQuestion({ productId, refreshQuestions }) {
   const [questionText, setQuestionText] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
+  const { state } = useAppContext();
+  const { productName } = state;
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -112,8 +115,8 @@ export default function AddQuestion({ productId, refreshQuestions }) {
         ADD A QUESTION +
       </AddQuestionButton>
       <ModalTest isOpen={isModalOpen} onClose={closeModal}>
-        <h2>Ask Your Question</h2>
-        <h4>{`About the [PRODUCT NAME HERE ID: ${productId}]`}</h4>
+        <h3>Ask Your Question</h3>
+        <h4>{`About the ${productName}`}</h4>
         <Form onSubmit={handleSubmit}>
           <Label htmlFor="your-question">
             Your Question (mandatory)*
@@ -126,7 +129,7 @@ export default function AddQuestion({ productId, refreshQuestions }) {
           </Label>
           <Label htmlFor="your-email">
             Your email (mandatory)*
-            <Input id="your-email" type="email" maxLength="60" placeholder="Why did you like the product or not?" required value={email} onChange={(e) => setEmail(e.target.value)} />
+            <Input id="your-email" type="email" maxLength="60" placeholder="jack@email.com" required value={email} onChange={(e) => setEmail(e.target.value)} />
             <SmallText>For authentication reasons, you will not be emailed</SmallText>
           </Label>
           <SubmitButton type="submit">Submit question</SubmitButton>
