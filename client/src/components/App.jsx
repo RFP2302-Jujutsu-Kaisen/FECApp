@@ -56,6 +56,7 @@ const Header = styled.header`
 // Define the logo for the header
 const Logo = styled.img`
   height: 64px;
+  width: 231px;
 `;
 
 // Define the navigation links for the header
@@ -130,7 +131,7 @@ export default function App() {
     <BannerAndHeaderContainer>
       <Banner>Get Your Juju on with The Juju Store: Where Reacting is Always in Fashion!</Banner>
       <Header>
-        <Logo src={logo} alt="The Juju Store Logo" />
+        <Logo src={logo} alt="The Juju Store Logo" width="auto" height="64" />
         <Nav>
           <NavItem href="#">Home</NavItem>
           <NavItem href="#">Shop</NavItem>
@@ -151,8 +152,8 @@ export default function App() {
       </MainWrapper>
       <FooterWrapper>
         <div>
-          <Fun src={easterEgg} alt="" />
-          <Fun src={easterEgg2} alt="" />
+          <Fun src={easterEgg} alt="" width="24" height="24" />
+          <Fun src={easterEgg2} alt="" width="12" height="24" />
           {'   Footy Corner'}
         </div>
         <FooterText>
