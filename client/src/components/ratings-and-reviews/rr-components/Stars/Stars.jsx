@@ -1,10 +1,12 @@
 import React from 'react';
+import { useAppContext } from '../../../AppContext';
 import { QuarterStarStyle } from './Stars.styles';
 import FullStar from './FullStar';
 import EmptyStar from './EmptyStar';
 
-const Stars = function ({ averageRating }) {
-  let rating = averageRating;
+const Stars = function () {
+  const product = useAppContext();
+  let rating = product.state.productAvgRating[0];
   const stars = [];
   while (stars.length < 5) {
     if (rating > 1) {
@@ -45,20 +47,19 @@ const Stars = function ({ averageRating }) {
 
   return (
     <div>
-      <h4>Stars Average Review Rating</h4>
       <QuarterStarStyle inputDisplay="block">
         {stars.map((star, i) => {
-        return (
-          <QuarterStarStyle key={i} inputPosition="relative" inputDisplay="inline-flex" >
-            <QuarterStarStyle inputWidth={star} inputOverflow="hidden" inputPosition="absolute">
-              <FullStar />
+          return (
+            <QuarterStarStyle key={i} inputPosition="relative" inputDisplay="inline-flex" >
+              <QuarterStarStyle inputWidth={star} inputOverflow="hidden" inputPosition="absolute">
+                <FullStar />
+              </QuarterStarStyle>
+              <QuarterStarStyle>
+                <EmptyStar />
+              </QuarterStarStyle>
             </QuarterStarStyle>
-            <QuarterStarStyle>
-              <EmptyStar />
-            </QuarterStarStyle>
-          </QuarterStarStyle>
-        )
-      })}
+          )
+          })}
       </QuarterStarStyle>
     </div>
   );
