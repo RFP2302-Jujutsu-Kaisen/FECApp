@@ -12,7 +12,7 @@ const ThumbnailListWrapper = styled.ul`
 `;
 
 export default function ThumbnailList({
-  style, imageIndex, setImageIndex, toggleView,
+  style, imageIndex, setImageIndex,
 }) {
   const listAmt = 7; // requires 7
   const listMin = Math.floor(listAmt / 2); // number of thumbnails to show
@@ -66,7 +66,7 @@ export default function ThumbnailList({
   return (
     <div
       data-testid="galleryThumbListId"
-      className={toggleView ? 'thumbnail-list' : 'icon-list'}
+      className="thumbnail-list"
     >
       {thumbnails.length > 0 && minButtonFlag
         ? <button type="button" onClick={setPrev}>Up</button> : null}

@@ -2,21 +2,69 @@ import React from 'react';
 import styled from 'styled-components';
 
 // css
-const MainDivWrapper = styled.div`
+
+// const ExpDivWrapper = styled.div`
+//   border: 10px solid blue;
+//   flex-grow: 1;
+//   justify-content: center;
+//   position: absolute;
+//   left: 0%;
+//   height: 100%;
+
+// `;
+
+// const ExpImgRelWrapper = styled.div`
+//   position: relative;
+//   border: 10px solid gray;
+//   min-width: 100%;
+//   min-height: 100%;
+//   height: 800px;
+// `;
+
+const RelWrapper = styled.div`
   display:flex;
   border: 10px solid blue;
   justify-content: space-between;
   height: 100%;
+  width: 100%;
+  align-items: center;
+  position: relative;
 `;
+
+const MainDivWrapper = styled.div`
+display: flex;
+border: 10px solid aqua;
+justify-content: center;
+position: absolute;
+width: 100%;
+height: 100%;
+`;
+
+// const MainDivWrapper = styled.div`
+//   display:flex;
+//   border: 10px solid blue;
+//   justify-content: space-between;
+//   height: 100%;
+//   align-items: center;
+// `;
 
 const MainImgWrapper = styled.input`
   display: flex;
   max-width: 100%;
   max-height: 100%;
-  height: auto;
   object-fit: scale-down;
   object-position: 30% 30%;
+  align-items: center;
+`;
 
+const ParentImgWrapper = styled.div`
+  display: flex;
+  height: 100%;
+  border: 10px solid red;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  left: 0%;
 `;
 
 const ScrollButton = styled.button`
@@ -43,7 +91,7 @@ export default function MainImage({
     return (
       <MainDivWrapper data-testid="mainImageId">
         <ScrollButton type="button" onClick={setPrev} visibility={imageIndex > 0 ? 'visible' : 'hidden'}>&lt;</ScrollButton>
-        <div>
+        <ParentImgWrapper>
           <MainImgWrapper
             data-testid="imgToggleId"
             type="image"
@@ -52,7 +100,7 @@ export default function MainImage({
             onClick={changeView}
           />
           <button type="button" onClick={toggleHandler}>toggleExp</button>
-        </div>
+        </ParentImgWrapper>
         <ScrollButton type="button" onClick={setNext} visibility={imageIndex < numPhotos ? 'visible' : 'hidden'}>&gt;</ScrollButton>
       </MainDivWrapper>
     );

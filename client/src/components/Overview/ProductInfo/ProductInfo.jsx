@@ -12,7 +12,7 @@ const ProdInfoWrapper = styled.div`
   align-items: flex-start;
 `;
 
-export default function ProductInfo({ prod, style } = {}) {
+export default function ProductInfo({ prod, style} = {}) {
   // console.log('prod and style in ProductInfo', style);
   return (
     <ProdInfoWrapper data-testid="pinfoid">
