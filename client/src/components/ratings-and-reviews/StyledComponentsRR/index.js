@@ -1,1 +1,1 @@
-export { RRFlex, RatingsAndReviewsContainer, Model, RRBoxLeft, RRList, RRBoxRight } from './StyledComponentsRR';
+export { RRFlex, RatingsAndReviewsContainer, Model, RRBoxLeft, RRBoxRight } from './StyledComponentsRR';

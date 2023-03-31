@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import QuestionsAndAnswers from './QAModule';
 import Overview from './Overview/Overview';
-import RatingsAndReviews from './ratings-and-reviews';
 import { AppContextProvider } from './AppContext';
 import logo from './jujulogo.png';
 import easterEgg from './film-white.gif';
 import easterEgg2 from './soccer-ball.gif';
 
+const LazyQuestionsAndAnswers = React.lazy(() => import('./QAModule'));
+const LazyRatingsAndReviews = React.lazy(() => import('./ratings-and-reviews'));
+
 // Define colors used throughout the app
 const colors = {
-  primary: 'black',
+  primary: '#222222',
   text: '#3C3C3C',
   lightGrey: '#FAFAFA',
   darkGrey: '#333333',
@@ -143,10 +144,14 @@ export default function App() {
         <AppContextProvider>
           <Overview />
           <div className="questions-and-answers">
-            <QuestionsAndAnswers />
+            <React.Suspense fallback={<div>Loading Questions & Answers...</div>}>
+              <LazyQuestionsAndAnswers />
+            </React.Suspense>
           </div>
           <div>
-            <RatingsAndReviews />
+            <React.Suspense fallback={<div>Loading Ratings & Reviews...</div>}>
+              <LazyRatingsAndReviews />
+            </React.Suspense>
           </div>
         </AppContextProvider>
       </MainWrapper>
