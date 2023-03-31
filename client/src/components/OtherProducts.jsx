@@ -19,7 +19,12 @@ const Wrapper = styled.div`
 `;
 
 export default function OtherProducts() {
-  const { state, setProductId, setProductName } = useAppContext();
+  const {
+    state,
+    setProductId,
+    setProductName,
+    setRating,
+  } = useAppContext();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -36,9 +41,48 @@ export default function OtherProducts() {
       });
   }, []);
 
-  const handleChangeProduct = (productId, productName) => {
+  const handleChangeProduct = async (productId, productName) => {
     setProductId(productId);
     setProductName(productName);
+
+    const headers = {
+      Authorization: process.env.AUTH_SECRET,
+    };
+
+    try {
+      const { data: reviewMeta } = await axios.get(
+        `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=${productId}`,
+        { headers },
+      );
+
+      const rating = [
+        Number.parseInt(reviewMeta.ratings['1'], 10),
+        Number.parseInt(reviewMeta.ratings['2'], 10),
+        Number.parseInt(reviewMeta.ratings['3'], 10),
+        Number.parseInt(reviewMeta.ratings['4'], 10),
+        Number.parseInt(reviewMeta.ratings['5'], 10),
+      ];
+
+      const oneStars = rating[0];
+      const twoStars = rating[1] * 2;
+      const threeStars = rating[2] * 3;
+      const fourStars = rating[3] * 4;
+      const fiveStars = rating[4] * 5;
+
+      const countOneStars = rating[0];
+      const countTwoStars = rating[1];
+      const countThreeStars = rating[2];
+      const countFourStars = rating[3];
+      const countFiveStars = rating[4];
+
+      const avgRate = (oneStars + twoStars + threeStars + fourStars + fiveStars)
+      / (countOneStars + countTwoStars + countThreeStars + countFourStars + countFiveStars);
+      const averageRating = avgRate.toFixed(1);
+
+      setRating([averageRating, rating]);
+    } catch (err) {
+      console.error('Error fetching rating data: ', err);
+    }
   };
 
   return (
