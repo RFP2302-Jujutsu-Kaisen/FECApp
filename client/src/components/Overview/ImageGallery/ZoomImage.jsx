@@ -36,7 +36,7 @@ const ImgWrapper = styled.input`
   overflow: hidden;
   ${({ topLeft }) => topLeft}
   &:hover {
-    cursor: vertical-text;
+    cursor: zoom-out;
   }
 `;
 

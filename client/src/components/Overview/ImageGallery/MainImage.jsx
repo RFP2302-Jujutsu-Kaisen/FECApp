@@ -82,8 +82,8 @@ const ToggleExp = styled.button`
   height: 50px;
   width: 50px;
   position: absolute;
-  top: 3%;
-  right: 3%;
+  top: 5%;
+  right: 5%;
   align-items: center;
   justify-content: center;
   font-size: 3em;
@@ -165,10 +165,10 @@ export default function MainImage({
             alt={imageIndex.toString()}
             onClick={changeView}
           />
-          <ToggleExp type="button" onClick={buttonToggleHandler}>
-            <FaExpand />
-          </ToggleExp>
         </ParentImgWrapper>
+        <ToggleExp type="button" onClick={buttonToggleHandler}>
+          <FaExpand />
+        </ToggleExp>
         <ScrollButton type="button" onClick={setNext} visibility={imageIndex < numPhotos ? 'visible' : 'hidden'}>
           <FaAngleRight />
         </ScrollButton>
