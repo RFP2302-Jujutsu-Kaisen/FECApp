@@ -4,7 +4,7 @@ An ecommerce website built to provide a friendly browsing experience.
 
 ## Authors
 #### [Dennis Hsu](https://github.com/denniseh7)
-#### Elliott Tung
+#### [Elliott Tung](https://github.com/elliott234)
 #### Donn Neufield
 
 ## Tech Stack
@@ -34,7 +34,7 @@ This section shows information about the product as well as allows customers to 
 
 ### Features
 
-* Product Information- See information about the product as well as the price 
+* Product Information- See information about the product as well as the price
 * Image Gallery- Browse through photos of each style of the product
 * Style Selector- Select the style of the product
 * Add to Cart- Add the chosen quantity and size of the product to your cart
@@ -48,6 +48,13 @@ This section shows information about the product as well as allows customers to 
     <li>Share their experience on social media about the product</li>
   </ul>
 </details>
+
+<!--- Elliott: Questions and Answers --->
+## Questions & Answers
+#### Features
+- Allows users to view and search for questions, ask new questions, and provide answers to existing questions, specifically for each product
+- Implement of accordion-style question lists, search functionality, and modal windows for submitting questions and answers
+- Future enhancements include support for image uploads in answers, infinite scroll for question lists, and highlighting search terms within the module for improved usability and user engagement.
 
 ## Getting Started
 
