@@ -29,7 +29,11 @@ An ecommerce website built to provide a friendly browsing experience.
 ![Trello](https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white)
 
 <!--- Dennis: Product Overview --->
-## Overview
+## Summary
+This is a website built to allow users to shop for a variety of products and styles. Users can view information and photos per style, ask questions and answers, and finally see ratings and reviews of the product. Website was built to follow client specifications for User Interface and User Experience.
+
+
+## Product Overview
 This section shows information about the product as well as allows customers to select what style to add to their shopping cart.
 
 ### Features
