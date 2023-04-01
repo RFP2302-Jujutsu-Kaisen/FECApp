@@ -21,7 +21,7 @@ const Question = styled.h4`
 
 const HelpfulContainer = styled.div`
   font-size: 11px;
-  color: #5A5A5A;
+  color: #6e6e73;
   font-weight: 400;
   display: flex;
   align-items: center;
@@ -31,21 +31,21 @@ const HelpfulContainer = styled.div`
 
 const HelpfulLabel = styled.span`
   font-size: 11px;
-  color: #5A5A5A;
+  color: #6e6e73;
   font-weight: 400;
   margin-right: 2px;
 `;
 
 const HelpfulButton = styled.button`
   font-size: 11px;
-  color: #5A5A5A;
+  color: #6e6e73;
   font-weight: 400;
   background-color: transparent;
   border: none;
   cursor: pointer;
 
   &:hover {
-    color: #404040;
+    color: #1D1D1F;
   }
 `;
 
@@ -57,13 +57,13 @@ const MoreAnswersButton = styled.button`
   font-size: 11px;
   font-weight: bold;
   margin-top: 8px;
-  color: #5A5A5A;
+  color: #6e6e73;
   background-color: transparent;
   border: none;
   cursor: pointer;
 
   &:hover {
-    color: #404040;
+    color: #1D1D1F;
   }
 `;
 

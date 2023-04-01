@@ -7,7 +7,7 @@ import { useAppContext } from './AppContext';
 const Heading = styled.h4`
   font-size: 14px;
   font-weight: normal;
-  color: #5A5A5A;
+  color: #6e6e73;
   margin-bottom: 16px;
   font-family; system-ui;
 `;

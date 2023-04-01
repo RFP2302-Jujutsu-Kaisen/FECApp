@@ -5,9 +5,9 @@ import { SearchBar, QuestionsList, AddQuestion } from './QAComponents';
 import { useAppContext } from '../AppContext';
 
 const Heading = styled.h4`
-  font-size: 14px;
-  font-weight: normal;
-  color: #5A5A5A;
+  font-size: 24px;
+  font-weight: 500;
+  color: #1D1D1F;
   margin-bottom: 16px;
   font-family; system-ui;
 `;
@@ -15,6 +15,7 @@ const Heading = styled.h4`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  font-color: #1D1D1F;
   font-family: system-ui;
 `;
 

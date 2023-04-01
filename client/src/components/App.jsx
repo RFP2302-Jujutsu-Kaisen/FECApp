@@ -14,7 +14,7 @@ const LazyRatingsAndReviews = React.lazy(() => import('./ratings-and-reviews'));
 const colors = {
   primary: '#222222',
   text: '#3C3C3C',
-  lightGrey: '#FAFAFA',
+  lightGrey: '#FBFBFD',
   darkGrey: '#333333',
 };
 
