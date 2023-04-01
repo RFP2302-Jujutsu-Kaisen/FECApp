@@ -47,16 +47,19 @@ This section shows information about the product as well as allows customers to 
 
 ## Getting Started
 
-Installation
-- Clone the repository
+### Requirements
+* Node.js
+
+### Installation
+* Clone the repository
     ```
         git clone https://github.com/KFEC/TechStyles.git
     ```
-- Install the dependencies
+* Install the dependencies
     ```
         npm install
     ```
-- Copy example.env file and rename to .env with the following within
+* Copy example.env file and rename to .env with the following within
     ```
         PORT=3000
 
@@ -66,7 +69,7 @@ Installation
 
         WEBPACK_MODE='development'
     ```
-- Run the following script
+* Run the following script
     ```
         npm run dev
         npm run start
