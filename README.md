@@ -29,7 +29,11 @@ An ecommerce website built to provide a friendly browsing experience.
 ![Trello](https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white)
 
 <!--- Dennis: Product Overview --->
-## Overview
+## Summary
+This is a website built to allow users to shop for a variety of products and styles. Users can view information and photos per style, ask questions and answers, and finally see ratings and reviews of the product. Website was built to follow client specifications for User Interface and User Experience.
+
+
+## Product Overview
 This section shows information about the product as well as allows customers to select what style to add to their shopping cart.
 
 ### Features
@@ -39,14 +43,24 @@ This section shows information about the product as well as allows customers to 
 * Style Selector- Select the style of the product
 * Add to Cart- Add the chosen quantity and size of the product to your cart
 
+![image](https://user-images.githubusercontent.com/7811764/229316682-df459099-8756-43fb-87c5-bb81a1b60f3a.png)
+
 <details>
 <summary>Additional Features</summary>
 <br>
   <ul>
     <li>Zoom in to photos of the gallery</li>
+  </ul>
+   
+  ![Screenshot 2023-04-01 at 3 27 06 PM](https://user-images.githubusercontent.com/7811764/229317071-e47a91f8-4ca3-43be-ac67-53fb0b562551.png)
+  
+  <ul>
     <li>Show products that are on sale</li>
     <li>Share their experience on social media about the product</li>
   </ul>
+  
+  ![Screenshot 2023-04-01 at 3 29 49 PM](https://user-images.githubusercontent.com/7811764/229317574-ce7cdeb5-8a35-4899-884b-66b4e033696e.png)
+
 </details>
 
 ## Getting Started
