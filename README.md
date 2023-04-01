@@ -70,6 +70,8 @@ This section shows information about the product as well as allows customers to 
 - Implement of accordion-style question lists, search functionality, and modal windows for submitting questions and answers
 - Future enhancements include support for image uploads in answers, infinite scroll for question lists, and highlighting search terms within the module for improved usability and user engagement.
 
+<img width="969" alt="Screen Shot 2023-04-01 at 3 49 36 PM" src="https://user-images.githubusercontent.com/13438462/229319815-1fc3c965-37d9-4ce1-a98a-01395367bb8a.png">
+
 ## Getting Started
 
 ### Requirements
