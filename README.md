@@ -3,13 +3,13 @@
 An ecommerce website built to provide a friendly browsing experience.
 
 ## Authors
-### [Dennis Hsu](https://github.com/denniseh7)\
-Elliott Tung\
-Donn Neufield
+#### [Dennis Hsu](https://github.com/denniseh7)
+#### Elliott Tung
+#### Donn Neufield
 
 ## Tech Stack
 
-### Production
+### Development
 ![NodeJS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![ExpressJS](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
@@ -18,11 +18,15 @@ Donn Neufield
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![Styled-components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 ![AWS](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
-![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 
-### Testing
+### Environment and Testing
+![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
+![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
+![VSCode](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
+![ESLint](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white)
 ![Jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)
 ![React Testing Library](https://img.shields.io/badge/testing%20library-323330?style=for-the-badge&logo=testing-library&logoColor=red)
+![Trello](https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white)
 
 <!--- Dennis: Product Overview --->
 ## Overview
@@ -48,29 +52,23 @@ This section shows information about the product as well as allows customers to 
 ## Getting Started
 
 ### Requirements
-* Node.js
+* Node.js v16.19.0
 
 ### Installation
 * Clone the repository
     ```
-        git clone https://github.com/KFEC/TechStyles.git
+        git clone https://github.com/RFP2302-Jujutsu-Kaisen/FECApp.git
     ```
 * Install the dependencies
     ```
         npm install
     ```
-* Copy example.env file and rename to .env with the following within
+* Copy example.env file and rename to .env in same directory with the following contents
     ```
-        PORT=3000
-
-        HOST='localhost'
-
-        API_TOKEN='Insert API token'
-
-        WEBPACK_MODE='development'
+        AUTH_SECRET = "Your github API token"
     ```
-* Run the following script
+* Run the following scripts
     ```
-        npm run dev
+        npm run build
         npm run start
     ```
