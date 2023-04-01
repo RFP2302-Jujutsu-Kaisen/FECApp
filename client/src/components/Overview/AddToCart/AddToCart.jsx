@@ -46,7 +46,6 @@ const AddWrapper = styled.div`
   height: 100%;
   width: 100%;
   column-gap: 15%;
-  align-items: center;
 `;
 
 export default function AddToCart({ styleInStockArr }) {
