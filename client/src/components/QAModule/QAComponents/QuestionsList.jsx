@@ -9,9 +9,13 @@ margin: 10px 0px 10px 0px;
 padding: 16px 14px;
 font-size: 15px;
 cursor: pointer;
+
+&:hover {
+  color: #333333;
+}
 `;
 export default function QuestionsList({ questions, refreshAnswers }) {
-  const [numQsToShow, setNumQsToShow] = useState(4);
+  const [numQsToShow, setNumQsToShow] = useState(2);
 
   const renderQuestions = () => {
     let count = 0;

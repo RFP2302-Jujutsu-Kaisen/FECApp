@@ -21,27 +21,32 @@ const Question = styled.h4`
 
 const HelpfulContainer = styled.div`
   font-size: 11px;
-  color: gray;
+  color: #5A5A5A;
   font-weight: 400;
   display: flex;
   align-items: center;
   margin-right: 75px;
+  margin-top: 8px;
 `;
 
 const HelpfulLabel = styled.span`
   font-size: 11px;
-  color: gray;
+  color: #5A5A5A;
   font-weight: 400;
   margin-right: 2px;
 `;
 
 const HelpfulButton = styled.button`
   font-size: 11px;
-  color: gray;
+  color: #5A5A5A;
   font-weight: 400;
   background-color: transparent;
   border: none;
   cursor: pointer;
+
+  &:hover {
+    color: #404040;
+  }
 `;
 
 const UnderlineSpan = styled.span`
@@ -62,18 +67,31 @@ const MoreAnswersButton = styled.button`
   }
 `;
 
+const AnswerListContainer = styled.div`
+  max-height: 50vh;
+  width: 66%;
+  overflow-y: auto;
+`;
+
 export default function QuestionEntry({ question, refreshAnswers }) {
   const [numAnswersToShow, setNumAnswersToShow] = useState(2);
   const [helpfulnessCount, setHelpfulnessCount] = useState(question.question_helpfulness);
   const [isHelpfulClicked, setIsHelpfulClicked] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const renderAnswers = () => {
     if (question && question.answers) {
       let count = 0;
-      return Object.keys(question.answers).map((key) => {
+      const answersArray = Object.values(question.answers);
+
+      const sortedAnswers = answersArray.sort((a, b) => (
+        b.helpfulness - a.helpfulness
+      ));
+
+      return sortedAnswers.map((answer) => {
         if (count < numAnswersToShow) {
           count += 1;
-          return <AnswerEntry key={question.answers[key].id} answer={question.answers[key]} />;
+          return <AnswerEntry key={answer.id} answer={answer} />;
         }
         return null;
       });
@@ -82,7 +100,15 @@ export default function QuestionEntry({ question, refreshAnswers }) {
   };
 
   const loadMoreAnswers = () => {
-    setNumAnswersToShow(numAnswersToShow + 2);
+    if (!isExpanded) {
+      setNumAnswersToShow(numAnswersToShow + 2);
+      if (numAnswersToShow + 2 >= Object.keys(question.answers).length) {
+        setIsExpanded(true);
+      }
+    } else {
+      setNumAnswersToShow(2);
+      setIsExpanded(false);
+    }
   };
 
   const incrementHelpfulness = async () => {
@@ -121,10 +147,18 @@ export default function QuestionEntry({ question, refreshAnswers }) {
           <AddAnswer question={question} refreshAnswers={refreshAnswers} data-testid="add-answer" />
         </HelpfulContainer>
       </QuestionContainer>
-      <div data-testid="answer-list">{renderAnswers()}</div>
+      <AnswerListContainer data-testid="answer-list">
+        {renderAnswers()}
+      </AnswerListContainer>
       <div>
-        {numAnswersToShow < Object.keys(question.answers).length && (
-        <MoreAnswersButton type="button" onClick={loadMoreAnswers} data-testid="more-answers-button">LOAD MORE ANSWERS</MoreAnswersButton>
+        {Object.keys(question.answers).length > 2 && (
+          <MoreAnswersButton
+            type="button"
+            onClick={loadMoreAnswers}
+            data-testid="more-answers-button"
+          >
+            {isExpanded ? 'Collapse answers' : 'LOAD MORE ANSWERS'}
+          </MoreAnswersButton>
         )}
       </div>
     </div>

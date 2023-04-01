@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  height: 7px;
+  height: 0.75rem;
   width: 100%;
   position: relative;
 `;
@@ -26,6 +26,24 @@ const FlexWrapper = styled.div`
 
 const Description = styled(FlexWrapper)`
   justify-content: space-between;
+  font-size: 11px;
   `;
 
-export { Container, Background, FlexWrapper, Description };
+const Caret = styled.div`
+  position: absolute;
+  left: ${(props) => props.percent}%;
+`;
+
+const FactorsContainer = styled.div`
+  margin-top: 15px;
+  margin-bottom: 15px;
+`;
+
+export {
+  Container,
+  Background,
+  FlexWrapper,
+  Description,
+  Caret,
+  FactorsContainer,
+};

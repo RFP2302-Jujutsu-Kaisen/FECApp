@@ -3,15 +3,28 @@ import styled from 'styled-components';
 import GalleryThumbnail from './GalleryThumbnail';
 
 // css
+// const ThumbnailListWrapper = styled.ul`
+//   display: flex;
+//   flex-direction: column;
+//   list-style-type: none;
+//   align-content: space-between;
+//   justify-content: center;
+//   height: 100%;
+//   z-index: 5;
+// `;
+
 const ThumbnailListWrapper = styled.ul`
-  display: flex;
-  flex-direction: column;
-  list-style-type: none;
-  align-content: space-between;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: repeat(7, 1fr);
+  list-style: none;
+  justify-content: center;
+  gap: 3px;
+
 `;
 
 export default function ThumbnailList({
-  style, imageIndex, setImageIndex, toggleView,
+  style, imageIndex, setImageIndex,
 }) {
   const listAmt = 7; // requires 7
   const listMin = Math.floor(listAmt / 2); // number of thumbnails to show
@@ -65,7 +78,7 @@ export default function ThumbnailList({
   return (
     <div
       data-testid="galleryThumbListId"
-      className={toggleView ? 'thumbnail-list' : 'icon-list'}
+      className="thumbnail-list"
     >
       {thumbnails.length > 0 && minButtonFlag
         ? <button type="button" onClick={setPrev}>Up</button> : null}

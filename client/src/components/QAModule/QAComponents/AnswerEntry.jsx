@@ -23,7 +23,7 @@ const AnswerDetails = styled.div`
   display: flex;
   flex-wrap: nowrap;
   font-size: 11px;
-  color: gray;
+  color: #5A5A5A;
   align-items: center;
   margin-top: 8px;
 `;
@@ -39,7 +39,7 @@ const UnderlineSpan = styled.span`
 const HelpfulnessButton = styled.button`
   background: transparent;
   border: none;
-  color: gray;
+  color: #5A5A5A;
   font-size: 11px;
   cursor: pointer;
 
@@ -51,7 +51,7 @@ const HelpfulnessButton = styled.button`
 const ReportButton = styled.button`
   background: transparent;
   border: none;
-  color: gray;
+  color: #5A5A5A;
   font-size: 11px;
   cursor: pointer;
 
@@ -119,7 +119,8 @@ export default function AnswerEntry({ answer }) {
           ,
           {' '}
           {
-          new Date(answer.date).toDateString()
+          new Date(answer.date).toDateString().split(' ').slice(1)
+            .join(' ')
           }
           {'   |   '}
           Helpful?
